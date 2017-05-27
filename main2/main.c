@@ -1,64 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
-
-typedef struct student
-{
-    char *name;
-    int age;
-} student;
-
-typedef struct classroom
-{
-    struct student * s1;
-    struct student * s2;
-} classroom;
-
-void printStudentName(struct student foo)
-{
-    printf("Name is %s and age is %d\n", foo.name, foo.age);
-}
-
-void printClassroom(struct classroom c1)
-{
-    printStudentName(*(c1.s1));
-    printStudentName(*(c1.s2));
-}
-
-char * getFooArray()
-{
-    char * name = malloc(4);
-    name[0] = 'f';
-    name[1] = 'o';
-    name[2] = 'o';
-    name[3] = 0;
-    return name;
-}
-
-int main()
-{
-    printf("Hello world!\n");
-    student shivanshu;
-    student *shreeshaa;
-    shivanshu.name = getFooArray();
-    shivanshu.age = 23;
-    shreeshaa = malloc(sizeof(student));
-    //(*shreeshaa).age = 18;
-    shreeshaa->age = 18;
-    shreeshaa->name = "Shreeshaa";
-    classroom *c1 = malloc(sizeof(classroom));
-    c1->s1 = &shivanshu;
-    c1->s2 = shreeshaa;
-    //shivanshu.name[0] = 'B';
-    shivanshu.age = 100;
-    printClassroom(*c1);
-    free(shreeshaa);
-    return 0;
-}
-
-*/
-
 typedef struct Node
 {
     int value;
