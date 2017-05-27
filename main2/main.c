@@ -23,13 +23,17 @@ List * createList()
     return a;
 }
 
-void addElement(List *list, int val)
+void appendElement(List *list, int val)
 {
     Node * temp1 = malloc(sizeof(Node));
     list->tail->next = temp1;
     list->tail->value = val;
     list->tail = temp1;
     list->tail->next = 0;
+}
+
+void prependElement(List *list, int val)
+{
 }
 
 void printList(List *list)
