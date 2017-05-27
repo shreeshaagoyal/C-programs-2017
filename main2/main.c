@@ -34,11 +34,12 @@ void addElement(List *list, int val)
 
 void printList(List *list)
 {
+    Node * temp = list->head;
     printf("[");
-    while((list->head->next) != 0)
+    while((temp->next) != 0)
     {
-        printf("%d,", list->head->value);
-        list->head = list->head->next;
+        printf("%d,", temp->value);
+        temp = temp->next;
     }
     printf("]");
 }
@@ -49,6 +50,7 @@ int main()
     addElement(list, 10);
     addElement(list, 20);
     addElement(list, -7);
+    printList(list); // expect [10,20,-7,]
     printList(list); // expect [10,20,-7,]
     return 0;
 }
