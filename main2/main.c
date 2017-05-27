@@ -46,8 +46,16 @@ void prependElement(List *list, int val)
 {
     Node * temp = malloc(sizeof(Node));
     temp->value = val;
-    temp->next = list->head;
-    list->head = temp;
+    if(list->head == 0)
+    {
+        list->head = temp;
+        list->tail = temp;
+    }
+    else
+    {
+        temp->next = list->head;
+        list->head = temp;
+    }
 }
 
 void printList(List *list)
