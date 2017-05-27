@@ -34,6 +34,11 @@ void appendElement(List *list, int val)
 
 void prependElement(List *list, int val)
 {
+    Node * temp = malloc(sizeof(Node));
+    temp->value = val;
+    temp->next = list->head;
+    list->head = temp;
+    list->tail = temp;
 }
 
 void printList(List *list)
@@ -51,10 +56,10 @@ void printList(List *list)
 int main()
 {
     List *list = createList();
-    addElement(list, 10);
-    addElement(list, 20);
-    addElement(list, -7);
-    printList(list); // expect [10,20,-7,]
+    appendElement(list, 10);
+    appendElement(list, 20);
+    appendElement(list, -7);
+    prependElement(list, 100);
     printList(list); // expect [10,20,-7,]
     return 0;
 }
