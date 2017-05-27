@@ -50,6 +50,7 @@ void prependElement(List *list, int val)
     {
         list->head = temp;
         list->tail = temp;
+        list->tail->next = 0;
     }
     else
     {
@@ -62,7 +63,7 @@ void printList(List *list)
 {
     Node * temp = list->head;
     printf("[");
-    while((temp->next) != 0)
+    while((temp) != 0)
     {
         printf("%d,", temp->value);
         temp = temp->next;
@@ -73,9 +74,6 @@ void printList(List *list)
 int main()
 {
     List *list = createList();
-    appendElement(list, 10);
-    appendElement(list, 20);
-    appendElement(list, -7);
     prependElement(list, 100);
     appendElement(list, 10000);
     printList(list); // expect [10,20,-7,]
