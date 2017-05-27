@@ -38,7 +38,6 @@ void prependElement(List *list, int val)
     temp->value = val;
     temp->next = list->head;
     list->head = temp;
-    list->tail = temp;
 }
 
 void printList(List *list)
@@ -60,6 +59,7 @@ int main()
     appendElement(list, 20);
     appendElement(list, -7);
     prependElement(list, 100);
+    appendElement(list, 10000);
     printList(list); // expect [10,20,-7,]
     return 0;
 }
