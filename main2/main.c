@@ -17,19 +17,29 @@ typedef struct List
 List * createList()
 {
     List * a = malloc(sizeof(List));
-    Node * init = malloc(sizeof(Node));
-    a->head = init;
-    a->tail = init;
+    a->head = 0;
+    a->tail = 0;
     return a;
 }
 
 void appendElement(List *list, int val)
 {
-    Node * temp1 = malloc(sizeof(Node));
-    list->tail->next = temp1;
-    list->tail->value = val;
-    list->tail = temp1;
-    list->tail->next = 0;
+    Node * temp = malloc(sizeof(Node));
+    if(list->head == 0)
+    {
+        list->head = temp;
+        list->tail = temp;
+        list->tail->next = 0;
+        list->tail->value = val;
+    }
+    else
+    {
+        list->tail->next = temp;
+        list->tail = temp;
+        list->tail->value = val;
+        list->tail->next = 0;
+    }
+
 }
 
 void prependElement(List *list, int val)
