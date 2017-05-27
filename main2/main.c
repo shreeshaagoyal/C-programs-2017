@@ -1,47 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct List
+{
+    Node *head;
+    Node *tail;
+} List;
+
 typedef struct Node
 {
     int value;
     struct Node *next;
 } Node;
 
-Node * createList()
+List * createList()
 {
-    Node * a = malloc(sizeof(Node));
-    a->next = 0;
-    return a;
 }
 
-void addElement(Node *head, int val)
+void addElement(List *list, int val)
 {
-    Node * temp = head;
-    while((temp->next) != 0)
-    {
-        temp = temp->next;
-    }
-    Node * temp1 = malloc(sizeof(Node));
-    temp->value = val;
-    temp->next = temp1;
-    temp1->next = 0;
 }
 
-void printList(Node *head)
+void printList(List *list)
 {
-    printf("[");
-    Node * temp = head;
-    while((temp->next) != 0)
-    {
-        printf("%d,", temp->value);
-        temp = temp->next;
-    }
-    printf("]");
 }
 
 int main()
 {
-    Node *list = createList();
+    List *list = createList();
     addElement(list, 10);
     addElement(list, 20);
     addElement(list, -7);
