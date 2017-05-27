@@ -29,6 +29,7 @@ void addElement(List *list, int val)
     list->tail->next = temp1;
     list->tail->value = val;
     list->tail = temp1;
+    list->tail->next = 0;
 }
 
 void printList(List *list)
