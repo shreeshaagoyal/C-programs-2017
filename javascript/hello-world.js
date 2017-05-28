@@ -1,23 +1,22 @@
-function factorial (num) {
-    if (num == 1) {
-        return 1;
-    }
-    return num * factorial(num - 1);
-}
+/*
+typedef struct Person {
+    char * name;
+    int age;
+} Person;
 
-function getArray(num) {
-    var arr = [];
-    for (var i = 0; i < num; i++) {
-        arr[i] = i;
-    }
-    return arr;
-}
+Person *shivanshu = malloc(sizeof(Person));
+shivanshu->name = "Shivanshu";
+shivanshu->age = 100;
+*/
 
-function main() {
-    var arr = getArray(10);
-    var foo = arr;
-    foo[2] = 100;
-    console.log(arr);
-}
+var shivanshu = {};
+shivanshu.name = 'Shivanshu';
+shivanshu.age = 100;
 
-main();
+var shreeshaa = {};
+shreeshaa.name = 'Shreeshaa';
+shreeshaa.age = 105;
+
+var arun = {}, monika = {};
+
+console.log(shreeshaa, shivanshu);
