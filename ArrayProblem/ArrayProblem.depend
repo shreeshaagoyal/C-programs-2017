@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1495930934 source:c:\users\shreeshaagoyal\documents\c programs 2017\arrayproblem\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
