@@ -60,6 +60,7 @@ int * nextArr(int n, int arr[], int newArr[])
     i=i+2;
 }
 
+/*
 int main()
 {
     int size, n;
@@ -79,3 +80,4 @@ int main()
     }
     return 0;
 }
+*/

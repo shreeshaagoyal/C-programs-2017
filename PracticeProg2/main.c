@@ -3,7 +3,12 @@
 
 int factorial(int num)
 {
-
+    int i, product=1;
+    for(i = 1; i <= num; i++)
+    {
+        product = product*i;
+    }
+    return product;
 }
 
 int main()
