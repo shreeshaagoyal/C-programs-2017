@@ -1,17 +1,16 @@
-var demoFunction = function () {
-    console.log('this is a demo function.');
+var foo = function() {
+    var a = 10;
+    var b = function(c, d) {
+        var sum = a + c + d;
+        console.log('The sum is:' + sum);
+        a++;
+    };
+    return b;
 };
 
-demoFunction();
+var bar = foo();
+bar(12, 13);
+bar(12, 13);
 
-var intHandler = setInterval(demoFunction, 1000);
-
-var endTimer = function () {
-    clearInterval(intHandler);
-}
-
-setInterval(endTimer, 5000);
-
-
-
-///clearInterval(intHandler);
+foo();
+bar(12, 13);
