@@ -4,6 +4,14 @@ var demoFunction = function () {
 
 demoFunction();
 
-setInterval(demoFunction, 1000);
+var intHandler = setInterval(demoFunction, 1000);
 
-console.log('ok i wil do ta');
+var endTimer = function () {
+    clearInterval(intHandler);
+}
+
+setInterval(endTimer, 5000);
+
+
+
+///clearInterval(intHandler);
