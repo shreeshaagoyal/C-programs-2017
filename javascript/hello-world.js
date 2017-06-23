@@ -9,9 +9,18 @@ console.log(foo);
 console.log(bar);
 console.log(baz);
 
-var shivanshu;
-shivanshu = {
-    age: 23,
-    name: 'Shivanshu Goyal'
+var shivanshu = {};
+shivanshu.age = 23;
+shivanshu.name = 'Shivanshu Goyal';
+shivanshu.age = 11;
+
+function hello() {
+    return {
+        age: 13,
+        name: 'sjdhfk'
+    };
 };
-console.log(shivanshu);
+
+foo = hello();
+foo.age = 44;
+foo.name;
