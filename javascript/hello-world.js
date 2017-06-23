@@ -1,16 +1,17 @@
-var foo = function() {
-    var a = 10;
-    var b = function(c, d) {
-        var sum = a + c + d;
-        console.log('The sum is:' + sum);
-        a++;
-    };
-    return b;
+var foo = [1,2,3];
+foo.push(5);
+console.log(foo);
+var bar = [4,5,6];
+console.log(bar);
+
+var baz = foo.concat(bar);
+console.log(foo);
+console.log(bar);
+console.log(baz);
+
+var shivanshu;
+shivanshu = {
+    age: 23,
+    name: 'Shivanshu Goyal'
 };
-
-var bar = foo();
-bar(12, 13);
-bar(12, 13);
-
-foo();
-bar(12, 13);
+console.log(shivanshu);
