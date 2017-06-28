@@ -1,4 +1,4 @@
-class Circle {
+class Circle implements Shape {
     double dim;
     public Circle(double dim) {
         this.dim = dim;
@@ -8,7 +8,7 @@ class Circle {
     }
 }
 
-class Square {
+class Square implements Shape {
     double dim;
     public Square(double dim) {
         this.dim = dim;
@@ -18,33 +18,15 @@ class Square {
     }
 }
 
-class Shape {
-    Circle circleObj;
-    Square squareObj;
-    ShapeType type;
-    enum ShapeType {SQUARE, CIRCLE};
-    public Shape(ShapeType type, double dim) {
-        this.type = type;
-        if (type == ShapeType.SQUARE) {
-            this.squareObj = new Square(dim);
-        } else {
-            this.circleObj = new Circle(dim);
-        }
-    }
-    public double getArea() {
-        if (this.type == ShapeType.SQUARE) {
-            return this.squareObj.getArea();
-        } else {
-            return this.circleObj.getArea();
-        }
-    }
+interface Shape {
+    public double getArea();
 }
 
 public class MyFirstJavaProgram {
     public static void main(String []args) {
         Circle c1 = new Circle(5);
         Square s1 = new Square(6);
-        Shape sh1 = new Shape(Shape.ShapeType.SQUARE, 7);
+        Shape sh1 = new Circle(7);
 
         c1.getArea();
         s1.getArea();
