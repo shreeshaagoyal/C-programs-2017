@@ -7,12 +7,12 @@ public class Puppy {
     }
 
     public void setAge(int age) {
-        puppyAge = age;
+        this.puppyAge = age;
     }
 
-    public int getAge() {
-        System.out.println("Puppy's age is: " + puppyAge);
-        return puppyAge;
+    public void getAge() {
+        System.out.println("Puppy's age is: " + this.puppyAge);
+        //return puppyAge;
     }
 
     public static void main(String []args) {
