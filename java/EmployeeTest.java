@@ -13,5 +13,7 @@ public class EmployeeTest {
         emp2.empDesignation("Senior Software Engineer");
         emp2.empSalary(90840);
         emp2.printEmp();
+
+        System.out.println(Employee.numInstances);
     }
 }

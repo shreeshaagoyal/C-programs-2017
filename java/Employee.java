@@ -4,10 +4,12 @@ public class Employee {
     int age;
     String designation;
     double salary;
+    static int numInstances = 0;
 
     public Employee(String name) {
         //constructor
         this.name = name;
+        numInstances++;
     }
 
     public void empAge(int empAge) {
