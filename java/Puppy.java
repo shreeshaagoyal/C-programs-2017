@@ -10,9 +10,9 @@ public class Puppy {
         this.puppyAge = age;
     }
 
-    public void getAge() {
+    public int getAge() {
         System.out.println("Puppy's age is: " + this.puppyAge);
-        //return puppyAge;
+        return puppyAge;
     }
 
     public static void main(String []args) {
