@@ -1,6 +1,10 @@
 public class Main {
-    typedef struct IntElement {
-        struct IntElement *next;
-        int data;
-    } IntElement;
+    public static void main(String []args) {
+        int a, b;
+        a = 10;
+        b = (a==1) ? 20: 30;
+        System.out.println("b = " + b);
+        b = (a==10) ? 20: 30;
+        System.out.println("b = " + b);
+    }
 }
