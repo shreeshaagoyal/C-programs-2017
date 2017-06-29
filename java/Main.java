@@ -1,10 +1,7 @@
 public class Main {
     public static void main(String []args) {
-        int a, b;
-        a = 10;
-        b = (a==1) ? 20: 30;
-        System.out.println("b = " + b);
-        b = (a==10) ? 20: 30;
-        System.out.println("b = " + b);
+        String name = "Shreeshaa";
+        boolean result = name instanceof String;
+        System.out.print("name is String? " + result);
     }
 }
