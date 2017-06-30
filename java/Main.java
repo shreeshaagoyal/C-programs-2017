@@ -1,34 +1,19 @@
-public class Main2 {
-    private String name;
-    private int age;
-
-    Main2() {
-        this.age = 18;
-        this.name = "";
-    }
-
-    Main2(int age) {
-        this();
-        this.age = age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setAge(int age1, int age2) {
-        this.age = age1 + age2;
-        System.out.println("Person's age is: " + this.age);
-    }
-}
-
 public class Main {
     public static void main(String[] args) {
-        Main2 shivanshu, shreeshaa;
-        shivanshu = new Main2();
-        shreeshaa = new Main2(23);
-        shivanshu.setAge(12, 13);
-        System.out.println(shivanshu.age);
-        System.out.println(shreeshaa.age);
+        printMax(34.2, 3, 7.8, 39.43);
+    }
+
+    public static void printMax(double... numbers) {
+        if(numbers.length == 0) {
+            System.out.println("No arguments passed");
+            return;
+        }
+        double result = numbers[0];
+        for(int i = 1; i < numbers.length; i++) {
+            if(numbers[i] > result) {
+                result = numbers[i];
+            }
+        }
+        System.out.println("Max number is: " + result);
     }
 }
