@@ -24,5 +24,18 @@ public class Main {
         }
         System.out.println("Largest element is: " + largest);
 
+        // Calling reverse method
+        double[] list = reverse(myList);
+        for( double x : list ) {
+            System.out.println(x);
+        }
+    }
+    // Reverse array
+    public static double[] reverse(double[] list) {
+        double[] result = new double[list.length];
+        for(int i = 0, j = result.length-1; i < list.length; i++, j--) {
+            result[j] = list[i];
+        }
+        return result;
     }
 }
