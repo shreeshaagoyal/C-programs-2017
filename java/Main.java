@@ -1,7 +1,14 @@
 public class Main {
+    int x;
+
+    Main() {
+        x = 10;
+    }
+
     public static void main(String[] args) {
-        for(int i = 0; i<args.length; i++) {
-            System.out.println("args[" + i + "]: " + args[i]);
-        }
+        Main num1 = new Main();
+        Main num2 = new Main();
+        System.out.println(num1.x);
+        System.out.println(num2.x);
     }
 }
