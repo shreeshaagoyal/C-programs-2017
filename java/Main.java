@@ -4,9 +4,11 @@ public class Main {
         for(int i = 0; i < myList.length; i++) {
             System.out.println(myList[i]);
         }
-        System.out.print("\n");
-        for( double x : myList) {
-            System.out.println(x);
+        System.out.println("\n");
+        double total = 0;
+        for(int i = 0; i < myList.length; i++) {
+            total += myList[i];
+            System.out.println("Sum: " + total);
         }
     }
 }
