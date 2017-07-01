@@ -9,5 +9,10 @@ public class My_Calculation extends Calculation {
         demo.addition(a, b);
         demo.subraction(a, b);
         demo.multiplication(a, b);
+
+        //????
+        Calculation cal = new My_Calculation();
+        demo.addition(a, b);
+        demo.multiplication(a, b);
     }
 }
