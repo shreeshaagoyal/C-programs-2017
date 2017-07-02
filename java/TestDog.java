@@ -4,7 +4,5 @@ public class TestDog {
         a.move();
         Animal b = new Dog();
         b.move();
-        b.bark();
-        a.bark();
     }
 }
