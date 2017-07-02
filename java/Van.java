@@ -30,13 +30,11 @@ public class Van extends Vehicle {
         }
         if (b instanceof Vehicle) {
             
-        }
-        b.fanOn();
-        v.fanOn();
+        
     }
 
     public static Boat getBoat() {
-        
+
     }
 
 }
