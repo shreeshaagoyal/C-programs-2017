@@ -1,16 +1,24 @@
 import java.io.*;
+import java.util.LinkedList;
+import java.util.List;
 public class Main {
     public static void main(String[] args) {
-        try {
-            int[] array = {0,1};
-            System.out.println("Access element three: " + array[2]);
-        } catch(AbstractMethodError e1) {
-            System.out.println("1 Exception thrown: " + e1);
-        } catch(ArrayStoreException e2) {
-            System.out.println("2 Exception thrown: " + e2);
-        } catch(ArrayIndexOutOfBoundsException e3) {
-            System.out.println("3 Exception thrown: " + e3);
-        }
-        System.out.println("Out of the block");
+        //List<Animal> list = new LinkedList<Animal>();
+        //Animal cat = new Animal();
+        //list.add(cat);
+        //list.add(dog);
+        //list.add(billy);
+        int[] arr = new int[10];
+        System.out.println("The 8th element is: " + arr[7]);
     }
 }
+
+
+
+/*
+ArrayList(int initialCapacity)
+add(E e)
+clear()
+get(int index)
+trimToSize()
+*/
