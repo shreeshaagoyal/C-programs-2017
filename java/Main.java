@@ -3,22 +3,17 @@ import java.util.LinkedList;
 import java.util.List;
 public class Main {
     public static void main(String[] args) {
-        //List<Animal> list = new LinkedList<Animal>();
-        //Animal cat = new Animal();
-        //list.add(cat);
-        //list.add(dog);
-        //list.add(billy);
-        int[] arr = new int[10];
-        System.out.println("The 8th element is: " + arr[7]);
+        AList list = new AList(3);
+        list.add(2);
+        list.add(5);
+        list.add(6);
+        list.add(7);
+        for (int i = 0; i < 10; i++) {
+            list.add(i*i);
+        }
+        for (int i = 0; i < 14; i++) {
+            int num = list.get(i);
+            System.out.println(num);
+        }
     }
 }
-
-
-
-/*
-ArrayList(int initialCapacity)
-add(E e)
-clear()
-get(int index)
-trimToSize()
-*/
