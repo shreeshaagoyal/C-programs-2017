@@ -1,5 +1,4 @@
 public class JStack {
-    List<Integer> lastElement;
     List<Integer> stack = new LinkedList<Integer>();
     public void push(int e) {
         this.stack.add(e);
