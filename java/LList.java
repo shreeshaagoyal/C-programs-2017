@@ -1,7 +1,7 @@
 public class LList {
     Node head;
     Node tail;
-    public void LList(int e) {
+    public LList(int e) {
         Node init = new Node(e);
         this.head = init;
         this.tail = init;
@@ -16,12 +16,15 @@ public class LList {
         this.tail.next = newNode;
         this.tail = newNode;
     }
-    public int get(int index) {
-        Node temp = head.next;
+    public int get(int index) {   
+        Node temp = head;
         for(int i = 0; i < index; i++) {
             temp = temp.next;
         }
+        return temp.value;
     }
     public void clear() {
+        tail.next = null;
+        head.next = null;
     }
 }
