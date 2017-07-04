@@ -22,6 +22,25 @@ public class AList {
         }
     }
 
+    public void addToIndex(int index, int e) {
+        if(capacityLeft() > 0) {
+            for(int i = this.arr.length-1; i >= index; i--) {
+                this.arr[i+1] = this.arr[i];
+            }
+            this.arr[index] = e;
+        } else {
+            int[] newArr = new int[2 * this.arr.length];
+            for(int i = 0; i < this.arr.length; i++) {
+                newArr[i] = this.arr[i];
+            }
+            for(int i = newArr.length-1; i >= index; i--) {
+                newArr[i+1] = newArr[i];
+            }
+            newArr[index] = e;
+            this.arr = newArr;
+        }
+    }
+
     private int capacityLeft() {
         return this.arr.length - this.size;
     }
@@ -32,6 +51,10 @@ public class AList {
 
     public int get(int index) {
         return this.arr[index];
+    }
+
+    public void removeLastElement() {
+        this.size--;
     }
 
     public void trimToSize() {
