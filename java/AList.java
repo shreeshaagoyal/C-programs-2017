@@ -23,6 +23,7 @@ public class AList {
     }
 
     public void addToIndex(int index, int e) {
+        this.size++;
         if(capacityLeft() > 0) {
             for(int i = this.arr.length-1; i >= index; i--) {
                 this.arr[i+1] = this.arr[i];

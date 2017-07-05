@@ -6,12 +6,13 @@ public class Main {
         AList list = new AList(3);
         list.add(2);
         list.add(5);
+        list.addToIndex(2, 89);
         list.add(6);
         list.add(7);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             list.add(i*i);
         }
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < 10; i++) {
             int num = list.get(i);
             System.out.println(num);
         }
