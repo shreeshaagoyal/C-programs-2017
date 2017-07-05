@@ -16,10 +16,8 @@ public class JMaps {
         for(int i = 0; i < this.entryList.size(); i++) {
             if(name == this.entryList.get(i).name) {
                 return entryList.get(i).keyValue;
-                break;
-            } else {
-                throw new Exception("Key doesn't exist.");
             }
         }
+        throw new Exception("Key doesn't exist.");
     }
 }
