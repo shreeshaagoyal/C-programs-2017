@@ -1,8 +1,8 @@
 public class Entry {
-    String name;
-    int keyValue;
-    public Entry(String name, int num) {
-        this.name = name;
-        this.keyValue = keyValue;
+    String key;
+    int value;
+    public Entry(String key, int value) {
+        this.key = key;
+        this.value = value;
     }
 }
