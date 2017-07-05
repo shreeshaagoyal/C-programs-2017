@@ -4,10 +4,11 @@ public class JSet {
         map.set(key, 0);
     }
     public boolean contains(String key) {
-        if(map.get(key) == 0) {
-            return true;
-        } else {
+        try {
+            map.get(key);
+        } catch (Exception e) {
             return false;
         }
+        return true;
     }
 }

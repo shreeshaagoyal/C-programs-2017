@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 public class JMap {
     List<Entry> entryList = new ArrayList<Entry>();
     public void set(String key, int value) {
@@ -18,6 +20,6 @@ public class JMap {
                 return entryList.get(i).value;
             }
         }
-        throw new Exception("Key doesn't exist.");
+        throw new RuntimeException("Key doesn't exist.");
     }
 }
