@@ -34,7 +34,7 @@ public class AList {
             for(int i = 0; i < this.arr.length; i++) {
                 newArr[i] = this.arr[i];
             }
-            for(int i = newArr.length-1; i >= index; i--) {
+            for(int i = newArr.length-2; i >= index; i--) {
                 newArr[i+1] = newArr[i];
             }
             newArr[index] = e;
