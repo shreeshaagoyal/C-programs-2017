@@ -6,21 +6,29 @@ public class Main {
         foo.add("shreeshaa");
         System.out.println(foo.contains("fjkdls"));
         System.out.println(foo.contains("shivanshu"));
+        System.out.println(compare("zamit", "pandhi"));
+        System.out.println(compare("dogs", "dogs"));
     }
-    public int compare(String a, String b) {
-        int longerWordLength;
-        if(a.length > b.length) {
-            longerWordLength = a.length;
+    public static int compare(String a, String b) {
+        int shorterWordLength;
+        if(a.length() > b.length()) {
+            shorterWordLength = b.length();
         } else {
-            longerWordLength = b.length;
+            shorterWordLength = a.length();
         }
-        for(int i = 0; i < longerWordLength; i++) {
+        for(int i = 0; i < shorterWordLength; i++) {
             if(a.codePointAt(i) > b.codePointAt(i)) {
                 return 1;
             } else if(a.codePointAt(i) < b.codePointAt(i)) {
                 return -1;
             }
         }
-        return 0;
+        if(a.length() > b.length()) {
+            return 1;
+        } else if(a.length() < b.length()) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }
