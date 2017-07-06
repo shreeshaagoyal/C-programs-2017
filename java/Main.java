@@ -8,6 +8,7 @@ public class Main {
         System.out.println(foo.contains("shivanshu"));
         System.out.println(compare("zamit", "pandhi"));
         System.out.println(compare("dogs", "dogs"));
+        //System.out.println(checkPalindrome("hannah"));
     }
     public static int compare(String a, String b) {
         for(int i = 0; i < shorterWordLength(a, b); i++) {
@@ -32,4 +33,34 @@ public class Main {
             return a.length();
         }
     }
+    /*
+    public static boolean checkPalindrome(String a) {
+        for(int i = 0; i < a.length()/2; i++) {
+            if(a.codePointAt(i) != a.codePointAt(j)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    */
+
+    public static boolean checkPalindrome(String a) {
+        int i = 0; j = a.length();
+        while(i < a.length/2 && j >= a.length/2) {
+            if(a.codePointAt(i) != a.codePointAt(j)) {
+                return false;
+            }
+            i++; j--;
+        }
+        return true;
+    }
+}
+
+for (int i = 0; i < 3; i++) {
+
+}
+
+int i = 0;
+while(i < 3) {
+    i++;
 }
