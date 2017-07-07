@@ -24,7 +24,7 @@ public class CheckCyclicList {
         aCyclicList.addToBack(5);
         aCyclicList.addToBack(6);
         aCyclicList.addToBack(7);
-        
+        aCyclicList.tail.next = aCyclicList.head;
         System.out.println(CyclicListTest(aCyclicList.head));
     }
 }
