@@ -16,6 +16,18 @@ public class CheckCyclicList {
         }
         return false;
     }
+    public static boolean CheckCyclicListWithPointers(Node head) {
+        Node fastRef = head.next;
+        Node slowRef = head;
+        while(fastRef != null) {
+            if(fastRef == slowRef) {
+                return true;
+            }
+            fastRef = fastRef.next.next;
+            slowRef = slowRef.next;
+        }
+        return false;
+    }
     public static void main(String[] args) {
         LList aCyclicList = new LList(1);
         aCyclicList.addToBack(2);
@@ -25,6 +37,6 @@ public class CheckCyclicList {
         aCyclicList.addToBack(6);
         aCyclicList.addToBack(7);
         aCyclicList.tail.next = aCyclicList.head;
-        System.out.println(CyclicListTest(aCyclicList.head));
+        System.out.println(CheckCyclicListWithPointers(aCyclicList.head));
     }
 }
