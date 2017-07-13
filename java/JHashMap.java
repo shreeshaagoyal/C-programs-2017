@@ -9,15 +9,16 @@ public class JHashMap {
             Bucket[] temp = new Bucket[2 * this.hashMap.size()];
             for(int i = 0; i < this.hashMap.size(); i++) {
                 for(int j = 0; j < this.hashMap.get(i).size(); j++) {
-                    (this.hashMap.get(i)).get(j); // gets individual entry in original bucket
+                    (temp.get((this.hashMap.get(i)).get(j).key.hashCode() % temp.size())).addInBucket(((this.hashMap.get(i)).get(j)).key, ((this.hashMap.get(i)).get(j)).value);
                 }
             }
         }
     }
     public int getHashMap(String key) {
-        for(int i = 0; i < this.hashMap.size(); i++) {
-            if(this.hashMap.get(i).key == key) {
-                return this.hashMap.get(i).value;
+        int index = this.hashMap.calculateIndex(key);
+        for(int i = 0; i < (this.hashMap.get(index)).size(); i++) {
+            if((this.hashMap.get(index)).get(i).key == key) {
+                return (this.hashMap.get(index)).get(i).value;
             }
         }
     }

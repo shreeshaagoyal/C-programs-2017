@@ -6,6 +6,6 @@ public class Bucket {
     }
     public void addInBucket(String key, int value) {
         Entry newEntry = new Entry(key, value);
-        add(newEntry);
+        bucket.add(newEntry);
     }
 }
