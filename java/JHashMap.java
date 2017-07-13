@@ -5,11 +5,12 @@ public class JHashMap {
     }
     public void setHashMap(String key, int value) {
         this.hashMap.get(this.hashMap.calculateIndex(key, this.hashMap.size())).addInBucket(key, value);
-        if(calculateAverageBucketEntries >= 2) {
+        if(this.hashMap.calculateAverageBucketEntries() >= 2) {
             Bucket[] temp = new Bucket[2 * this.hashMap.size()];
             for(int i = 0; i < this.hashMap.size(); i++) {
                 for(int j = 0; j < this.hashMap.get(i).size(); j++) {
-                    (temp.get((this.hashMap.get(i)).get(j).key.hashCode() % temp.size())).addInBucket(((this.hashMap.get(i)).get(j)).key, ((this.hashMap.get(i)).get(j)).value);
+                    int tempIndex = (this.hashMap.get(i)).get(j).key.hashCode() % temp.size();
+                    (temp.get(tempIndex)).addInBucket(((this.hashMap.get(i)).get(j)).key, ((this.hashMap.get(i)).get(j)).value);
                 }
             }
         }
