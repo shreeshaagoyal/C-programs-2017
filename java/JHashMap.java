@@ -7,7 +7,11 @@ public class JHashMap {
         this.hashMap.get(this.hashMap.calculateIndex(key, this.hashMap.size())).addInBucket(key, value);
     }
     public int getHashMap(String key) {
-        this.hashMap.get(this.calculateIndex(key)).getInBucket(key, );
+        for(int i = 0; i < hashMap.size(); i++) {
+            if(hashMap.get(i).key == key) {
+                return hashMap.get(i).value;
+            }
+        }
     }
     public int calculateIndex(String key) {
         return key.hashCode() % this.hashMap.size();
