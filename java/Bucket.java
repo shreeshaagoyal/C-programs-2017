@@ -1,12 +1,36 @@
 import java.util.LinkedList;
 
 public class Bucket {
-    private List<Entry> bucket;
+
+    private List<Entry> entries;
+
     public Bucket() {
-        this.bucket = new LinkedList<Entry>();
+        this.entries = new LinkedList<Entry>();
     }
-    public void addInBucket(String key, int value) {
+
+    public void setInBucket(String key, int value) {
+        for(int i = 0; i < size(); i++) {
+            if(entries.get(i).key == key) {
+                entries.get(i).value = value;
+                return;
+            }
+        }
+
         Entry newEntry = new Entry(key, value);
-        this.bucket.add(newEntry);
+        this.entries.add(newEntry);
     }
+
+    public int size() {
+       return entries.size();
+    }
+
+    public int getValue(String key) {
+        for(int i = 0; i < size(); i++) {
+            if(entries.get(i).key == key) {
+                return entries.get(i).value;
+            }
+        }
+        throw new RuntimeException("Key not found : " + key);
+    }
+
 }

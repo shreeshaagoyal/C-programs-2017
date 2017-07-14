@@ -1,36 +1,47 @@
 public class JHashMap {
-    Bucket[] hashMap;
+
+    Bucket[] buckets;
+
     public JHashMap(int hashMapSize) {
-        this.hashMap = new Bucket[hashMapSize];
+        this.buckets = new Bucket[hashMapSize];
     }
-    public void setHashMap(String key, int value) {
-        this.hashMap.get(this.hashMap.calculateIndex(key, this.hashMap.size())).addInBucket(key, value);
-        if(this.hashMap.calculateAverageBucketEntries() >= 2) {
-            Bucket[] temp = new Bucket[2 * this.hashMap.size()];
-            for(int i = 0; i < this.hashMap.size(); i++) {
-                for(int j = 0; j < this.hashMap.get(i).size(); j++) {
-                    int tempIndex = (this.hashMap.get(i)).get(j).key.hashCode() % temp.size();
-                    (temp.get(tempIndex)).addInBucket(((this.hashMap.get(i)).get(j)).key, ((this.hashMap.get(i)).get(j)).value);
-                }
-            }
+
+    public void set(String key, int value) {
+        Bucket bucket = this.buckets.get(calculateIndex(key));
+        bucket.setInBucket(key, value);
+        if(this.buckets.calculateAverageBucketEntries() >= 2) {
+            decreaseBucketLoad();
         }
     }
-    public int getHashMap(String key) {
-        int index = this.hashMap.calculateIndex(key);
-        for(int i = 0; i < (this.hashMap.get(index)).size(); i++) {
-            if((this.hashMap.get(index)).get(i).key == key) {
-                return (this.hashMap.get(index)).get(i).value;
-            }
-        }
+
+    public int get(String key) {
+        Bucket bucket = this.buckets.get(calculateIndex(key));
+        return bucket.getValue(key);
     }
-    public int calculateIndex(String key) {
-        return key.hashCode() % this.hashMap.size();
+
+    /** PRIVATE METHODS **/
+
+    private int calculateIndex(String key) {
+        return key.hashCode() % this.buckets.length;
     }
-    public int calculateAverageBucketEntries() {
+
+    private int calculateAverageBucketEntries() {
         int sum = 0;
-        for(int i = 0; i < this.hashMap.size(); i++) {
-            sum += this.hashMap.get(i).size();
+        for(int i = 0; i < this.buckets.length; i++) {
+            sum += this.buckets.get(i).size();
         }
-        return sum/thishashMap.size();
+        return sum/this.buckets.length;
     }
+
+    private void decreaseBucketLoad() {
+        Bucket[] temp = new Bucket[2 * this.buckets.length];
+        for(int i = 0; i < this.buckets.length; i++) {
+            for(int j = 0; j < this.buckets.get(i).size(); j++) {
+                int tempIndex = (this.buckets.get(i)).get(j).key.hashCode() % temp.length;
+                (temp.get(tempIndex)).addInBucket(((this.buckets.get(i)).get(j)).key, ((this.buckets.get(i)).get(j)).value);
+            }
+        }
+        this.buckets = temp;
+    }
+
 }
