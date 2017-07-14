@@ -1,11 +1,12 @@
 import java.util.LinkedList;
 
 public class Bucket {
+    private List<Entry> bucket;
     public Bucket() {
-        List<Entry> bucket = new LinkedList<Entry>();
+        this.bucket = new LinkedList<Entry>();
     }
     public void addInBucket(String key, int value) {
         Entry newEntry = new Entry(key, value);
-        bucket.add(newEntry);
+        this.bucket.add(newEntry);
     }
 }
