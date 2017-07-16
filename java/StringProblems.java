@@ -44,13 +44,13 @@ public class StringProblems {
         // scan str, remove characters
         for(int i = 0; i < strbuf.length(); i++) {
             scanRef = strbuf.charAt(i);
-            c = new Character(strbuf.charAt(i));
+            c = new Character(scanRef);
             if(carHash.get(c) == new Integer(1)) {
                 printRef = strbuf.charAt(i+1);
+                strbuf.setCharAt(i, printRef);
             } else if(carHash.get(c) == null) {
                 printRef = scanRef;
             }
-            strbuf.setCharAt(i, printRef);
         }
         return strbuf.toString();
     }
