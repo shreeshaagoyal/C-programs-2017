@@ -29,11 +29,11 @@ public class StringProblems {
     }
 
     public static String removeSpecifiedCharacters(String str, String remove) {
-        HashMap carHash = new HashMap();
+        HashMap<Character, Integer> carHash = new HashMap<Character, Integer>();
         StringBuffer strbuf = new StringBuffer(str);
         Character c;
-        scanRef = strbuf.charAt(0);
-        printRef = strbuf.charAt(0);
+        char scanRef;
+        char printRef = strbuf.charAt(0);
 
         // scan remove, build hashmap
         for(int i = 0; i < remove.length(); i++) {
@@ -42,15 +42,21 @@ public class StringProblems {
         }
 
         // scan str, remove characters
-        for(int i = 0; i < strbuf.length(); i++) {
+        int i = 0;
+        while(i < strbuf.lenght()) {
             scanRef = strbuf.charAt(i);
             c = new Character(scanRef);
             if(carHash.get(c) == new Integer(1)) {
-                printRef = strbuf.charAt(i+1);
+                int j = i;
+                while(carHash.get(strbuf.charAt(j)) != null) {
+                    printRef = strbuf.charAt(j+1);
+                    j++;
+                }
                 strbuf.setCharAt(i, printRef);
             } else if(carHash.get(c) == null) {
                 printRef = scanRef;
             }
+            i++;
         }
         return strbuf.toString();
     }
