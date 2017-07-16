@@ -30,8 +30,10 @@ public class StringProblems {
 
     public static String removeSpecifiedCharacters(String str, String remove) {
         HashMap carHash = new HashMap();
+        StringBuffer strbuf = new StringBuffer(str);
         Character c;
-        Integer removeBool;
+        scanRef = strbuf.charAt(0);
+        printRef = strbuf.charAt(0);
 
         // scan remove, build hashmap
         for(int i = 0; i < remove.length(); i++) {
@@ -39,6 +41,17 @@ public class StringProblems {
             carHash.put(c, new Integer(1));
         }
 
-        // 
+        // scan str, remove characters
+        for(int i = 0; i < strbuf.length(); i++) {
+            scanRef = strbuf.charAt(i);
+            c = new Character(strbuf.charAt(i));
+            if(carHash.get(c) == new Integer(1)) {
+                printRef = strbuf.charAt(i+1);
+            } else if(carHash.get(c) == null) {
+                printRef = scanRef;
+            }
+            strbuf.setCharAt(i, printRef);
+        }
+        return strbuf.toString();
     }
 }
