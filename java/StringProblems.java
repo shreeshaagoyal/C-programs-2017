@@ -1,7 +1,5 @@
 import java.util.HashMap;
-
-import javax.management.RuntimeErrorException;
-public class FirstNonRepeated {
+public class StringProblems {
     public static Character findFirstNonRepeated(String str) {
         HashMap carHash = new HashMap();
         Character c; // using Character class to pass to hashmap
@@ -28,5 +26,19 @@ public class FirstNonRepeated {
             }
         }
         return null;
+    }
+
+    public static String removeSpecifiedCharacters(String str, String remove) {
+        HashMap carHash = new HashMap();
+        Character c;
+        Integer removeBool;
+
+        // scan remove, build hashmap
+        for(int i = 0; i < remove.length(); i++) {
+            c = new Character(remove.charAt(i));
+            carHash.put(c, new Integer(1));
+        }
+
+        // 
     }
 }
