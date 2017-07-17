@@ -48,6 +48,9 @@ public class StringProblems {
         int i = spaceRef;
         int index = 0;
         StringBuffer reversedStr = new StringBuffer(strbuf.length()-1);
+        for (int x = 0; x < strbuf.length()-1; x++) {
+            reversedStr.append('-');
+        }
         while(strbuf.charAt(i) != ' ') {
             i--;
             if(strbuf.charAt(i) == ' ') {
@@ -70,15 +73,6 @@ public class StringProblems {
     }
 
     public static void main(String[] args) {
-        StringBuffer strbuf = new StringBuffer("shivanshu");
-        StringBuffer remove = new StringBuffer("shia");
-        removeSpecifiedCharacters2(strbuf, remove);
-        System.out.println(strbuf);
-        StringBuffer reverseWord = new StringBuffer("shivanshu");
-        reverseWord(reverseWord);
-        System.out.println(reverseWord);
-        StringBuffer reverseWords = new StringBuffer("My name is Tom");
-        System.out.println(reverseWords(reverseWords));
     }
 
 }
