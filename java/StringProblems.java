@@ -28,11 +28,27 @@ public class StringProblems {
 
     }
 
+    public static void reverseWords(StringBuffer strbuf) {
+        int headRef = 0;
+        int tailRef = strbuf.length() - 1;
+        char tempCopiedChar;
+        for(int i = 0; i < strbuf.length()/2; i++) {
+            tempCopiedChar = strbuf.charAt(headRef);
+            strbuf.setCharAt(headRef, strbuf.charAt(tailRef));
+            strbuf.setCharAt(tailRef, tempCopiedChar);
+            headRef++;
+            tailRef--;
+        }
+    }
+
     public static void main(String[] args) {
         StringBuffer strbuf = new StringBuffer("shivanshu");
         StringBuffer remove = new StringBuffer("shia");
         removeSpecifiedCharacters2(strbuf, remove);
         System.out.println(strbuf);
+        StringBuffer reverseWord = new StringBuffer("shivanshu");
+        reverseWords(reverseWord);
+        System.out.println(reverseWord);
     }
 
 }
