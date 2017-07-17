@@ -29,4 +29,11 @@ public class StringProblems {
         }
     }
 
+    public static void main(String[] args) {
+        StringBuffer strbuf = new StringBuffer("Shivanshu");
+        StringBuffer remove = new StringBuffer("shia");
+        removeSpecifiedCharacters2(strbuf, remove);
+        System.out.println(strbuf);
+    }
+
 }
