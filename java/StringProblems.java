@@ -88,10 +88,12 @@ public class StringProblems {
                     scanCursor++;
                 }
                 strbuf.setCharAt(slotCursor, strbuf.charAt(scanCursor));
-            } else {
-                scanCursor++;
-                slotCursor++;
             }
+            scanCursor++;
+            slotCursor++;
+        }
+        for(int i = slotCursor; i < strbuf.length(); i++) {
+            strbuf.deleteCharAt(i);
         }
     }
 
