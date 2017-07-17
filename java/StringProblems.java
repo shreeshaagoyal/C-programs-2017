@@ -72,7 +72,20 @@ public class StringProblems {
         return reversedStr;
     }
 
-    public static void main(String[] args) {
+    public static int stringToInt(String str) {
+        int length = str.length();
+        int result = 0;
+        char[] charArr = new char[length];
+        charArr = str.toCharArray();
+        int j = 0;
+        for(int i = length-1; i >= 0; i--) {
+            result = result + ((charArr[i] - 48)* (int) Math.pow(10, j));
+            j++;
+        }
+        return result;
     }
 
+    public static void main(String[] args) {
+        System.out.println(stringToInt("786"));
+    }
 }

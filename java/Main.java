@@ -13,6 +13,7 @@ public class Main {
         exampleStr.append('Z');
         exampleStr.insert(0, 'A');
         System.out.println(exampleStr);
+        System.out.println(10^1);
     }
     public static int compare(String a, String b) {
         for(int i = 0; i < shorterWordLength(a, b); i++) {
