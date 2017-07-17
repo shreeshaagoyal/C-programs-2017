@@ -42,8 +42,8 @@ public class StringProblems {
         }
 
         // scan str, remove characters
-        int i = 0, j = 0;
-        while(i < strbuf.lenght()) {
+        int i = 0;
+        for(int j = 0; i < strbuf.length(); j++) {
             scanRef = strbuf.charAt(j);
             c = new Character(scanRef);
             if(carHash.get(c) == new Integer(1)) {
@@ -52,10 +52,13 @@ public class StringProblems {
                     j++;
                 }
                 strbuf.setCharAt(i, printRef);
+                continue;
             } else if(carHash.get(c) == null) {
-                //printRef = scanRef;
+                printRef = scanRef;
+                //strbuf.setCharAt(i, printRef);
             }
-            i++; j++;
+            i++;
+            strbuf.setCharAt(i, printRef);
         }
         return strbuf.toString();
     }
