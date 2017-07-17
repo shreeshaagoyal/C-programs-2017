@@ -13,24 +13,23 @@ public class StringProblems {
         }
 
         //scan strbuf, remove characters
-        for(int i = 0; i < strbuf.length(); i++) {
-            c = new Character(strbuf.charAt(scanCursor));
-            if(removeHash.contains(c)) {
-                while(removeHash.contains(strbuf.charAt(scanCursor))) {
-                    scanCursor++;
-                }
+        for(int i = 0; scanCursor < strbuf.length(); i++) {
+            if(!removeHash.contains(strbuf.charAt(scanCursor))) {
                 strbuf.setCharAt(slotCursor, strbuf.charAt(scanCursor));
+                slotCursor++;
             }
             scanCursor++;
-            slotCursor++;
         }
-        for(int i = slotCursor; i < strbuf.length(); i++) {
+
+        //delete 'extra' characters
+        for(int i = strbuf.length()-1; i >= slotCursor; i--) {
             strbuf.deleteCharAt(i);
         }
+
     }
 
     public static void main(String[] args) {
-        StringBuffer strbuf = new StringBuffer("Shivanshu");
+        StringBuffer strbuf = new StringBuffer("shivanshu");
         StringBuffer remove = new StringBuffer("shia");
         removeSpecifiedCharacters2(strbuf, remove);
         System.out.println(strbuf);
