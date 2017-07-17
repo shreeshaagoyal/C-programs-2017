@@ -28,7 +28,7 @@ public class StringProblems {
 
     }
 
-    public static void reverseWords(StringBuffer strbuf) {
+    public static void reverseWord(StringBuffer strbuf) {
         int headRef = 0;
         int tailRef = strbuf.length() - 1;
         char tempCopiedChar;
@@ -41,14 +41,44 @@ public class StringProblems {
         }
     }
 
+    public static StringBuffer reverseWords (StringBuffer strbuf) {
+        strbuf.insert(0, ' ');
+        strbuf.append(' ');
+        int spaceRef = strbuf.length() - 2;
+        int i = spaceRef;
+        int index = 0;
+        StringBuffer reversedStr = new StringBuffer(strbuf.length()-1);
+        while(strbuf.charAt(i) != ' ') {
+            i--;
+            if(strbuf.charAt(i) == ' ') {
+                spaceRef = i;
+                int j = spaceRef + 1;
+                while(strbuf.charAt(j) != ' ') {
+                    reversedStr.setCharAt(index, strbuf.charAt(j));
+                    j++; index++;
+                }
+                reversedStr.setCharAt(index, ' ');
+                index++;
+                if(i == 0) {
+                    break;
+                }
+                i--;
+            }
+        }
+        reversedStr.deleteCharAt(reversedStr.length()-1);
+        return reversedStr;
+    }
+
     public static void main(String[] args) {
         StringBuffer strbuf = new StringBuffer("shivanshu");
         StringBuffer remove = new StringBuffer("shia");
         removeSpecifiedCharacters2(strbuf, remove);
         System.out.println(strbuf);
         StringBuffer reverseWord = new StringBuffer("shivanshu");
-        reverseWords(reverseWord);
+        reverseWord(reverseWord);
         System.out.println(reverseWord);
+        StringBuffer reverseWords = new StringBuffer("My name is Tom");
+        System.out.println(reverseWords(reverseWords));
     }
 
 }

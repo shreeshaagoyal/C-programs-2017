@@ -9,6 +9,10 @@ public class Main {
         System.out.println(compare("zamit", "pandhi"));
         System.out.println(compare("dogs", "dogs"));
         System.out.println(checkPalindrome("bazabj"));
+        StringBuffer exampleStr = new StringBuffer("Shreeshaa");
+        exampleStr.append('Z');
+        exampleStr.insert(0, 'A');
+        System.out.println(exampleStr);
     }
     public static int compare(String a, String b) {
         for(int i = 0; i < shorterWordLength(a, b); i++) {
