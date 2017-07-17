@@ -1,19 +1,17 @@
 import java.io.*;
 public class Main {
-    public static void main(String[] args) {
-        JSet foo = new JSet();
-        foo.add("shivanshu");
-        foo.add("shreeshaa");
-        System.out.println(foo.contains("fjkdls"));
-        System.out.println(foo.contains("shivanshu"));
-        System.out.println(compare("zamit", "pandhi"));
-        System.out.println(compare("dogs", "dogs"));
-        System.out.println(checkPalindrome("bazabj"));
-        StringBuffer exampleStr = new StringBuffer("Shreeshaa");
-        exampleStr.append('Z');
-        exampleStr.insert(0, 'A');
-        System.out.println(exampleStr);
-        System.out.println(10^1);
+    public static void main(String[] args) {        
+        char character = 48 + (786%10);
+        System.out.println(character);
+    }
+
+    public static int findNumberOfDigits(int num) {
+        int i = 1;
+        while(num > 0) {
+            num = num - (num % (int) Math.pow(10, i));
+            i++;
+        }
+        return i-1;
     }
     public static int compare(String a, String b) {
         for(int i = 0; i < shorterWordLength(a, b); i++) {

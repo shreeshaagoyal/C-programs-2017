@@ -85,7 +85,34 @@ public class StringProblems {
         return result;
     }
 
+    public static String intToString(int num) {
+        int numLength = findNumberOfDigits(num);
+        char c;
+        char[] charArr = new char[numLength];
+        c = (char) 48 + (num % 10);
+        charArr[0] = c;
+        int temp = 0, temp2 = 0;
+        for(int i = 1; i < numLength - 1; i++) {
+            temp = num - (num % 10);
+            temp2 = temp / 10;
+            c = (char) 48 + (temp2 % 10);
+            charArr[i] = c;
+            num = temp2;
+        }
+        String str = new String(charArr);
+    }
+
+    private static int findNumberOfDigits(int num) {
+        int i = 1;
+        while(num > 0) {
+            num = num - (num % (int) Math.pow(10, i));
+            i++;
+        }
+        return i-1;
+    }
+
     public static void main(String[] args) {
         System.out.println(stringToInt("786"));
+        System.out.println(intToString(786));
     }
 }
