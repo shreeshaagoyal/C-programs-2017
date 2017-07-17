@@ -42,21 +42,20 @@ public class StringProblems {
         }
 
         // scan str, remove characters
-        int i = 0;
+        int i = 0, j = 0;
         while(i < strbuf.lenght()) {
-            scanRef = strbuf.charAt(i);
+            scanRef = strbuf.charAt(j);
             c = new Character(scanRef);
             if(carHash.get(c) == new Integer(1)) {
-                int j = i;
                 while(carHash.get(strbuf.charAt(j)) != null) {
                     printRef = strbuf.charAt(j+1);
                     j++;
                 }
                 strbuf.setCharAt(i, printRef);
             } else if(carHash.get(c) == null) {
-                printRef = scanRef;
+                //printRef = scanRef;
             }
-            i++;
+            i++; j++;
         }
         return strbuf.toString();
     }
