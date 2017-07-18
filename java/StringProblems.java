@@ -75,28 +75,27 @@ public class StringProblems {
     public static int stringToInt(String str) {
         int length = str.length();
         int result = 0;
-        char[] charArr = new char[length];
-        charArr = str.toCharArray();
         int j = 0;
         for(int i = length-1; i >= 0; i--) {
-            result = result + ((charArr[i] - 48)* (int) Math.pow(10, j));
+            result = result + ((str.charAt(i) - '0')* (int) Math.pow(10, j));
             j++;
         }
         return result;
     }
 
+
     public static String intToString(int num) {
         int numLength = findNumberOfDigits(num);
         char[] charArr = new char[numLength];
-        charArr[numLength-1] = (char) 48 + (num % 10);;
+        charArr[numLength-1] = (char)(48 + (num % 10));
         int temp = 0, temp2 = 0;
         for(int i = numLength-2; i >= 0; i--) {
             temp = num - (num % 10);
             temp2 = temp / 10;
-            charArr[i] = (char) 48 + (temp2 % 10);
+            charArr[i] = (char)(48 + (temp2 % 10));
             num = temp2;
         }
-        String str = new String(charArr);
+        return new String(charArr);
     }
 
     private static int findNumberOfDigits(int num) {
@@ -109,6 +108,6 @@ public class StringProblems {
     }
 
     public static void main(String[] args) {
-        System.out.println(stringToInt("786"));
+        System.out.println(stringToInt("897"));
     }
 }
