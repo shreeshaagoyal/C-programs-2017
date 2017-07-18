@@ -1,7 +1,7 @@
 import java.io.*;
 public class Main {
     public static void main(String[] args) {        
-        char character = 48 + (786%10);
+        char character = 48 + (7%10);
         System.out.println(character);
     }
 

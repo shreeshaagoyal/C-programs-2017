@@ -87,16 +87,13 @@ public class StringProblems {
 
     public static String intToString(int num) {
         int numLength = findNumberOfDigits(num);
-        char c;
         char[] charArr = new char[numLength];
-        c = (char) 48 + (num % 10);
-        charArr[0] = c;
+        charArr[numLength-1] = (char) 48 + (num % 10);;
         int temp = 0, temp2 = 0;
-        for(int i = 1; i < numLength - 1; i++) {
+        for(int i = numLength-2; i >= 0; i--) {
             temp = num - (num % 10);
             temp2 = temp / 10;
-            c = (char) 48 + (temp2 % 10);
-            charArr[i] = c;
+            charArr[i] = (char) 48 + (temp2 % 10);
             num = temp2;
         }
         String str = new String(charArr);
@@ -113,6 +110,5 @@ public class StringProblems {
 
     public static void main(String[] args) {
         System.out.println(stringToInt("786"));
-        System.out.println(intToString(786));
     }
 }
