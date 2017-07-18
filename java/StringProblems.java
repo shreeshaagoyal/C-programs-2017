@@ -112,9 +112,10 @@ public class StringProblems {
         StringBuffer curlyBracketStringBuf = new StringBuffer();
         int i = 0, j = 0;
         int endValue = 0;
+        int startCursor = 0;
         while(i < strbuf.length()) {
             if(strbuf.charAt(i) == '{') {
-                curlyBracketStringBuf.delete(0, endValue);
+                startCursor = i;
                 for(j = i+1; j < strbuf.length(); j++) {
                     if(strbuf.charAt(j) == '}') {
                         break;
@@ -126,8 +127,14 @@ public class StringProblems {
                 strbuf.delete(i, j);
                 i = j;
                 if(stringMap.get(curlyBracketStringBuf.toString()) != null) {
-                    
+                    for(int k = startCursor; k < endValue; k++) {
+                        strbuf.deleteCharAt(k);
+                    }
+                    for(int k = startCursor; k < curlyBracketStringBuf.length(); k++) {
+                        strbuf.insert(k, curlyBracketStringBuf.charAt(k));
+                    }
                 }
+                curlyBracketStringBuf.delete(0, endValue);
             }
             i++;
         }
