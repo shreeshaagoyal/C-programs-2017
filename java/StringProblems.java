@@ -83,7 +83,6 @@ public class StringProblems {
         return result;
     }
 
-
     public static String intToString(int num) {
         int numLength = findNumberOfDigits(num);
         char[] charArr = new char[numLength];
@@ -107,7 +106,34 @@ public class StringProblems {
         return i-1;
     }
 
+    public static String replaceString(String str, HashMap stringMap) {
+        StringBuffer strbuf = new StringBuffer(str);
+        int curlyBracketCursor;
+        StringBuffer curlyBracketString = new StringBuffer();
+        int i = 0, j = 0;
+        while(i < strbuf.length()) {
+            if(strbuf.charAt(i) == '{') {
+                for(j = i+1; j < strbuf.length(); j++) {
+                    if(strbuf.charAt(j) == '}') {
+                        break;
+                    }
+                    curlyBracketString.append(strbuf.charAt(j));
+                }
+                System.out.println(curlyBracketString);
+                strbuf.delete(i, j);
+                i = j;
+                stringMap.get(strbuf.toString());
+            }
+            i++;
+        }
+        return "lol";
+    }
+
     public static void main(String[] args) {
-        System.out.println(stringToInt("897"));
+        HashMap<String, String> stringToStringMap = new HashMap<String, String>();
+        stringToStringMap.put("first_name", "Shivanshu");
+        stringToStringMap.put("last_name", "Goyal");
+        String str = new String("My first name is {first_name} and last name is {last_name}");
+        System.out.println(replaceString(str, stringToStringMap));
     }
 }
