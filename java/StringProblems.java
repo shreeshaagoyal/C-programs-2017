@@ -109,20 +109,25 @@ public class StringProblems {
     public static String replaceString(String str, HashMap stringMap) {
         StringBuffer strbuf = new StringBuffer(str);
         int curlyBracketCursor;
-        StringBuffer curlyBracketString = new StringBuffer();
+        StringBuffer curlyBracketStringBuf = new StringBuffer();
         int i = 0, j = 0;
+        int endValue = 0;
         while(i < strbuf.length()) {
             if(strbuf.charAt(i) == '{') {
+                curlyBracketStringBuf.delete(0, endValue);
                 for(j = i+1; j < strbuf.length(); j++) {
                     if(strbuf.charAt(j) == '}') {
                         break;
                     }
-                    curlyBracketString.append(strbuf.charAt(j));
+                    curlyBracketStringBuf.append(strbuf.charAt(j));
+                    endValue = j;
                 }
-                System.out.println(curlyBracketString);
+                System.out.println(curlyBracketStringBuf);
                 strbuf.delete(i, j);
                 i = j;
-                stringMap.get(strbuf.toString());
+                if(stringMap.get(curlyBracketStringBuf.toString()) != null) {
+                    
+                }
             }
             i++;
         }
