@@ -128,7 +128,7 @@ public class StringProblems {
                 i = j;
                 if(stringMap.get(curlyBracketStringBuf.toString()) != null) {
                     for(int k = startCursor; k < endValue; k++) {
-                        strbuf.deleteCharAt(k);
+                        strbuf.deleteCharAt(startCursor);
                     }
                     for(int k = startCursor; k < curlyBracketStringBuf.length(); k++) {
                         strbuf.insert(k, curlyBracketStringBuf.charAt(k));
