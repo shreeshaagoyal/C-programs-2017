@@ -1,0 +1,14 @@
+#mainBody {
+    background-color: #24486d;
+    color: gainsboro;
+    font-family: 'Amatica SC';
+    font-size: 30px;
+}
+#imagesGrid {
+    background-color: #24486d;
+}
+
+#imagesGrid img {
+    width: 323px;
+    padding: 10px 5px 0px;
+}
