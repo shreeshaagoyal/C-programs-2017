@@ -116,16 +116,25 @@ public class StringProblems {
         while(i < strbuf.length()) {
             if(strbuf.charAt(i) == '{') {
                 startCursor = i;
-                for(j = i+1; j < strbuf.length(); j++) {
+                for(j = startCursor+1; j < strbuf.length(); j++) {
                     if(strbuf.charAt(j) == '}') {
                         break;
                     }
                     curlyBracketStringBuf.append(strbuf.charAt(j));
                     endValue = j;
                 }
-                System.out.println(curlyBracketStringBuf);
+                System.out.println("curlyBracketStringBuf: " + curlyBracketStringBuf);
+                System.out.println("startCursor: " + startCursor);
+                System.out.println("endValue: " + endValue);
                 strbuf.delete(i, j);
                 i = j;
+                if(stringMap.get(curlyBracketStringBuf.toString()) != null) {
+                    strbuf.delete(startCursor, endValue);
+                    for(int a = 0; a < endValue - startCursor; a++) {
+                        strbuf.setCharAt(startCursor, curlyBracketStringBuf.charAt(a));
+                    }
+                }
+                /*
                 if(stringMap.get(curlyBracketStringBuf.toString()) != null) {
                     for(int k = startCursor; k < endValue; k++) {
                         strbuf.deleteCharAt(startCursor);
@@ -134,11 +143,12 @@ public class StringProblems {
                         strbuf.insert(k, curlyBracketStringBuf.charAt(k));
                     }
                 }
+                */
                 curlyBracketStringBuf.delete(0, endValue);
             }
             i++;
         }
-        return "lol";
+        return strbuf.toString();
     }
 
     public static void main(String[] args) {
