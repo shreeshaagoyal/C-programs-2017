@@ -122,33 +122,29 @@ public class StringProblems {
                     }
                     curlyBracketStringBuf.append(strbuf.charAt(j));
                     endValue = j;
+                    System.out.println("char at " + j + ": " + strbuf.charAt(j));
+                    System.out.println("j: " + j);
                 }
                 System.out.println("curlyBracketStringBuf: " + curlyBracketStringBuf);
                 System.out.println("startCursor: " + startCursor);
                 System.out.println("endValue: " + endValue);
                 strbuf.delete(i, j);
                 i = j;
+                System.out.println("i: " + i);
+                /*
                 if(stringMap.get(curlyBracketStringBuf.toString()) != null) {
                     strbuf.delete(startCursor, endValue);
                     for(int a = 0; a < endValue - startCursor; a++) {
-                        strbuf.setCharAt(startCursor, curlyBracketStringBuf.charAt(a));
+                        strbuf.insert(a, curlyBracketStringBuf.charAt(a));
                     }
-                }
-                /*
-                if(stringMap.get(curlyBracketStringBuf.toString()) != null) {
-                    for(int k = startCursor; k < endValue; k++) {
-                        strbuf.deleteCharAt(startCursor);
-                    }
-                    for(int k = startCursor; k < curlyBracketStringBuf.length(); k++) {
-                        strbuf.insert(k, curlyBracketStringBuf.charAt(k));
-                    }
+                    System.out.println(strbuf);
                 }
                 */
                 curlyBracketStringBuf.delete(0, endValue);
             }
             i++;
         }
-        return strbuf.toString();
+        return "lol";
     }
 
     public static void main(String[] args) {
