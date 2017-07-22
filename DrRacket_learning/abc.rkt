@@ -6,3 +6,9 @@
 (timestwo 3)
 
 (timestwo (timestwo 4))
+
+(define (red-square s) (square s "solid" "red"))
+
+(red-square 4)
+(red-square 8)
+(red-square 16)
