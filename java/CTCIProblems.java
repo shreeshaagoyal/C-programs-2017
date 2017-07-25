@@ -49,12 +49,32 @@ public class CTCIProblems {
             scanCursor--;
         }
     }
+
+    public static int returnKthToLast(Node head, int k) {
+        Node startRef = head;
+        Node endRef = head;
+        for(int i = 0; i < k; i++) {
+            endRef = endRef.next;
+        }
+        while(endRef != null) {
+            endRef = endRef.next;
+            startRef = startRef.next;
+        }
+        return startRef.value;
+    }
     
     public static void main(String[] args) {
         System.out.println(checkPermutation("configuration", "guracntionfi"));
         StringBuffer strbuf = new StringBuffer("Mr John Smith    ");
         urlify(strbuf, 13);
         System.out.println(strbuf);
+        LList sampleLinkedList = new LList(20);
+        sampleLinkedList.addToBack(32);
+        sampleLinkedList.addToBack(54);
+        sampleLinkedList.addToBack(73);
+        sampleLinkedList.addToBack(19);
+        sampleLinkedList.addToBack(20);
+        System.out.print(returnKthToLast(sampleLinkedList.head, 3));
     }
 
 }
