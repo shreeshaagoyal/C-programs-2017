@@ -62,6 +62,40 @@ public class CTCIProblems {
         }
         return startRef.value;
     }
+
+    public static boolean validateBST(TreeNode n) {
+        boolean leftValidation = false, rightValidation = false;
+        /** Base case */
+        if(n.left.left == null) {
+            if(n.left.value < n.value) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        if(n.right.right == null) {
+            if(n.right.value > n.value) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        /** Check if left subtree is a BST */
+        leftValidation = validateBST(n.left);
+        if(!leftValidation) {
+            return false;
+        }
+
+        /** Check if right subtree is a BST */
+        rightValidation = validateBST(n.right);
+        if(!rightValidation) {
+            return false;
+        }
+
+        /** Check if current tree is a BST */
+        return leftValidation && rightValidation;
+    }
     
     public static void main(String[] args) {
         System.out.println(checkPermutation("configuration", "guracntionfi"));
@@ -70,11 +104,30 @@ public class CTCIProblems {
         System.out.println(strbuf);
         LList sampleLinkedList = new LList(20);
         sampleLinkedList.addToBack(32);
-        sampleLinkedList.addToBack(54);
-        sampleLinkedList.addToBack(73);
-        sampleLinkedList.addToBack(19);
-        sampleLinkedList.addToBack(20);
-        System.out.print(returnKthToLast(sampleLinkedList.head, 3));
+        sampleLinkedList.addToBack(79);
+        System.out.println(returnKthToLast(sampleLinkedList.head, 3));
+
+        /** Testing JStack.java */
+        System.out.println("Testing min::JStack.java");
+        JStack sampleStack = new JStack(3);
+        sampleStack.push(4);
+        sampleStack.push(2);
+        sampleStack.push(5);
+        sampleStack.push(1);
+        sampleStack.push(90);
+        System.out.println(sampleStack.min());
+        System.out.println(sampleStack.pop());
+        System.out.println(sampleStack.pop());
+        System.out.println(sampleStack.min());
+
+        /** Testing validateBST */
+        TreeNode root = new TreeNode(10);
+        root.left = new TreeNode(5);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(6);
+        root.right = new TreeNode(11);
+        root.right.right = new TreeNode(13);
+        System.out.println(validateBST(root));
     }
 
 }
