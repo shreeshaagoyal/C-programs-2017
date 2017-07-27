@@ -181,7 +181,7 @@ public class CTCIProblems {
         inOrderTraversal(root);
 
         /** Testing palindromePermutation */
-        System.out.println(palindromePermutation("taco cat"));
+        System.out.println(palindromePermutation("taco  cat"));
     }
 
 }
