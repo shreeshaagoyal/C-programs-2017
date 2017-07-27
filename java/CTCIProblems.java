@@ -1,4 +1,7 @@
+import java.util.HashMap;
 import java.util.HashSet;
+
+import jdk.nashorn.internal.runtime.arrays.IntOrLongElements;
 
 public class CTCIProblems {
     public static boolean checkPermutation(String str1, String str2) {
@@ -64,7 +67,8 @@ public class CTCIProblems {
     }
 
     public static boolean validateBST(TreeNode n) {
-        boolean leftValidation = false, rightValidation = false;
+        boolean leftValidation = false;
+        boolean rightValidation = false;
         /** Base case */
         if(n.left.left == null) {
             if(n.left.value < n.value) {
@@ -95,6 +99,50 @@ public class CTCIProblems {
 
         /** Check if current tree is a BST */
         return leftValidation && rightValidation;
+    }
+
+    public static void inOrderTraversal(TreeNode n) {
+        if(n != null) {
+            inOrderTraversal(n.left);
+            printTreeNode(n);
+            inOrderTraversal(n.right);
+        }
+    }
+    private static void printTreeNode(TreeNode n) {
+        System.out.println(n.value);
+    }
+
+    public static boolean palindromePermutation(String str) {
+        HashMap<Character, Integer> stringMap = new HashMap<Character, Integer>();
+        // set all values to 0
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == ' ') {
+                continue;
+            }
+            stringMap.put(str.charAt(i), 0);
+        }
+
+        // increments the value
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == ' ') {
+                continue;
+            }
+            stringMap.put(str.charAt(i), stringMap.get(str.charAt(i)) + 1);
+        }
+
+        int oddCounter = 0;
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == ' ') {
+                continue;
+            }
+            if(stringMap.get(str.charAt(i))%2 != 0) {
+                oddCounter++;
+                if(oddCounter > 1) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     
     public static void main(String[] args) {
@@ -127,7 +175,13 @@ public class CTCIProblems {
         root.left.right = new TreeNode(6);
         root.right = new TreeNode(11);
         root.right.right = new TreeNode(13);
-        System.out.println(validateBST(root));
+
+        /** Testing inOrderTraversal */
+        System.out.println("Testing inOrderTraversal method");
+        inOrderTraversal(root);
+
+        /** Testing palindromePermutation */
+        System.out.println(palindromePermutation("taco cat"));
     }
 
 }
