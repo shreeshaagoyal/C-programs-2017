@@ -1,3 +1,5 @@
+/** Smoother, less crispy smoke tube. Changes colours */
+
 var np = 900;
 var startcol;
 
@@ -17,7 +19,7 @@ function draw() {
 		var angle = map(i, 0, np, 0, TWO_PI);
 		var cx = frameCount * 2 - 200;
 		var cy = height / 2 + 50 * sin(frameCount / 50);
-		var xx = 200 * cos(angle + cx / 10) * (0.65 * cos(cy));
+		var xx = 200 * cos(angle + cx / 10);
 		var yy = 50 * sin(angle + cx / 10);
 		var v = createVector(xx, yy);
 		xx = (xx + cx) / 50; yy = (yy + cy) / 100;
