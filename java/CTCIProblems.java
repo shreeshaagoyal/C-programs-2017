@@ -145,6 +145,35 @@ public class CTCIProblems {
         return true;
     }
     
+    /** Adding elements of an array using recursion and separating the first element */
+    public static int addArray(int[] arr) {
+        return addArray(arr, 0);
+    }
+    public static int addArray(int[] arr, int index) {
+        // base case
+        if(index == arr.length - 1) {
+            return arr[index];
+        } else {
+            int sum = arr[index] + addArray(arr, index+1);
+            return sum;
+        }
+    }
+
+    /** Separating array into two halves then adding those parts together */
+    public static int addElementsInArray(int[] arr) {
+        return addElementsInArray(arr, 0, arr.length-1);
+    }
+    public static int addElementsInArray(int[] arr, int leftIndex, int rightIndex) {
+        // base case
+        if(rightIndex - leftIndex == 0) {
+            return arr[leftIndex];
+        }
+        
+        int leftSum = addElementsInArray(arr, 0, arr.length/2);
+        int rightSum = addElementsInArray(arr, arr.length/2, arr.length-1);
+        return leftSum + rightSum;
+    }
+
     public static void main(String[] args) {
         System.out.println(checkPermutation("configuration", "guracntionfi"));
         StringBuffer strbuf = new StringBuffer("Mr John Smith    ");
@@ -182,6 +211,13 @@ public class CTCIProblems {
 
         /** Testing palindromePermutation */
         System.out.println(palindromePermutation("taco  cat"));
+
+        /** Testing addArray */
+        int[] arr = {6, 8, 12, 3, 15, 3, 2, 4};
+        System.out.println(addArray(arr));
+
+        /** Testing addElementsInArray */
+        System.out.println(addElementsInArray(arr));
     }
 
 }
