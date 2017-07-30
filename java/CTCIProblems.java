@@ -166,12 +166,20 @@ public class CTCIProblems {
     public static int addElementsInArray(int[] arr, int leftIndex, int rightIndex) {
         // base case
         if(rightIndex - leftIndex == 0) {
-            return arr[leftIndex];
+            return leftIndex;
         }
         
-        int leftSum = addElementsInArray(arr, 0, arr.length/2);
-        int rightSum = addElementsInArray(arr, arr.length/2, arr.length-1);
+        int leftSum = addElementsInArray(arr, 0, (rightIndex - leftIndex)/2);
+        int rightSum = addElementsInArray(arr, (rightIndex - leftIndex)/2 + 1, rightIndex);
         return leftSum + rightSum;
+    }
+
+    public static int findStepsPossibility(int n) {
+        // base case
+        if(n < 3) {
+            return n;
+        }
+        return (n-1) + findStepsPossibility(n-1);
     }
 
     public static void main(String[] args) {
@@ -217,7 +225,10 @@ public class CTCIProblems {
         System.out.println(addArray(arr));
 
         /** Testing addElementsInArray */
-        System.out.println(addElementsInArray(arr));
+        // System.out.println(addElementsInArray(arr));
+
+        /** Testing findStepsPossibility */
+        System.out.println(findStepsPossibility(3));
     }
 
 }
