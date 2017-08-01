@@ -219,12 +219,12 @@ public class CTCIProblems {
             int start = layer;
             int end = n - 1 - layer;
             int j = end;
-            for(int i = start; i <= end; i++) {
+            for(int i = start; i < end; i++) {
                 int temp = matrix[start][i];
                 matrix[start][i] = matrix[j][start];
-                matrix[i][start] = matrix[end][i];
-                matrix[end][i] = matrix[j][end];
-                matrix[end][i] = temp;
+                matrix[j][start] = matrix[end][j];
+                matrix[end][j] = matrix[i][end];
+                matrix[i][end] = temp;
                 j--;
             }
         }
@@ -293,7 +293,7 @@ public class CTCIProblems {
 
         /** Testing compressString */
         System.out.println("\nTesting compressString method\n");
-        System.out.println(compressString("abc"));
+        System.out.println(compressString("abcd"));
 
         /** Testing rotateMatrix */
         System.out.println("Testing rotateMatrix method");
@@ -302,7 +302,7 @@ public class CTCIProblems {
                             {9, 10, 11, 12},
                             {13, 14, 15, 16}
                             };
-        printMatrix(rotateMatrix(matrix, 4));
+        // printMatrix(rotateMatrix(matrix, matrix.length));
     }
 
 }
