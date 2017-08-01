@@ -6,3 +6,18 @@
 
 (make-frog "tree" 39)
 (make-frog "ground" 230)
+
+; fits-in-display-case? : frog number -> boolean
+; does the frog fit in the display case?
+(define (fits-in-display-case? a-frog case-size)
+  (<= (frog-mass a-frog) case-size))
+
+(check-expect (fits-in-display-case? (make-frog "tree" 39)
+                                     150)
+              true)
+(check-expect (fits-in-display-case? (make-frog "ground" 230)
+                                     150)
+              false)
+(check-expect (fits-in-display-case? (make-frog "ground" 150)
+                                     150)
+              true)
