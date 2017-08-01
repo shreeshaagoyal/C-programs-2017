@@ -218,16 +218,14 @@ public class CTCIProblems {
         for(int layer = 0; layer <= n/2; layer++) {
             int start = layer;
             int end = n - 1 - layer;
+            int j = end;
             for(int i = start; i <= end; i++) {
                 int temp = matrix[start][i];
-                for(int j = end; j >= start; j--) {
-                    matrix[start][i] = matrix[j][start];
-                }
+                matrix[start][i] = matrix[j][start];
                 matrix[i][start] = matrix[end][i];
-                for(int j = end; j >= start; j--) {
-                    matrix[end][i] = matrix[j][end];
-                }
+                matrix[end][i] = matrix[j][end];
                 matrix[end][i] = temp;
+                j--;
             }
         }
         return matrix;
