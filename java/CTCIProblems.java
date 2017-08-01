@@ -182,6 +182,66 @@ public class CTCIProblems {
         return (n-1) + findStepsPossibility(n-1);
     }
 
+    public static int countWays(int n) {
+        // base case
+        if(n < 0) {
+            return 0;
+        } else if(n == 0) {
+            return 1;
+        } else {
+            return countWays(n-1) + countWays(n-2) + countWays(n-3);
+        }
+    }
+
+    public static String compressString(String str) {
+        StringBuffer strbuf = new StringBuffer();
+        char currentChar = str.charAt(0);
+        int count = 0;
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == currentChar) {
+                count++;
+                continue;
+            } else if(str.charAt(i) != currentChar) {
+                strbuf.append(currentChar);
+                strbuf.append(count);
+                currentChar = str.charAt(i);
+                count = 1;
+            }
+        }
+        strbuf.append(currentChar);
+        strbuf.append(count);
+        // see which one to return: the original string, or the compressed string
+        return (strbuf.length() < str.length()) ? strbuf.toString() : str;
+    }
+
+    public static int[][] rotateMatrix(int[][] matrix, int n) {
+        for(int layer = 0; layer <= n/2; layer++) {
+            int start = layer;
+            int end = n - 1 - layer;
+            for(int i = start; i <= end; i++) {
+                int temp = matrix[start][i];
+                for(int j = end; j >= start; j--) {
+                    matrix[start][i] = matrix[j][start];
+                }
+                matrix[i][start] = matrix[end][i];
+                for(int j = end; j >= start; j--) {
+                    matrix[end][i] = matrix[j][end];
+                }
+                matrix[end][i] = temp;
+            }
+        }
+        return matrix;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for(int i = 0; i < matrix.length; i++) {
+            for(int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println(checkPermutation("configuration", "guracntionfi"));
         StringBuffer strbuf = new StringBuffer("Mr John Smith    ");
@@ -228,7 +288,23 @@ public class CTCIProblems {
         // System.out.println(addElementsInArray(arr));
 
         /** Testing findStepsPossibility */
-        System.out.println(findStepsPossibility(3));
+        // System.out.println(findStepsPossibility(100));
+
+        /** Testing countWays */
+        // System.out.println(countWays(100));
+
+        /** Testing compressString */
+        System.out.println("\nTesting compressString method\n");
+        System.out.println(compressString("abc"));
+
+        /** Testing rotateMatrix */
+        System.out.println("Testing rotateMatrix method");
+        int[][] matrix = {  {1, 2, 3, 4},
+                            {5, 6, 7, 8},
+                            {9, 10, 11, 12},
+                            {13, 14, 15, 16}
+                            };
+        printMatrix(rotateMatrix(matrix, 4));
     }
 
 }
