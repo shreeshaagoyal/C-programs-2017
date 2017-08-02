@@ -278,9 +278,19 @@ public class CTCIProblems {
         if(n1 == null && n2 == null) {
             return null;
         }
-        int value = carry + n1.value + n2.value;
+        int x = 0, y = 0;
+        if(n1 == null || n2 == null) {
+            x = (n1 != null) ? n1.value : 0;
+            y = (n2 != null) ? n2.value : 0;
+        }
+        int value = carry + x + y;
         Node result = new Node(value%10);
-        carry = value - value%10;
+        if(value >= 10) {
+            carry = 1;
+        } else {
+            carry = 0;
+        }
+        System.out.println("carry: " + carry);
         result.next = addTwoNumbers(n1.next, n2.next, carry);
         return result;
     }
@@ -357,8 +367,18 @@ public class CTCIProblems {
 
         /** Testing addTwoNumbers */
         System.out.println("Testing addTwoNumbers method");
-        Node n1 = new Node(2);
-        
+        LList sampleList1 = new LList(2);
+        sampleList1.addToBack(4);
+        sampleList1.addToBack(3);
+        sampleList1.addToBack(8);
+        LList sampleList2 = new LList(5);
+        sampleList2.addToBack(6);
+        sampleList2.addToBack(4);
+        Node result = addTwoNumbers(sampleList1.head, sampleList2.head);
+        while(result != null) {
+            System.out.print(result.value + " -> ");
+            result = result.next;
+        }
     }
 
 }

@@ -27,4 +27,16 @@ public class LList {
         tail.next = null;
         head.next = null;
     }
+
+    public void print() {
+        Node n = this.head;
+        while(true) {
+            if(n == this.tail) {
+                System.out.println(n.value);
+                break;
+            }
+            System.out.print(n.value + " -> ");
+            n = n.next;
+        }
+    }
 }
