@@ -249,12 +249,14 @@ public class CTCIProblems {
         }
         Collections.sort(arrList);
         int index = 0;
-        while(arrList.get(index) < target) {
+        while((arrList.get(index) < target) && (index < arrList.size())) {
             index++;
         }
-        // int indexVal = arrList.get(index);
+        index--;
+        System.out.println(index);
         for(int i = 0; i < index/2; i++) {
-            if(arrList.get(i) + arrList.get(index) == target) {
+            System.out.println("i: " + i);
+            if((arrList.get(i) + arrList.get(index)) == target) {
                 int[] result = {arrList.get(i), arrList.get(index)};
                 return result;
             }
@@ -330,8 +332,8 @@ public class CTCIProblems {
 
         /** Testing twoSum */
         System.out.println("Testing twoSum method from LeetCode");
-        int[] array = {6, 11, 3, 19, 17, 7};
-        System.out.println(twoSum(array, 14));
+        int[] array = {3, 2, 4};
+        System.out.println(java.util.Arrays.toString(twoSum(array, 6)));
     }
 
 }
