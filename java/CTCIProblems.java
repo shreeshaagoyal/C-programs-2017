@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -240,6 +242,28 @@ public class CTCIProblems {
         }
     }
 
+    public static int[] twoSum(int[] arr, int target) {
+        ArrayList<Integer> arrList = new ArrayList<Integer>(arr.length);
+        for(int i = 0; i < arr.length; i++) {
+            arrList.add(arr[i]);
+        }
+        Collections.sort(arrList);
+        int index = 0;
+        while(arrList.get(index) < target) {
+            index--;
+        }
+        index = arrList.get(index);
+        for(int i = 0; i < index/2; i++) {
+            if(arrList.get(i) + arrList.get(index) == target) {
+                int[] result = {arrList.get(i), arrList.get(index)};
+                return result;
+            }
+            index--;
+        }
+        int[] result = {-1};
+        return result;
+    }
+
     public static void main(String[] args) {
         System.out.println(checkPermutation("configuration", "guracntionfi"));
         StringBuffer strbuf = new StringBuffer("Mr John Smith    ");
@@ -303,6 +327,11 @@ public class CTCIProblems {
                             {13, 14, 15, 16}
                             };
         // printMatrix(rotateMatrix(matrix, matrix.length));
+
+        /** Testing twoSum */
+        System.out.println("Testing twoSum method from LeetCode");
+        int[] array = {6, 11, 3, 19, 17, 7};
+        System.out.println(twoSum(array, 14));
     }
 
 }
