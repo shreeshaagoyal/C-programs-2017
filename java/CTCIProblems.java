@@ -370,7 +370,6 @@ public class CTCIProblems {
         LList sampleList1 = new LList(2);
         sampleList1.addToBack(4);
         sampleList1.addToBack(3);
-        sampleList1.addToBack(8);
         LList sampleList2 = new LList(5);
         sampleList2.addToBack(6);
         sampleList2.addToBack(4);
