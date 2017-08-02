@@ -250,9 +250,9 @@ public class CTCIProblems {
         Collections.sort(arrList);
         int index = 0;
         while(arrList.get(index) < target) {
-            index--;
+            index++;
         }
-        index = arrList.get(index);
+        // int indexVal = arrList.get(index);
         for(int i = 0; i < index/2; i++) {
             if(arrList.get(i) + arrList.get(index) == target) {
                 int[] result = {arrList.get(i), arrList.get(index)};
