@@ -259,12 +259,29 @@ public class CTCIProblems {
         for(int i = 0; i < index/2; i++) {
             System.out.println("i: " + i);
             if((arrList.get(i) + arrList.get(index)) == target) {
+                System.out.println("i: " + i);
                 int[] result = {arrList.get(i), arrList.get(index)};
                 return result;
             }
             index--;
         }
         int[] result = {-1};
+        return result;
+    }
+
+    public static Node addTwoNumbers(Node n1, Node n2) {
+        return addTwoNumbers(n1, n2, 0);
+    }
+    
+    public static Node addTwoNumbers(Node n1, Node n2, int carry) {
+        // base case
+        if(n1 == null && n2 == null) {
+            return null;
+        }
+        int value = carry + n1.value + n2.value;
+        Node result = new Node(value%10);
+        carry = value - value%10;
+        result.next = addTwoNumbers(n1.next, n2.next, carry);
         return result;
     }
 
@@ -325,17 +342,23 @@ public class CTCIProblems {
 
         /** Testing rotateMatrix */
         System.out.println("Testing rotateMatrix method");
-        int[][] matrix = {  {1, 2, 3, 4},
-                            {5, 6, 7, 8},
-                            {9, 10, 11, 12},
-                            {13, 14, 15, 16}
+        int[][] matrix = {  {1, 2, 3, 4, 5},
+                            {6, 7, 8, 9, 10},
+                            {11, 12, 13, 14, 15},
+                            {16, 17, 18, 19, 20},
+                            {21, 22, 23, 24, 25}
                             };
         printMatrix(rotateMatrix(matrix, matrix.length));
 
         /** Testing twoSum */
         System.out.println("Testing twoSum method from LeetCode");
-        int[] array = {6, 11, 3, 19, 17, 7};
-        System.out.println(java.util.Arrays.toString(twoSum(array, 14)));
+        int[] array = {3, 2, 4, 1};
+        System.out.println(java.util.Arrays.toString(twoSum(array, 7)));
+
+        /** Testing addTwoNumbers */
+        System.out.println("Testing addTwoNumbers method");
+        Node n1 = new Node(2);
+        
     }
 
 }
