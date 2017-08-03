@@ -1,18 +1,24 @@
-import java.util.HashMap;
+import java.util.HashSet;
 
 public class LeetCode {
     public static int lengthOfLongestSubstring(String s) {
-        HashMap<Character, Integer> stringMap = new HashMap<Character, Integer>();
+        HashSet<Character> resultSet = new HashSet<Character>();
+        HashSet<Character> tempSet = new HashSet<Character>();
         for(int i = 0; i < s.length(); i++) {
-            stringMap.put(s.charAt(i), 0);
-        }
-        for(int i = 0; i < s.length(); i++) {
-            int value = stringMap.get(s.charAt(i));
-            if(value == 0) {
-                stringMap.put(s.charAt(i), 1);
+            if(!tempSet.contains(s.charAt(i))) {
+                tempSet.add(s.charAt(i));
             } else {
-                
+                if(tempSet.size() >= resultSet.size()) {
+                    resultSet = tempSet;
+                    tempSet = new HashSet<Character>();
+                    tempSet.add(s.charAt(i));
+                }
             }
         }
+        return resultSet.size();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(lengthOfLongestSubstring("accompossssssssss"));
     }
 }
