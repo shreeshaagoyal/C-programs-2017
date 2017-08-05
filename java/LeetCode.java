@@ -67,10 +67,12 @@ public class LeetCode {
     }
 
     public static Node mergeTwoLists(Node n1, Node n2) {
-        Node resultRef, otherRef, tempNode;
+        Node resultRef, otherRef, tempNode, headNode;
         resultRef = (n1.value <= n2.value) ? n1 : n2;
-        while(resultRef != null || otherRef != null) {
-            if(resultRef.next > otherRef.value) {
+        otherRef = (n1.value <= n2.value) ? n2 : n1;
+        headNode = resultRef;
+        while(resultRef.next != null && otherRef.next != null) {
+            if(resultRef.next.value > otherRef.value) {
                 tempNode = otherRef.next;
                 resultRef.next = otherRef;
                 otherRef = tempNode;
@@ -78,9 +80,33 @@ public class LeetCode {
                 resultRef = resultRef.next;
             }
         }
+        while(resultRef.next != null) {
+            if(resultRef.next.value > otherRef.value) {
+                otherRef = resultRef.next;
+                resultRef = otherRef;
+                return headNode;
+            }
+        }
+        resultRef.next = otherRef;
+        return headNode;
     }
 
     public static void main(String[] args) {
-        System.out.println(longestSubstring("cbbd"));
+        LList samplList1 = new LList(2);
+        samplList1.addToBack(4);
+        samplList1.addToBack(5);
+        samplList1.addToBack(12);
+        samplList1.addToBack(17);
+        LList samplList2 = new LList(1);
+        samplList2.addToBack(8);
+        samplList2.addToBack(10);
+        samplList2.addToBack(11);
+        samplList2.addToBack(12);
+        samplList2.addToBack(13);
+        Node result = mergeTwoLists(samplList1.head, samplList2.head);
+        while(result != null) {
+            System.out.println(result.value);
+            result = result.next;
+        }
     }
 }
