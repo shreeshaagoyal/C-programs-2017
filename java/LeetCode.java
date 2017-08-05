@@ -66,6 +66,20 @@ public class LeetCode {
         return (rightIndex - leftIndex - 1);
     }
 
+    public static Node mergeTwoLists(Node n1, Node n2) {
+        Node resultRef, otherRef, tempNode;
+        resultRef = (n1.value <= n2.value) ? n1 : n2;
+        while(resultRef != null || otherRef != null) {
+            if(resultRef.next > otherRef.value) {
+                tempNode = otherRef.next;
+                resultRef.next = otherRef;
+                otherRef = tempNode;
+            } else {
+                resultRef = resultRef.next;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println(longestSubstring("cbbd"));
     }
