@@ -68,22 +68,18 @@ public class LeetCode {
 
     public static Node mergeTwoLists(Node n1, Node n2) {
         // base case
-        if(n1 == null || n2 == null) {
-            if(n1 == null) {
-                return n2;
-            } else {
-                return n1;
-            }
-        }
-        Node headNode = mergeTwoLists(n1.next, n2.next);
-        if(n1.value > n2.value) {
-            n1.next = headNode;
-            n2.next = n1;
+        if(n1 == null) {
             return n2;
-        } else {
-            n2.next = n2;
-            n1.next = n2;
+        }
+        if(n2 == null) {
             return n1;
+        }
+        if(n1.value < n2.value) {
+            n1.next = mergeTwoLists(n1.next, n2);
+            return n1;
+        } else {
+            n2.next = mergeTwoLists(n1, n2.next);
+            return n2;
         }
     }
 
