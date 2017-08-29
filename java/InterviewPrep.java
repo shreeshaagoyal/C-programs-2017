@@ -27,8 +27,20 @@ public class InterviewPrep {
         return duplicateCursor;
     }
 
+    public static void reverseString(StringBuffer str) {
+        int j = str.length() - 1;
+        char temp = ' ';
+        for(int i = 0; i < str.length()/2; i++) {
+            temp = str.charAt(i);
+            str.setCharAt(i, str.charAt(j));
+            str.setCharAt(j, temp);
+            j--;
+        }
+    }
+
     public static void main(String[] args) {
-        int[] arr = {};
-        System.out.println(removeDuplicates(arr));
+        StringBuffer str = new StringBuffer("Shreeshaa");
+        reverseString(str);
+        System.out.println(str);
     }
 }
