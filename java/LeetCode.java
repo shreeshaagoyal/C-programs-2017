@@ -83,6 +83,15 @@ public class LeetCode {
         }
     }
 
+    public static int maxSubarray(int[] arr) {
+        int maxSoFar = arr[0], maxEndingHere = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            maxEndingHere = Math.max(maxEndingHere+arr[i], arr[i]);
+            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+        }
+        return maxSoFar;
+    }
+
     public static void main(String[] args) {
         LList samplList1 = new LList(2);
         samplList1.addToBack(4);
@@ -100,5 +109,9 @@ public class LeetCode {
             System.out.println(result.value);
             result = result.next;
         }
+        /** Testing maxSubarray */
+        System.out.println("Testing maxSubarray method:");
+        int[] arr = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        System.out.println(maxSubarray(arr));
     }
 }
