@@ -23,11 +23,12 @@ public class InterviewPrep {
             } else {
                 continue;
             }
-            return duplicateCursor;
         }
+        return duplicateCursor;
     }
 
     public static void main(String[] args) {
-        System.out.println();
+        int[] arr = {};
+        System.out.println(removeDuplicates(arr));
     }
 }
