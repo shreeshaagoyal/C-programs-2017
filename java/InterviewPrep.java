@@ -39,8 +39,14 @@ public class InterviewPrep {
     }
 
     public static void main(String[] args) {
-        StringBuffer str = new StringBuffer("Shreeshaa");
-        reverseString(str);
-        System.out.println(str);
+        // Testing HashMap2.java, Bucket2.java, Entry2.java classes
+        HashMap2 testHashMap2 = new HashMap2(4);
+        System.out.println(testHashMap2.calculateIndex("Shreeshaa"));
+        System.out.println(testHashMap2.calculateIndex("Shreeshaa"));
+        System.out.println(testHashMap2.calculateIndex("Shivanshu"));
+        testHashMap2.add("Shreeshaa", 4);
+        testHashMap2.add("Shivanshu", 20);
+        //System.out.println(testHashMap2.get("Shivanshu"));
+        System.out.println(testHashMap2.size());
     }
 }
