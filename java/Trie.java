@@ -9,18 +9,21 @@ public class Trie {
 
         for(int i = 0; i < word.length(); i++) {
             TrieValue c = new TrieValue(word.charAt(i));
-            if(!children.containsKey(c)) {
-                TrieNode t = new TrieNode();
+            TrieNode t;
+            if(children.containsKey(c)) {
+                t = children.get(c);
+            } else {
+                t = new TrieNode(c);
                 children.put(c, t);
             }
-            children = children.get(c).children;
+            children = t.children;
         }
         // set leaf node
         TrieValue num = new TrieValue(value);
         children.put(num, null);
     }
     public int search(String word) {
-        return 0;
+        
     }
     public void delete(String word) {
 
