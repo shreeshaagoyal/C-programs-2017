@@ -3,12 +3,20 @@ public class HashMap2 {
     int count = 0;
     public HashMap2(int hashMapSize) {
         this.buckets = new Bucket2[hashMapSize];
+        Bucket2 tempBucket = new Bucket2();
+        tempBucket.setInBucket("", 0);
+        for(int i = 0; i < hashMapSize; i++) {
+            this.buckets[i] = tempBucket;
+        }
     }
 
     public void add(String key, int value) {
         int index = calculateIndex(key);
-        buckets[index].setInBucket(key, value);
-        count++;
+        Bucket2 targetBucket = buckets[index];
+        if(!targetBucket.keyAlreadyExists(key)) {
+            this.count++;
+        }
+        targetBucket.setInBucket(key, value);
     }
 
     public int get(String key) {

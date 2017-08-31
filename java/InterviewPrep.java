@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InterviewPrep {
     public static int calculateClockAngle(int hand1, int hand2) {
@@ -41,17 +44,15 @@ public class InterviewPrep {
     public static void main(String[] args) {
         // Testing HashMap2.java, Bucket2.java, Entry2.java classes
         HashMap2 testHashMap2 = new HashMap2(4);
-        System.out.println(testHashMap2.calculateIndex("Shreeshaa"));
-        System.out.println(testHashMap2.calculateIndex("Shreeshaa"));
-        System.out.println(testHashMap2.calculateIndex("Shivanshu"));
+        System.out.println("Shreeshaa index: " + testHashMap2.calculateIndex("Shreeshaa"));
+        System.out.println("Shreeshaa index: " + testHashMap2.calculateIndex("Shreeshaa"));
+        System.out.println("Shivanshu index: " + testHashMap2.calculateIndex("Shivanshu"));
         testHashMap2.add("Shreeshaa", 4);
         testHashMap2.add("Shivanshu", 20);
+        testHashMap2.add("Shreeshaa", 5);
+        System.out.println("key: 'Shreeshaa'. value: " + testHashMap2.get("Shreeshaa"));
         //System.out.println(testHashMap2.get("Shivanshu"));
-        System.out.println(testHashMap2.size());
-        /*
-        // Testing Trie.java
-        Trie testTrie = new Trie();
-        testTrie.insert("ac", 20);
-        */
+        System.out.println("HashMap size: " + testHashMap2.size());
+        
     }
 }

@@ -33,6 +33,15 @@ public class Bucket2 {
         throw new IllegalArgumentException();
     }
 
+    public boolean keyAlreadyExists(String key) {
+        for(int i = 0; i < bucket.length; i++) {
+            if(bucket[i].key == key) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void removeFromBucket(String key) {
         Entry2[] newBucket = new Entry2[bucket.length - 1];
         int j = 0;
