@@ -23,6 +23,16 @@ public class Trie {
         children.put(num, null);
     }
     public int search(String word) {
+        HashMap<TrieValue, TrieNode> children = root.children;
+        for(int i = 0; i < word.length(); i++) {
+            TrieValue c = new TrieValue(word.charAt(i));
+            if(children.containsKey(c)) {
+                children = children.get(c).children;
+                continue;
+            } else {
+                throw new IllegalArgumentException("Cannot find the given String.");
+            }
+        }
         
     }
     public void delete(String word) {
