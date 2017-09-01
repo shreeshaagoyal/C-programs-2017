@@ -41,18 +41,38 @@ public class InterviewPrep {
         }
     }
 
+    public static boolean palindromeNumber(int num) {
+        return false;
+    }
+
+    private static int reverseInteger(int num) {
+        int digits = numberOfDigits(num);
+        int j = digits - 1;
+        int result = 0;
+        int modNum = 0;
+        int tempResult = 0;
+        for(int i = 0; i < digits-1; i++) {
+            int powerOfTen = (int) Math.pow(10, j);
+            modNum = num % powerOfTen;
+            tempResult = (num - modNum) / powerOfTen;
+            result += tempResult * ((int) Math.pow(10, i));
+            j--;
+            num = modNum;
+        }
+        result += num * ((int) Math.pow(10, digits-1));
+        return result;
+    }
+
+    private static int numberOfDigits(int num) {
+        int i = 1;
+        while(num > 0) {
+            num = num - (num % (int) Math.pow(10, i));
+            i++;
+        }
+        return i-1;
+    }
+
     public static void main(String[] args) {
-        // Testing HashMap2.java, Bucket2.java, Entry2.java classes
-        HashMap2 testHashMap2 = new HashMap2(4);
-        System.out.println("Shreeshaa index: " + testHashMap2.calculateIndex("Shreeshaa"));
-        System.out.println("Shreeshaa index: " + testHashMap2.calculateIndex("Shreeshaa"));
-        System.out.println("Shivanshu index: " + testHashMap2.calculateIndex("Shivanshu"));
-        testHashMap2.add("Shreeshaa", 4);
-        testHashMap2.add("Shivanshu", 20);
-        testHashMap2.add("Shreeshaa", 5);
-        System.out.println("key: 'Shreeshaa'. value: " + testHashMap2.get("Shreeshaa"));
-        //System.out.println(testHashMap2.get("Shivanshu"));
-        System.out.println("HashMap size: " + testHashMap2.size());
-        
+        System.out.println(reverseInteger(325));
     }
 }
