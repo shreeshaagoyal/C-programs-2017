@@ -73,6 +73,6 @@ public class InterviewPrep {
     }
 
     public static void main(String[] args) {
-        System.out.println(reverseInteger(325));
+        System.out.println(reverseInteger(09090));
     }
 }
