@@ -42,7 +42,11 @@ public class InterviewPrep {
     }
 
     public static boolean palindromeNumber(int num) {
-        return false;
+        if(num == reverseInteger(num)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private static int reverseInteger(int num) {
@@ -73,6 +77,6 @@ public class InterviewPrep {
     }
 
     public static void main(String[] args) {
-        System.out.println(reverseInteger(09090));
+        System.out.println(palindromeNumber(32523));
     }
 }
