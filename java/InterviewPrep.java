@@ -76,7 +76,30 @@ public class InterviewPrep {
         return i-1;
     }
 
+    public static int removeElement(int[] nums, int val) {
+        int slowCursor = 0;
+        for(int fastCursor = 0; fastCursor < nums.length; fastCursor++) {
+            if(nums[fastCursor] == val) {
+                continue;
+            } else {
+                nums[slowCursor] = nums[fastCursor];
+                slowCursor++;
+            }
+        }
+        return slowCursor;
+    }
+
+    private static void printArray(int[] arr) {
+        for(int i = 0; i < arr.length-1; i++) {
+            System.out.print(arr[i] + ",");
+        }
+        System.out.println(arr[arr.length-1]);
+    }
+
     public static void main(String[] args) {
-        System.out.println(palindromeNumber(32523));
+        int[] nums = {3, 3, 3, 2};
+        System.out.println("new length: " + removeElement(nums, 3));
+        System.out.print("new array: ");
+        printArray(nums);
     }
 }
