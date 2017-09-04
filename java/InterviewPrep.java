@@ -233,8 +233,34 @@ public class InterviewPrep {
         }
     }
 
+    public static int mostFrequent (int[] arr) {
+        if(arr.length == 0) {
+            throw new IllegalArgumentException("Empty array");
+        }
+
+        HashMap<Integer, Integer> frequencyNums = new HashMap<Integer, Integer>();
+        for(int i = 0; i < arr.length; i++) {
+            if(frequencyNums.containsKey(arr[i])) {
+                frequencyNums.put(arr[i], frequencyNums.get(arr[i]) + 1);
+            } else {
+                frequencyNums.put(arr[i], 1);
+            }
+        }
+
+        int maxNum = arr[0];
+        double maxFrequencySoFar = Double.NEGATIVE_INFINITY;
+        for(int i = 0; i < arr.length; i++) {
+            if(frequencyNums.get(arr[i]) > maxFrequencySoFar) {
+                maxFrequencySoFar = frequencyNums.get(arr[i]);
+                maxNum = arr[i];
+            }
+        }
+
+        return maxNum;
+    }
+
     public static void main(String[] args) {
-        int[] nums = {1, 3, 5, 6};
-        System.out.println(searchInsert(nums, 9));
+        int[] arr = {};
+        System.out.println(mostFrequent(arr));
     }
 }
