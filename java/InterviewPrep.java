@@ -290,8 +290,37 @@ public class InterviewPrep {
         return nullResult;
     }
 
+    public static String longestCommonPrefix(String[] strs) {
+        if(strs.length == 1) {
+            return strs[0];
+        }
+        if(strs.length == 0) {
+            return "";
+        }
+        StringBuffer base = null;
+        double minLengthSoFar = Double.POSITIVE_INFINITY;
+        for(int i = 0; i < strs.length; i++) {
+            if(strs[i].length() < minLengthSoFar) {
+                base = new StringBuffer(strs[i]);
+                minLengthSoFar = strs[i].length();
+            }
+        }
+        for(int i = 0; i < strs.length; i++) {
+            String curWord = strs[i];
+            for(int j = 0; j < base.length(); j++) {
+                if(curWord.charAt(j) == base.charAt(j)) {
+                    continue;
+                } else {
+                    base.delete(j, base.length());
+                    break;
+                }
+            }
+        }
+        return base.toString();
+    }
+
     public static void main(String[] args) {
-        int[] nums = {1};
-        printArray(twoSum(nums, 9));
+        String[] names = {"shivanshu", "shivx"};
+        System.out.println(longestCommonPrefix(names));
     }
 }
