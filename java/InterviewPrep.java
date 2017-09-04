@@ -319,8 +319,19 @@ public class InterviewPrep {
         return base.toString();
     }
 
+    public static int maxSubArray(int[] nums) {
+        int ans = nums[0];
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            ans = Math.max(sum, ans);
+            sum = Math.max(sum, 0);
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
-        String[] names = {"shivanshu", "shivx"};
-        System.out.println(longestCommonPrefix(names));
+        int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
+        System.out.println(maxSubarray(nums));
     }
 }
