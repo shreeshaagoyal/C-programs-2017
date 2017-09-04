@@ -189,7 +189,7 @@ public class InterviewPrep {
 
     private static int searchInsert(int[] nums, int start, int end, int target) {
         // base case
-        if (end - start == 0) {
+        if (end - start <= 0) {
             if (target < nums[start]) {
                 return start;
             } else {
@@ -197,10 +197,10 @@ public class InterviewPrep {
             }
         }
 
-        int mid = (end - start) / 2;
-        if (target == nums[mid]) {
+        int mid = (start + end) / 2;
+        if (nums[mid] == target) {
             return mid;
-        } else if (target > nums[mid]) {
+        } else if (nums[mid] < target) {
             return searchInsert(nums, mid + 1, end, target);
         } else {
             return searchInsert(nums, start, mid - 1, target);
@@ -244,38 +244,36 @@ public class InterviewPrep {
      */
 
     public static Tuple findTwoElements(int[] arr, int target) {
-        return findTwoElements(arr, target, 0, arr.length-1);
+        return findTwoElements(arr, target, 0, arr.length - 1);
     }
 
     private static Tuple findTwoElements(int[] arr, int target, int leftIndex, int rightIndex) {
         int sum = arr[leftIndex] + arr[rightIndex];
         // base case
-        if(rightIndex < 0) {
+        if (rightIndex < 0) {
             return null;
         }
-        if(leftIndex > arr.length-1) {
+        if (leftIndex > arr.length - 1) {
             return null;
         }
-        if(rightIndex - leftIndex == 0) {
+        if (rightIndex - leftIndex == 0) {
             return null;
         }
-        
-        if(sum == target) {
+
+        if (sum == target) {
             Tuple result = new Tuple();
             result.first = arr[leftIndex];
             result.second = arr[rightIndex];
             return result;
-        } else if(sum > target) {
-            return findTwoElements(arr, target, leftIndex, rightIndex-1);
+        } else if (sum > target) {
+            return findTwoElements(arr, target, leftIndex, rightIndex - 1);
         } else {
-            return findTwoElements(arr, target, leftIndex+1, rightIndex);
+            return findTwoElements(arr, target, leftIndex + 1, rightIndex);
         }
     }
 
     public static void main(String[] args) {
-        int[] arr = {2, 5, 6, 8, 9, 10, 12};
-        Tuple findTwoElementsResult = findTwoElements(arr, 12);
-        System.out.println("findTwoElementsResult.first = " + findTwoElementsResult.first);
-        System.out.println("findTwoElementsResult.second = " + findTwoElementsResult.second);
+        int[] nums = { 1, 3, 5, 6 };
+        System.out.println(searchInsert(nums, 4));
     }
 }
