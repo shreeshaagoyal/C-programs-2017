@@ -272,8 +272,26 @@ public class InterviewPrep {
         }
     }
 
+    public static int[] twoSum(int[] nums, int target) {
+        if(nums.length < 2) {
+            throw new IllegalArgumentException("Array must have at least 2 elements");
+        }
+        HashMap<Integer, Integer> indexMap = new HashMap<Integer, Integer>();
+        for(int i = 0; i < nums.length; i++) {
+            int difference = target - nums[i];
+            if(indexMap.containsKey(nums[i])) {
+                int[] result = {i, indexMap.get(nums[i])};
+                return result;
+            } else {
+                indexMap.put(difference, i);
+            }
+        }
+        int[] nullResult = {};
+        return nullResult;
+    }
+
     public static void main(String[] args) {
-        int[] nums = { 1, 3, 5, 6 };
-        System.out.println(searchInsert(nums, 4));
+        int[] nums = {1};
+        printArray(twoSum(nums, 9));
     }
 }
