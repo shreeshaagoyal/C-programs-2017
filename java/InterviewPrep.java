@@ -210,29 +210,31 @@ public class InterviewPrep {
     }
 
     public static int searchInsert(int[] nums, int target) {
-        searchInsertRecursive(nums, 0, nums.length, target);
+        return searchInsert(nums, 0, nums.length-1, target);
     }
 
-    private static int searchInsertRecursive(int[] nums, int start, int end, int target) {
+    private static int searchInsert(int[] nums, int start, int end, int target) {
         // base case
         if(end - start == 0) {
             if(target < nums[start]) {
-                return start-1;
-            } else {
                 return start;
+            } else {
+                return start+1;
             }
         }
         
         if(target > nums[nums.length/2]) {
-            searchInsert(nums, nums.length/2, nums.length-1, target);
+            return searchInsert(nums, nums.length/2, end, target);
         } else if(target < nums[nums.length/2]) {
-            searchInsert(nums, 0, nums.length/2 - 1, target);
-        } else if(target == nums[nums.length/2]) {
+            return searchInsert(nums, start, nums.length/2 - 1, target);
+        } else {
             return nums.length/2;
         }
+
     }
 
     public static void main(String[] args) {
-        System.out.println(isValid("()[][]["));
+        int[] nums = {1, 3, 5, 6};
+        System.out.println(searchInsert(nums, 3));
     }
 }
