@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 public class InterviewPrep {
     public static int calculateClockAngle(int hand1, int hand2) {
@@ -96,10 +97,88 @@ public class InterviewPrep {
         System.out.println(arr[arr.length-1]);
     }
 
+    public static boolean isValid(String s) {
+        return false;
+    }
+
+/*
+    public static int mostFrequent(int[] arr) {
+        if(arr.length == 0) {
+            throw new Exception("Empty array");
+        }
+
+        HashMap<Integer, Integer> frequencyNums = new HashMap<Integer, Integer>();
+        for(int i = 0; i < arr.length; i++) {
+            if(frequencyNums.containsKey(arr[i])) {
+                frequencyNums.put(arr[i], (frequencyNums.get(arr[i]))+1);
+            } else {
+                frequencyNums.put(arr[i], 1);
+            }
+        }
+        int frequency = 0, result = 0;
+        Integer[] keyArr = frequencyNums.keySet().toArray();
+        for(int i = 0; i < keyArr.length; i++) {
+            if(frequencyNums.get(keyArr[i]) > frequency) {
+                frequency = frequencyNums.get(keyArr[i]);
+                result = keyArr[i];
+            }
+        }
+        return result;
+    }
+*/
+
+    public static String leastCommonWord(String sentence) {
+
+        HashMap<String, Integer> wordFrequency = new HashMap<String, Integer>();
+        String[] wordsArr = stringToWords(sentence);
+        
+        if(wordsArr.length == 0) {
+            throw new IllegalArgumentException("No words found");
+        }
+        
+        for(int i = 0; i < wordsArr.length; i++) {
+            if(wordFrequency.containsKey(wordsArr[i])) {
+                wordFrequency.put(wordsArr[i], wordFrequency.get(wordsArr[i]) + 1);
+            } else {
+                wordFrequency.put(wordsArr[i], 1);
+            }
+        }
+        
+        double frequency = Double.POSITIVE_INFINITY;
+        String result = wordsArr[0];
+        for(int i = 0; i < wordsArr.length; i++) {
+            if(wordFrequency.get(wordsArr[i]) < frequency) {
+                frequency = wordFrequency.get(wordsArr[i]);
+                result = wordsArr[i];
+            }
+        }
+        
+        return result;
+    }
+
+    private static String[] stringToWords(String sentence) {
+        ArrayList<String> words = new ArrayList<String>();
+        for(int i = 0; i < sentence.length(); i++) {
+            if(sentence.charAt(i) == ' ') {
+                continue;
+            }
+            StringBuffer word = new StringBuffer();
+            while((sentence.charAt(i) != ' ') && (i < sentence.length()-1)) {
+                word.append(sentence.charAt(i));
+                i++;
+            }
+            words.add(word.toString());
+        }
+
+        String[] result = new String[words.size()];
+        for(int i = 0; i < result.length; i++) {
+            result[i] = words.get(i);
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
-        int[] nums = {3, 3, 3, 2};
-        System.out.println("new length: " + removeElement(nums, 3));
-        System.out.print("new array: ");
-        printArray(nums);
+        System.out.println(leastCommonWord("my"));
     }
 }
