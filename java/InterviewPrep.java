@@ -3,6 +3,7 @@ import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
+import java.util.Stack;
 
 public class InterviewPrep {
     public static int calculateClockAngle(int hand1, int hand2) {
@@ -98,7 +99,37 @@ public class InterviewPrep {
     }
 
     public static boolean isValid(String s) {
-        return false;
+        if(s.length() == 0) {
+            throw new IllegalArgumentException("No characters found");
+        }
+        Stack<Character> brackets = new Stack<Character>();
+        brackets.push(s.charAt(0));
+        for(int i = 1; i < s.length(); i++) {
+            if(brackets.empty()) {
+                brackets.push(s.charAt(i));
+            } else if(oppositeParentheses(brackets.peek()) == s.charAt(i)) {
+                brackets.pop();
+            } else {
+                brackets.push(s.charAt(i));
+            }
+        }
+        if(brackets.empty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private static char oppositeParentheses(char bracket) {
+        if(bracket == '(') {
+            return ')';
+        } else if(bracket == '[') {
+            return ']';
+        } else if(bracket == '{') {
+            return '}';
+        } else {
+            return '\u0000';
+        }
     }
 
 /*
@@ -178,7 +209,30 @@ public class InterviewPrep {
         return result;
     }
 
+    public static int searchInsert(int[] nums, int target) {
+        searchInsertRecursive(nums, 0, nums.length, target);
+    }
+
+    private static int searchInsertRecursive(int[] nums, int start, int end, int target) {
+        // base case
+        if(end - start == 0) {
+            if(target < nums[start]) {
+                return start-1;
+            } else {
+                return start;
+            }
+        }
+        
+        if(target > nums[nums.length/2]) {
+            searchInsert(nums, nums.length/2, nums.length-1, target);
+        } else if(target < nums[nums.length/2]) {
+            searchInsert(nums, 0, nums.length/2 - 1, target);
+        } else if(target == nums[nums.length/2]) {
+            return nums.length/2;
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.println(leastCommonWord("my"));
+        System.out.println(isValid("()[][]["));
     }
 }
