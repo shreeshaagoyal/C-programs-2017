@@ -223,60 +223,18 @@ public class InterviewPrep {
             }
         }
         
-        if(target > nums[nums.length/2]) {
-            return searchInsert(nums, nums.length/2, end, target);
-        } else if(target < nums[nums.length/2]) {
-            return searchInsert(nums, start, nums.length/2 - 1, target);
+        int mid = (end - start)/2;
+        if(target == nums[mid]) {
+            return mid;
+        } else if(target > nums[mid]) {
+            return searchInsert(nums, mid + 1, end, target);
         } else {
-            return nums.length/2;
-        }
-
-    }
-
-    /**
-
-Given a sorted array like the following:
-[2, 5, 7, 8, 9, 10, 22]
-
-And a target value like the following:
-15
-
-Find 2 elements in the array which add up to that number
-kthxbye. see ya l8r h8r m8 plz don't communic8. i already 8. it's in my f8.
-
-**/
-/*
-    public static Tuple findElements(int[] arr, int target) {
-        return findElements(arr, target, arr.length/2-1, arr.length/2);
-    }
-
-    private static Tuple findElements(int[] arr, int target, int leftIndex, int rightIndex) throws Exception { 
-        // base case 
-        if((leftIndex < 0) || (rightIndex >= arr.length)) {
-            return null;   
-        }
-        if((arr[leftIndex] + arr[rightIndex]) == target) {
-            Tuple result = new Tuple();
-            Tuple.first = arr[leftIndex];
-            Tuple.second = arr[rightIndex];
-            return result;
-        }
-        
-        int sum = arr[leftIndex] + arr[rightIndex];
-        if((sum > target) {
-            return findElements(arr, target, leftIndex--, rightIndex);
-        }
-        else if(sum < target) {
-            return findElements(arr, target, leftIndex, rightIndex++);
-        }
-        else {
-            throw new Exception();
+            return searchInsert(nums, start, mid - 1, target);
         }
     }
-    */
 
     public static void main(String[] args) {
         int[] nums = {1, 3, 5, 6};
-        System.out.println(searchInsert(nums, 3));
+        System.out.println(searchInsert(nums, 9));
     }
 }
