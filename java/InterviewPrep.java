@@ -347,8 +347,19 @@ public class InterviewPrep {
         return newArr;
     }
 
+    public static int climbingStairs(int n) {
+        // base case
+        if(n < 1) {
+            throw new IllegalArgumentException("Stairs must be at least one step long");
+        }
+        if(n < 3) {
+            return n;
+        }
+
+        return climbingStairs(n-1) + climbingStairs(n-2);
+    }
+
     public static void main(String[] args) {
-        int[] nums = {9, 9, 9};
-        printArray(plusOne(nums));
+        System.out.println(climbingStairs(6));
     }
 }
