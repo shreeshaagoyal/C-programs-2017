@@ -319,19 +319,23 @@ public class InterviewPrep {
         return base.toString();
     }
 
+
+    // Find the contiguous subarray within an array (containing at least one number)
+    // which has the largest sum.
     public static int maxSubArray(int[] nums) {
         int ans = nums[0];
-        int sum = 0;
-        for(int i = 0; i < nums.length; i++) {
-            sum += nums[i];
+        int sum = nums[0];
+        for(int i = 1; i < nums.length; i++) {
+            sum = Math.max(sum + nums[i], nums[i]);
             ans = Math.max(sum, ans);
-            sum = Math.max(sum, 0);
         }
         return ans;
     }
 
+    
+
     public static void main(String[] args) {
         int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
-        System.out.println(maxSubarray(nums));
+        System.out.println(maxSubArray(nums));
     }
 }
