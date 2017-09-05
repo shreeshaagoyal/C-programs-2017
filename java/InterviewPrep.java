@@ -348,15 +348,21 @@ public class InterviewPrep {
     }
 
     public static int climbingStairs(int n) {
-        // base case
         if(n < 1) {
             throw new IllegalArgumentException("Stairs must be at least one step long");
         }
         if(n < 3) {
             return n;
         }
-
-        return climbingStairs(n-1) + climbingStairs(n-2);
+        int first = 1;
+        int second = 2;
+        int third = first + second;
+        for(int i = 3; i < n; i++) {
+            first = second;
+            second = third;
+            third = first + second;
+        }
+        return third;
     }
 
     public static void main(String[] args) {
