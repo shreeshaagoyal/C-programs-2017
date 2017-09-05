@@ -332,10 +332,23 @@ public class InterviewPrep {
         return ans;
     }
 
-    
+    public static int[] plusOne(int[] digits) {
+        int length = digits.length;
+        for(int i = length-1; i >= 0; i--) {
+            if(digits[i] < 9) {
+                digits[i]++;
+                return digits;
+            } else if(digits[i] == 9) {
+                digits[i] = 0;
+            }
+        }
+        int[] newArr = new int[length + 1];
+        newArr[0] = 1;
+        return newArr;
+    }
 
     public static void main(String[] args) {
-        int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
-        System.out.println(maxSubArray(nums));
+        int[] nums = {9, 9, 9};
+        printArray(plusOne(nums));
     }
 }
