@@ -365,6 +365,13 @@ public class InterviewPrep {
         return third;
     }
 
+    public static createTree(int[] preOrderArr, int[] inOrderArr) {
+        int preOrderCursor = 0;
+        int inOrderCursor = 0;
+        TreeNode root = new TreeNode(preOrderArr[0]);
+        
+    }
+
     public static void main(String[] args) {
         System.out.println(climbingStairs(6));
     }
