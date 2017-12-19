@@ -5,7 +5,7 @@ interface Token {
 }
 
 class NumberToken implements Token {
-	public int number;
+	public double number;
 }
 
 class OperatorToken implements Token {
@@ -127,13 +127,83 @@ class Parser {
 }
 
 class Evaluator {
-	List<Token> expression;
 	int currIndex = 0;
-	public Evaluator(List<Token> expression) {
-		this.expression = expression;
+	public Evaluator() {
 	}
 	private double evaluateNoBracketsExpression(List<Token> tokens) {
-		return null;
+		if (tokens.size() == 1) {
+			return tokens.get(0).number;
+		}
+
+		/** CHANGE MINUS OPERATOR TO PLUS AND DIVIDE OPERATOR TO MULTIPLY */
+		List<Token> changedTokens = new List<Token>();
+		changedTokens = changeOperators(tokens);
+
+
+		/** MULTIPLY NUMBERS TOGETHER UNTIL ONLY PLUS OPERATORS LEFT */
+		List<Token> newTokens = new List<Token>();
+		newTokens = multiplyTokens(changedTokens);
+
+		/** ADD ALL NUMBERS IN ARRAY OF TOKENS */
+		double result;
+		int j = 1;
+		for (int i = 0; i < newTokens.size(); i++) {
+			
+			j = j + 2;
+		}
+
+	}
+
+	private List<Token> multiplyTokens(List<Token> tokens) {
+		List<Token> newTokens = new List<Token>();
+		int j = 1;
+		for (int i = 0; j < tokens.size(); i++) {
+			newTokens.add(tokens.get(i));
+			if (tokens.get(j) == OperatorToken.OperatorType.MULTIPLY) {
+				NumberToken product = new NumberToken();
+				product.number = ((tokens.get(j-1)).number * tokens.get(j+1)).number;
+				newTokens.add(product);
+				i = j + 1;
+			}
+			j = j + 2;
+		}
+
+		return newTokens;
+	}
+
+	private List<Token> changeOperators(List<Token> tokens) {
+		/** CHANGE MINUS OPERATOR TO PLUS AND DIVIDE OPERATOR TO MULTIPLY */
+		for (int i = 1; i < tokens.size(); i=i+2) {
+			if (tokens.get(i) == OperatorToken.OperatorType.MINUS) {
+				OperatorToken plusOperatorToken = new OperatorToken();
+				plusOperatorToken.operatorType = OperatorToken.OperatorType.PLUS;
+				tokens.set(i, plusOperatorToken);
+				
+				NumberToken numToken = new NumberToken();
+				numToken.number = subtractify(tokens.get(i+1).number);
+				tokens.set(i+1, numToken);
+			}
+
+			if (tokens.get(i) == OperatorToken.OperatorType.DIVIDE) {
+				OperatorToken multiplyOperatorToken = new OperatorToken();
+				multiplyOperatorToken.operatorType = OperatorToken.OperatorType.MULTIPLY;
+				tokens.set(i, multiplyOperatorToken);
+
+				NumberToken numToken = new NumberToken();
+				numToken.number = reciprocal(tokens.get(i+1).number);
+				tokens.set(i+1, numToken);
+			}
+		}
+
+		return tokens;
+	}
+
+	private double reciprocal(double num) {
+		return 1/num;
+	}
+
+	private double subtractify(double num) {
+		return ((-1) * num);
 	}
 
 	public double bracketSolver(List<Token> tokens) {
@@ -186,6 +256,7 @@ class Main {
 		List<Token> tokens = parser.tokenize();
 
 		Evaluator evaluator = new Evaluator();
+		double result = evaluator.bracketSolver(tokens);
 
 		assert(tokens.size() == 7);
 		assert(tokens.get(0) instanceof BracketToken);
