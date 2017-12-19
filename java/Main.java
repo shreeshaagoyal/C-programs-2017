@@ -145,13 +145,16 @@ class Evaluator {
 		newTokens = multiplyTokens(changedTokens);
 
 		/** ADD ALL NUMBERS IN ARRAY OF TOKENS */
-		double result;
-		int j = 1;
-		for (int i = 0; i < newTokens.size(); i++) {
-			
-			j = j + 2;
-		}
+		return addAllTokens(newTokens);
 
+	}
+
+	private double addAllTokens(List<Token> tokens) {
+		double result = newTokens.get(0).number;
+		for (int i = 0; i < newTokens.size(); i=i+2) {
+			result += newTokens.get(i).number;
+		}
+		return result;
 	}
 
 	private List<Token> multiplyTokens(List<Token> tokens) {
