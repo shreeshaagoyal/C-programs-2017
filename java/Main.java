@@ -132,7 +132,7 @@ class Evaluator {
 	public Evaluator(List<Token> expression) {
 		this.expression = expression;
 	}
-	private NumberToken evaluateNoBracketsExpression() {
+	private double evaluateNoBracketsExpression(List<Token> tokens) {
 		return null;
 	}
 
@@ -150,7 +150,7 @@ class Evaluator {
 
 		}
 
-		// base case
+		return evaluateNoBracketsExpression(tempExpression);
 
 	}
 
