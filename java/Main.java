@@ -128,6 +128,7 @@ class Parser {
 
 class Evaluator {
 	int currIndex = 0;
+	int referenceValue = 0;
 	public Evaluator() {
 	}
 	private Token evaluateNoBracketsExpression(List<Token> tokens) {
@@ -150,8 +151,8 @@ class Evaluator {
 	}
 
 	private Token addAllTokens(List<Token> tokens) {
-		double result = ((NumberToken) tokens.get(0)).number;
-		for (int i = 0; i < tokens.size(); i+=2) {
+		double result = 0;
+		for (int i = 0; i < tokens.size(); i++) {
 			result += ((NumberToken) tokens.get(i)).number;
 		}
 		NumberToken sum = new NumberToken();
@@ -160,52 +161,47 @@ class Evaluator {
 	}
 
 	private List<Token> multiplyTokens(List<Token> tokens) {
-		List<Token> newTokens = new ArrayList<Token>();
 		int printCursor = 0;
 		int operatorCursor = 1;
-		Boolean lastOperatorMultiply = false;
-		Boolean plusPrecedingMultiply = false;
-		for (; printCursor < tokens.size(); printCursor++) {
+		List<Token> toBeAdded = new ArrayList<Token>();
+		for (; printCursor < tokens.size(); printCursor += 2) {
 			if (operatorCursor == tokens.size()) {
-				newTokens.add(tokens.get(printCursor));
-				return newTokens;
+				toBeAdded.add(tokens.get(printCursor));
+				return toBeAdded;
 			}
-			if (((OperatorToken) tokens.get(operatorCursor)).operatorType == OperatorToken.OperatorType.MULTIPLY) {
-				List<Double> numbersToBeMultiplied = new ArrayList<Double>();
-				for (; operatorCursor < tokens.size(); operatorCursor +=2) {
-					numbersToBeMultiplied.add(((NumberToken) tokens.get(operatorCursor-1)).number);
-					if (((OperatorToken) tokens.get(operatorCursor)).operatorType != OperatorToken.OperatorType.MULTIPLY) {
+			if (((OperatorToken) tokens.get(operatorCursor)).operatorType != OperatorToken.OperatorType.MULTIPLY) {
+				toBeAdded.add(tokens.get(printCursor));
+			} else if (((OperatorToken) tokens.get(operatorCursor)).operatorType == OperatorToken.OperatorType.MULTIPLY) {
+				List<Token> toBeMultiplied = new ArrayList<Token>();
+				for (; operatorCursor <= tokens.size(); operatorCursor += 2) {
+					if (operatorCursor == tokens.size()) {
+						toBeMultiplied.add(tokens.get(printCursor));
 						break;
 					}
-					if ((operatorCursor+1) == (tokens.size()-1)) {
-						numbersToBeMultiplied.add(((NumberToken) tokens.get(operatorCursor+1)).number);
-						lastOperatorMultiply = true;
+					if (((OperatorToken) tokens.get(operatorCursor)).operatorType == OperatorToken.OperatorType.MULTIPLY) {
+						toBeMultiplied.add(tokens.get(printCursor));
+					} else {
+						toBeMultiplied.add(tokens.get(printCursor));
+						break;
 					}
+					printCursor += 2;
 				}
-				int result = 1;
-				for (int i = 0; i < numbersToBeMultiplied.size(); i++) {
-					result *= numbersToBeMultiplied.get(i);
-				}
-				NumberToken product = new NumberToken();
-				product.number = result;
-				if (plusPrecedingMultiply) {
-					newTokens.add(tokens.get(printCursor));
-					plusPrecedingMultiply = false;
-				}
-				newTokens.add(product);
-				if (lastOperatorMultiply) {
-					return newTokens;
-				}
-				printCursor = operatorCursor;
-
+				Token result = multiplyAllTokens(toBeMultiplied);
+				toBeAdded.add(result);
 			}
-
-			plusPrecedingMultiply = true;
-			newTokens.add(tokens.get(printCursor));
 			operatorCursor += 2;
 		}
+		return toBeAdded;
+	}
 
-		return newTokens;
+	private Token multiplyAllTokens(List<Token> toBeMultiplied) {
+		int product = 1;
+		for (int i = 0; i < toBeMultiplied.size(); i++) {
+			product *= ((NumberToken) toBeMultiplied.get(i)).number;
+		}
+		NumberToken result = new NumberToken();
+		result.number = product;
+		return result;
 	}
 
 	private List<Token> changeOperators(List<Token> tokens) {
@@ -273,8 +269,11 @@ class Evaluator {
 					bracketCount++;
 				} else if (((BracketToken) currToken).bracketType == BracketToken.BracketType.CLOSE) {
 					bracketCount--;
-				} else if (bracketCount == 0) {
-					return removeEndBrackets(tempExpression);
+					if (bracketCount == 0) {
+						this.referenceValue = this.currIndex + 1;
+						this.currIndex = 0;
+						return removeEndBrackets(tempExpression);
+					}
 				}
 			}
 			tempExpression.add(currToken);
@@ -292,7 +291,7 @@ class Main {
 	public static void main(String[] args) {
 		System.out.println("Hello, world!");
 
-		Parser parser = new Parser("0+100");
+		Parser parser = new Parser("(1+4)*2");
 		List<Token> tokens = parser.tokenize();
 
 		Evaluator evaluator = new Evaluator();
