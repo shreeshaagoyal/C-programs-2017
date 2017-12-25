@@ -2,17 +2,17 @@ class Merger {
 
     public static List mergeLists(List listA, List listB) {
         List resultList = new List();
-        resultList.node = new Node();
+        resultList.next = new Node();
 
-        Node currentNode = resultList.node; // This is a fake node
+        Node currentNode = resultList.next; // This is a fake node
 
         Node cursorA, cursorB;
-        cursorA = listA.node;
-        cursorB = listB.node;
+        cursorA = listA.next;
+        cursorB = listB.next;
 
         Node cursorANext, cursorBNext;
-        cursorANext = cursorA.node;
-        cursorBNext = cursorB.node;
+        cursorANext = cursorA.next;
+        cursorBNext = cursorB.next;
 
         while (true) {
             double listAData = getValue(cursorA);
@@ -24,66 +24,51 @@ class Merger {
 
             Node smallerNode = (listAData < listBData) ? cursorA : cursorB;
 
-            currentNode.node = smallerNode;
+            currentNode.next = smallerNode;
             currentNode = smallerNode;
 
             if (listAData < listBData) {
                 // Update cursorA
                 cursorA = cursorANext;
-                cursorANext = (cursorA == null) ? null : cursorA.node;
+                cursorANext = (cursorA == null) ? null : cursorA.next;
             } else {
                 // Update cursorB
                 cursorB = cursorBNext;
-                cursorBNext = (cursorB == null) ? null :  cursorB.node;
+                cursorBNext = (cursorB == null) ? null :  cursorB.next;
             }
         }
 
-        // Removing fake node:
-        resultList.node = resultList.node.node;
+        // Removing fake next:
+        resultList.next = resultList.next.next;
 
         return resultList;
     }
 
-    private static double getValue(Node node) {
-        if (node == null) {
+    private static double getValue(Node next) {
+        if (next == null) {
             return Double.POSITIVE_INFINITY;
         } else {
-            return node.data;
+            return next.data;
         }
     }
 
     public static void main(String[] args) {
         List listA = new List();
-        listA.node = new Node(6);
-        listA.node.node = new Node(8);
-        listA.node.node.node = new Node(9);
+        listA.next = new Node(6);
+        listA.next.next = new Node(8);
+        listA.next.next.next = new Node(9);
 
         List listB = new List();
-        listB.node = new Node(1);
-        listB.node.node = new Node(2);
-        listB.node.node.node = new Node(7);
-        listB.node.node.node.node = new Node(10);
+        listB.next = new Node(1);
+        listB.next.next = new Node(2);
+        listB.next.next.next = new Node(7);
+        listB.next.next.next.next = new Node(10);
 
         List merged = mergeLists(listA, listB);
-        Node node = merged.node;
-        while (node != null) {
-            System.out.println(node.data);
-            node = node.node;
+        Node next = merged.next;
+        while (next != null) {
+            System.out.println(next.data);
+            next = next.next;
         }
     }
-}
-
-class Node {
-    Node node;
-    double data;
-
-    Node() {}
-
-    Node(double data) {
-        this.data = data;
-    }
-}
-
-class List {
-    Node node;
 }

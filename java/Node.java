@@ -5,4 +5,6 @@ public class Node {
         this.value = value;
         this.next = null;
     }
+
+    public Node() {}
 }
