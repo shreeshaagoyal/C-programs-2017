@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
 class Main {
     public static void main(String[] args) {
+        /*
         int[] a = {2, 5, 8};
         int[] b = {1, 6, 7, 9};
 
-        int size = 1;
+        int size = 100000;
 
         long startTime = System.currentTimeMillis();
         // int[] resultArr = mergeArrayLists(makeArrayList(true, size), makeArrayList(false, size));
@@ -43,12 +47,68 @@ class Main {
         List oddList = makeLinkedList(false, size);
 
         startTime = System.currentTimeMillis();
-        mergeLists(evenList, oddList);
+        // mergeLists(evenList, oddList);
         endTime = System.currentTimeMillis();
 
         System.out.println("Time taken for iterative mergeLinkedLists: " + (endTime - startTime));
 
-        printArray(primeNumbersBrute(10));
+
+
+        startTime = System.currentTimeMillis();
+        primeNumbersBrute(size);
+        endTime = System.currentTimeMillis();
+        System.out.print("\n");
+        System.out.println("Time taken for brute force: " + (endTime - startTime));
+
+        System.out.println("\n");
+
+        startTime = System.currentTimeMillis();
+        primeNumbers(size);
+        endTime = System.currentTimeMillis();
+        System.out.print("\n");
+        System.out.println("Time taken for non-brute force: " + (endTime - startTime));
+
+        
+        int[] arr = {5, 7, 2, 1, -6, 20, 13};
+        printArray(sortList(arr));
+        System.out.println("\n\n");
+
+        */
+
+        List list1 = new List();
+        list1.next = new Node(9);
+        list1.next.next = new Node(9);
+        // list1.next.next.next = new Node(3);
+
+        System.out.print("list1: ");
+        printNode(list1.next);
+        System.out.print("\n");
+
+        List list2 = new List();
+        list2.next = new Node(1);
+        // list2.next.next = new Node(6);
+        // list2.next.next.next = new Node(4);
+
+        System.out.print("list2: ");
+        printNode(list2.next);
+        System.out.print("\n\n");
+
+        List resultList = addTwoNumbers(list1.next, list2.next);
+        System.out.print("sum of two lists: ");
+        printNode(resultList.next);
+
+        System.out.println(lengthOfLongestSubstring("pwwkew"));
+
+        System.out.println(isPalindrome("hannah"));
+
+        System.out.println(longestPalindrome("cbbd"));
+
+        System.out.println(insertString("Shivanshu", "Hi, {first-name}. Welcome to my house", 4, 16));
+
+        HashMap<String, String> names = new HashMap<String, String>();
+        names.put("first-name", "Shivanshu");
+        names.put("place", "my house");
+        System.out.println(templateRender(names, "Hello {first-name}, welcome to {place}!"));
     }
 
     public static int findGCF1(int a, int b) {
@@ -107,46 +167,110 @@ class Main {
             return result;
         }
 
-        int numOfFactors = 0;
-
         while (true) {
-            if (result.length == size) {
-                break;
-            }
-            for (int i = 1; i <= currNum; i++) {
-                if (currNum%i == 0) {
-                    numOfFactors++;
-                }
-                if (numOfFactors > 2) {
-                    break;
-                }
-            }
-            if (numOfFactors == 2 || numOfFactors == 1) {
+            if (isPrime(currNum)) {
                 result[cursor] = currNum;
-                System.out.println("currNum: " + currNum);
                 cursor++;
             }
-            numOfFactors = 0;
             currNum++;
+
+            if (cursor == size) {
+                break;
+            }
         }
         return result;
     }
 
-/*
+    public static ArrayList<Integer> primeNumbersBrute2(int size) {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        
+        int counter = 0;
+
+        for (int i = 0; counter < size; i++) {
+            if (isPrime(i)) {
+                result.add(i);
+                counter++;
+            }
+        }
+
+        return result;
+    }
+
+    private static Boolean isPrime(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException();
+        }
+        
+        if ((n == 0) || (n == 1)) {
+            return false;
+        }
+        
+        int numFactors = 0;
+        
+        for (int i = 2; i < n; i++) {
+            if (n%i == 0) {
+                numFactors++;
+            }
+            if (numFactors > 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static int[] primeNumbers(int size) {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        int counter = 0;
+
+        for (int i = 2; counter < size; i++) {
+            Boolean isPrimeNum = true;
+
+            for (int j = 0; j < result.size(); j++) {
+                if (i % (result.get(j)) == 0) {
+                    isPrimeNum = false;
+                    break;
+                }
+            }
+            if (isPrimeNum) {
+                result.add(i);
+                counter++;
+            }
+        }
+
+        return arrayListToIntArray(result);
+    }
+
+    private static int[] arrayListToIntArray(ArrayList<Integer> arr) {
+        int[] result = new int[arr.size()];
+
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i) != null) {
+                result[i] = arr.get(i);
+            }
+        }
+
+        return result;
+    }
+
     public static int[] sortList(int[] arr) {
+        // base case
+        if (arr.length == 1) {
+            return arr;
+        }
+
         int[] arrA = new int[arr.length/2];
         for (int i = 0; i < arr.length/2; i++) {
             arrA[i] = arr[i];
         }
         int[] arrB = new int[arr.length - (arr.length/2)];
         for (int i = arr.length/2; i < arr.length; i++) {
-            arrB[i] = arr[i];
+            arrB[i-(arr.length/2)] = arr[i];
         }
         int[] list1 = sortList(arrA);
         int[] list2 = sortList(arrB);
-        return arrA;
+        return mergeArrayLists(list1, list2);
     }
-*/
 
     public static int[] mergeArrayLists(int[] arr1, int[] arr2) {
         // base case
@@ -376,6 +500,168 @@ class Main {
         }
     }
 
+    public static List addTwoNumbers(Node n1, Node n2) {
+        makeSameSize(n1, n2);
+
+        List resultList = new List();
+        Node currResultNode = new Node(); // temporary node
+        resultList.next = currResultNode;
+
+        Node currNode1 = n1;
+        Node currNode2 = n2;
+
+        Boolean carryOver = false;
+
+        while ((currNode1 != null) && (currNode2 != null)) {
+            int sum = currNode1.value + currNode2.value;
+            if (carryOver) {
+                sum++;
+                carryOver = false;
+            }
+            if (sum > 9) {
+                carryOver = true;
+                sum = sum - 10;
+            }
+            currResultNode.next = new Node(sum);
+
+            currResultNode = currResultNode.next;
+            currNode1 = currNode1.next;
+            currNode2 = currNode2.next;
+        }
+
+        // special case if carry over still left over and need a new node at the end
+        if (carryOver) {
+            currResultNode.next = new Node(1);
+        }
+
+        resultList.next = resultList.next.next;
+        return resultList;
+    }
+
+    private static void makeSameSize(Node n1, Node n2) {
+        Node currNode1 = n1;
+        Node currNode2 = n2;
+
+        while ((currNode1.next != null) && (currNode2.next != null)) {
+            currNode1 = currNode1.next;
+            currNode2 = currNode2.next;
+        }
+
+        while ((currNode1.next == null) && (currNode2.next != null)) {
+            currNode1.next = new Node(0);
+            currNode1 = currNode1.next;
+            currNode2 = currNode2.next;
+        }
+
+        while ((currNode2.next == null) && (currNode1.next != null)) {
+            currNode2.next = new Node(0);
+            currNode2 = currNode2.next;
+            currNode1 = currNode1.next;
+        }
+    }
+
+    private static int lengthOfLongestSubstring(String s) {
+        HashMap<Character, Integer> alphabetToIndex = new HashMap<Character, Integer>();
+        int counter = 0;
+        int max = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (alphabetToIndex.containsKey(s.charAt(i))) {
+                i = alphabetToIndex.get(s.charAt(i)) + 1;
+                alphabetToIndex.clear();
+                counter = 0;
+            }
+            alphabetToIndex.put(s.charAt(i), i);
+            counter++;
+            max = Math.max(counter, max);
+        }
+        return max;
+    }
+
+    public static String longestPalindrome(String s) {
+        int n = s.length();
+        int maxLength = 0;
+        String result = "";
+        for (int i = 0; i < n; i++) {
+            for (int j = i+1; j <= n; j++) {
+                String substring = s.substring(i, j);
+                if (isPalindrome(substring)) {
+                    if (j - i > maxLength) {
+                        result = substring;
+                        maxLength = j - i;
+                    }
+                }   
+            }
+        }
+        return result;
+    }
+
+    private static Boolean isPalindrome(String s) {
+        int n = s.length();
+        int j = n/2 + 1;
+
+        if (n%2 == 0) { // even length string
+            j = n/2;
+        }
+
+        for (int i = n/2-1; i >= 0; i--) {
+            if (s.charAt(i) != s.charAt(j)) {
+                return false;
+            }
+            j++;
+        }
+
+        return true;
+    }
+
+    public static String templateRender(HashMap<String, String> names, String s) {
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '{') {
+                Tuple mappedTuple = getMappedString(names, s, i);
+                s = mappedTuple.mappedString;
+                i = mappedTuple.closeBracketIndex;
+            }
+        }
+        return s;
+    }
+
+    private static Tuple getMappedString(HashMap<String, String> names, String s, int index) {
+        StringBuffer templateString = new StringBuffer();
+        int i = index+1;
+        for (; true; i++) {
+            if (s.charAt(i) == '}') {
+                break;
+            }
+            templateString.append(s.charAt(i));
+        }
+        String mappedString = names.get(templateString.toString());
+        String resultString = insertString(mappedString, s, index, i);
+        return new Tuple(resultString, i);
+    }
+
+    private static String insertString(String stringToInsert, String s, int startIndex, int endIndex) {
+        StringBuffer result = new StringBuffer();
+        for (int i = 0; i < s.length(); i++) {
+            if (i == startIndex) {
+                for (int j = 0; j < stringToInsert.length(); j++) {
+                    result.append(stringToInsert.charAt(j));
+                }
+                i = endIndex;
+            }
+            if (i < s.length()) {
+                result.append(s.charAt(i));
+            }
+        }
+        return result.toString();
+    }
+}
+
+class Tuple {
+    String mappedString;
+    int closeBracketIndex;
+    public Tuple(String s, int i) {
+        this.mappedString = s;
+        this.closeBracketIndex = i;
+    }
 }
 
 class List {
