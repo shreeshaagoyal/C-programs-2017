@@ -107,6 +107,10 @@ class Main {
         names.put("first-name", "Shivanshu");
         names.put("place", "my house");
         System.out.println(templateRender(names, "Hello {first-name} {place}, welcome to {place}"));
+
+        String s = "hello";
+        s = new String("hello");
+        System.out.println(s.equals("hello"));
     }
 
     public static int findGCF1(int a, int b) {

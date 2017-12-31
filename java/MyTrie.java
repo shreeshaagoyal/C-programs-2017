@@ -60,7 +60,10 @@ public class MyTrie {
     public static void main(String[] args) {
         MyTrie testTrie = new MyTrie();
         testTrie.addWord("art");
-        System.out.println(testTrie.containsWord("ar"));
+        testTrie.addWord("cat");
+        testTrie.addWord("sam");
+        testTrie.addWord("air");
+        System.out.println(testTrie.containsPrefix("s"));
     }
 
 }
