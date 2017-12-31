@@ -103,12 +103,10 @@ class Main {
 
         System.out.println(longestPalindrome("cbbd"));
 
-        System.out.println(insertString("Shivanshu", "Hi, {first-name}. Welcome to my house", 4, 16));
-
         HashMap<String, String> names = new HashMap<String, String>();
         names.put("first-name", "Shivanshu");
         names.put("place", "my house");
-        System.out.println(templateRender(names, "Hello {first-name}, welcome to {place}!"));
+        System.out.println(templateRender(names, "Hello {first-name} {place}, welcome to {place}"));
     }
 
     public static int findGCF1(int a, int b) {
@@ -614,53 +612,39 @@ class Main {
     }
 
     public static String templateRender(HashMap<String, String> names, String s) {
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '{') {
-                Tuple mappedTuple = getMappedString(names, s, i);
-                s = mappedTuple.mappedString;
-                i = mappedTuple.closeBracketIndex;
-            }
-        }
-        return s;
-    }
-
-    private static Tuple getMappedString(HashMap<String, String> names, String s, int index) {
-        StringBuffer templateString = new StringBuffer();
-        int i = index+1;
-        for (; true; i++) {
-            if (s.charAt(i) == '}') {
-                break;
-            }
-            templateString.append(s.charAt(i));
-        }
-        String mappedString = names.get(templateString.toString());
-        String resultString = insertString(mappedString, s, index, i);
-        return new Tuple(resultString, i);
-    }
-
-    private static String insertString(String stringToInsert, String s, int startIndex, int endIndex) {
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < s.length(); i++) {
-            if (i == startIndex) {
-                for (int j = 0; j < stringToInsert.length(); j++) {
-                    result.append(stringToInsert.charAt(j));
-                }
-                i = endIndex;
-            }
-            if (i < s.length()) {
+            if (s.charAt(i) == '{') {
+                MappingResult mappedResult = getMappedString(names, s, i+1);
+                String mapped = mappedResult.str;
+                result.append(mapped);
+                i = mappedResult.endIndex;
+            } else {
                 result.append(s.charAt(i));
             }
         }
         return result.toString();
     }
+
+    private static MappingResult getMappedString(HashMap<String, String> names, String s, int index) {
+        StringBuffer stringToMap = new StringBuffer();
+        int i = index;
+        for (; i < s.length(); i++) {
+            if (s.charAt(i) == '}') {
+                return new MappingResult(names.get(stringToMap.toString()), i);
+            }
+            stringToMap.append(s.charAt(i));
+        }
+        return new MappingResult(stringToMap.toString(), i); // throw exception?
+    }
 }
 
-class Tuple {
-    String mappedString;
-    int closeBracketIndex;
-    public Tuple(String s, int i) {
-        this.mappedString = s;
-        this.closeBracketIndex = i;
+class MappingResult {
+    String str;
+    int endIndex;
+    public MappingResult(String str, int endIndex) {
+        this.str = str;
+        this.endIndex = endIndex;
     }
 }
 

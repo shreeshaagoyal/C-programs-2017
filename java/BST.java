@@ -5,7 +5,16 @@ public class BST {
         this.root = null;
     }
 
+    public BST(int val) {
+        this.root = new BSTNode(val);
+    }
+
     public void add(int value) {
+
+        if (this.root == null) {
+            this.root = new BSTNode(value);
+        }
+
         BSTNode currNode = this.root;
         BSTNode parentNode = currNode;
         while (currNode != null) {
@@ -28,7 +37,7 @@ public class BST {
 
         // store its left node in leftNode
 
-        // if its right node exists, go to its right node. store valiue in rightNode
+        // if its right node exists, go to its right node. store value in rightNode
 
         // go to rightNode's left most node
 
@@ -49,9 +58,12 @@ public class BST {
 
         while (n != null) {
             if (value == n.value) {
+
                 BSTNode leftNode = n.left;
-                BSTNode leftMostNode = this.findLeftMostNode(n.right);
-                leftMostNode.left = leftNode;
+                if (n.right != null) {
+                    BSTNode leftMostNode = this.findLeftMostNode(n.right);
+                    leftMostNode.left = leftNode;
+                }
                 if (value < parentNode.value) {
                     parentNode.left = n.right;
                 } else {
@@ -69,7 +81,7 @@ public class BST {
         
     }
 
-    private BSTNode findLeftMostNode(BSTNode n) {
+    private static BSTNode findLeftMostNode(BSTNode n) {
         BSTNode currNode = n;
         while (currNode.left != null) {
             currNode = currNode.left;
@@ -101,6 +113,36 @@ public class BST {
     }
 
     public void printBST() {
+        System.out.println("in printBST() method");
+        this.printBST(this.root);
+    }
 
+    private void printBST(BSTNode n) {
+        if (n != null) {
+            printBST(n.left);
+            System.out.println(n.value);
+            printBST(n.right);
+        }
+    }
+
+    public static void main(String[] args) {
+        BST testBST = new BST(10);
+        testBST.add(5);
+        testBST.add(8);
+        testBST.add(9);
+        testBST.add(7);
+        testBST.add(25);
+        testBST.add(13);
+        testBST.add(1);
+        testBST.add(6);
+        testBST.add(2);
+        testBST.add(3);
+        testBST.add(20);
+
+        testBST.printBST();
+
+        System.out.println("_______");
+
+        testBST.printBST();
     }
 }
