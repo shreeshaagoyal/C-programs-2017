@@ -6,6 +6,7 @@ public class MyHashMap {
     }
 
     public void put(String s, int n) {
+        
     }
 
     public int get(String s) {
