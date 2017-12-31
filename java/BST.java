@@ -13,6 +13,7 @@ public class BST {
 
         if (this.root == null) {
             this.root = new BSTNode(value);
+            return;
         }
 
         BSTNode currNode = this.root;
@@ -33,18 +34,6 @@ public class BST {
     } 
 
     public void remove(int value) {
-        // find node that has the given value
-
-        // store its left node in leftNode
-
-        // if its right node exists, go to its right node. store value in rightNode
-
-        // go to rightNode's left most node
-
-        // left most node -> left node -> leftNode
-
-        // n's parent node -> n.right
-
         // edge case - if removing root of the tree
         if (value == this.root.value) {
             BSTNode leftMostNode = this.findLeftMostNode(this.root.right);
@@ -138,10 +127,6 @@ public class BST {
         testBST.add(2);
         testBST.add(3);
         testBST.add(20);
-
-        testBST.printBST();
-
-        System.out.println("_______");
 
         testBST.printBST();
     }

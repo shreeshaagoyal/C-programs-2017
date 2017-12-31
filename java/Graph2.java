@@ -38,6 +38,21 @@ public class Graph2 {
         }
     }
 
+    public Graph2(int[] arr1, int[] arr2) {
+        if (arr1.length != arr2.length) {
+            throw new IllegalArgumentException("Arrays must be the same length");
+        }
+
+        this.visited = new HashSet<Integer>();
+        this.intToNode = new HashMap<Integer, GraphNode>();
+
+        for (int i = 0; i < arr1.length; i++) {
+            ensureNode(arr1[i]);
+            ensureNode(arr2[i]);
+            pointToNode(arr1[i], arr2[i]);
+        }
+    }
+
     private void pointToExistingNode(GraphNode firstNode, int n) {
         GraphNode newNode = this.intToNode.get(n);
         firstNode.adjacentNodes.add(newNode);
