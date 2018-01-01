@@ -1,7 +1,8 @@
+import java.util.List;
 import java.util.ArrayList;
 
 public class MyBucket {
-    ArrayList<MyEntry> entries;
+    List<MyEntry> entries;
 
     public MyBucket() {
         this.entries = new ArrayList<MyEntry>();
@@ -26,7 +27,7 @@ public class MyBucket {
                 return currEntry.n;
             }
         }
-        throw new IllegalArgumentException("Key does not exist");
+        throw new RuntimeException("Key does not exist");
     }
 
     public void remove(String s) {
@@ -43,7 +44,5 @@ public class MyBucket {
     }
 
     public static void main(String[] args) {
-        MyBucket testBucket = new MyBucket();
-        testBucket.add("Shreeshaa", 19);
     }
 }

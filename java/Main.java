@@ -108,9 +108,8 @@ class Main {
         names.put("place", "my house");
         System.out.println(templateRender(names, "Hello {first-name} {place}, welcome to {place}"));
 
-        String s = "hello";
-        s = new String("hello");
-        System.out.println(s.equals("hello"));
+        ArrayList<Integer> temp = new ArrayList<Integer>(1);
+        System.out.println("temp size: " + temp.size());
     }
 
     public static int findGCF1(int a, int b) {
