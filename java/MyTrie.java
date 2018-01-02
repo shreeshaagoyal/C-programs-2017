@@ -1,10 +1,6 @@
 public class MyTrie {
     MyTrieNode root;
 
-    // addWord
-    // containsWord
-    // containsPrefix
-
     public MyTrie() {
         this.root = new MyTrieNode();
     }

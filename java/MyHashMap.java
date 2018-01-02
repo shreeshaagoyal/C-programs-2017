@@ -9,6 +9,9 @@ public class MyHashMap {
     }
 
     public MyHashMap(int n) {
+        if (n <= 0) {
+            throw new IllegalArgumentException("Size has to be bigger than 0");
+        }
         this.buckets = new ArrayList<MyBucket>(n);
         for (int i = 0; i < n; i++) {
             MyBucket emptyBucket = new MyBucket();
@@ -93,5 +96,20 @@ public class MyHashMap {
             }
         }
         this.buckets = expandedBuckets;
+    }
+
+    public static void main(String[] args) {
+        MyHashMap testHashMap = new MyHashMap(1);
+
+        testHashMap.put("Shivanshu", 27);
+        testHashMap.put("Shivanshu", 28);
+        testHashMap.put("Shreeshaa", 2);
+        testHashMap.put("Jane Doe", 89);
+        testHashMap.put("Shivanshu", 26);
+
+        System.out.println("Shivanshu: " + testHashMap.get("Shivanshu"));
+        System.out.println("Shreeshaa: " + testHashMap.get("Shreeshaa"));
+        System.out.println("John Doe: " + testHashMap.get("Jane Doe"));
+        System.out.println("Shivanshu: " + testHashMap.get("Shivanshu"));
     }
 }
