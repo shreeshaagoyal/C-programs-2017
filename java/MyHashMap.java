@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 public class MyHashMap {
     List<MyBucket> buckets;
+    double maxNumEntriesPerBucket = 1.5;
 
     public MyHashMap() {
         this.buckets = new ArrayList<MyBucket>();
@@ -19,8 +20,7 @@ public class MyHashMap {
         int index = getIndex(s);
         MyBucket bucket = this.buckets.get(index);
         bucket.add(s, n);
-        System.out.println("this.calculateAverageSize(): " + this.calculateAverageSize());
-        if (this.calculateAverageSize() > 2) {
+        if (this.averageEntriesPerBucket() > this.maxNumEntriesPerBucket) {
             this.decreaseBucketLoad();
         }
     }
@@ -29,13 +29,6 @@ public class MyHashMap {
         int index = getIndex(s);
         MyBucket bucket = this.buckets.get(index);
         return bucket.get(s);
-    }
-
-    private int getIndex(String s) {
-        int hash = s.hashCode();
-        int index = hash % this.size();
-        index = Math.abs(index);
-        return index;
     }
 
     public Boolean containsKey(String s) {
@@ -49,13 +42,19 @@ public class MyHashMap {
     }
 
     public void remove(String s) {
+        int index = this.getIndex(s);
+        MyBucket bucket = this.buckets.get(index);
+        bucket.remove(s);
     }
 
     public int size() {
         return this.buckets.size();
     }
 
-    private double calculateAverageSize() {
+    
+
+    /** PRIVATE METHODS */
+    private double averageEntriesPerBucket() {
         double sum = 0;
         for (int i = 0; i < this.buckets.size(); i++) {
             sum += this.buckets.get(i).size();
@@ -64,34 +63,35 @@ public class MyHashMap {
         return sum / this.buckets.size();
     }
 
+    private int getIndex(String s) {
+        int hash = s.hashCode();
+        int index = hash % this.size();
+        index = Math.abs(index);
+        return index;
+    }
+
     private void decreaseBucketLoad() {
-        int doubleSize = 2 * this.buckets.size();
+        int doubleSize = 2 * this.size();
         List<MyBucket> expandedBuckets = new ArrayList<MyBucket>(doubleSize);
-        MyBucket emptyBucket = new MyBucket();
+
+        // making an array of buckets with double the original size
         for (int i = 0; i < doubleSize; i++) {
+            MyBucket emptyBucket = new MyBucket();
             expandedBuckets.add(emptyBucket);
         }
+
         for (int i = 0; i < this.buckets.size(); i++) {
             MyBucket currBucket = this.buckets.get(i);
-            for (int j = 0; j < currBucket.entries.size(); j++) {
+
+            for (int j = 0; j < currBucket.size(); j++) {
                 MyEntry currEntry = currBucket.entries.get(j);
-                int hash = Math.abs(currEntry.s.hashCode());
-                int index = currEntry.s.hashCode() % expandedBuckets.size();
+                int hash = currEntry.s.hashCode();
+                int index = hash % expandedBuckets.size();
                 index = Math.abs(index);
-                expandedBuckets.get(index).add(currEntry.s, currEntry.n);
+                MyBucket bucketToAddTo = expandedBuckets.get(index);
+                bucketToAddTo.add(currEntry.s, currEntry.n);
             }
         }
         this.buckets = expandedBuckets;
-    }
-
-    public static void main(String[] args) {
-        MyHashMap testHashMap = new MyHashMap(10);
-        System.out.println(testHashMap.size());
-        testHashMap.put("Shreeshaa", 18);
-        System.out.println(testHashMap.size());
-        testHashMap.put("Shreeshaa", 20);
-        System.out.println(testHashMap.size());
-        testHashMap.put("Shivanshu", 24);
-        System.out.println(testHashMap.size());
     }
 }
