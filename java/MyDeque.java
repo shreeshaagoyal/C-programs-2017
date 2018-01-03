@@ -1,8 +1,8 @@
-public class MyArrayList {
+public class MyDeque {
     int[] arr;
     int size;
 
-    public MyArrayList(int n) {
+    public MyDeque(int n) {
         this.arr = new int[n];
     }
 
@@ -113,6 +113,6 @@ public class MyArrayList {
     }
 
     public static void main(String[] args) {
-        MyArrayList testArr = new MyArrayList(3);
+        MyDeque testArr = new MyDeque(3);
     }
 }
