@@ -11,11 +11,14 @@ public class MyArrayList {
         if (this.arr.length > this.capacity) {
             doubleCapacity();
         }
+
         int[] tempArr = new int[this.arr.length + 1];
         tempArr[0] = n;
+
         for (int i = 0; i < this.arr.length; i++) {
             tempArr[i + 1] = this.arr[i];
         }
+
         this.arr = tempArr;
     }
 
@@ -23,11 +26,15 @@ public class MyArrayList {
         if (this.arr.length > this.capacity) {
             doubleCapacity();
         }
+
         int[] tempArr = new int[this.arr.length + 1];
+
         for (int i = 0; i < this.arr.length; i++) {
             tempArr[i] = this.arr[i];
         }
+
         tempArr[tempArr.length - 1] = n;
+
         this.arr = tempArr;
     }
 
@@ -35,7 +42,21 @@ public class MyArrayList {
         if (this.arr.length > this.capacity) {
             doubleCapacity();
         }
+
         int[] tempArr = new int[this.arr.length + 1];
+
+        int i;
+        for (i = 0; i < index; i++) {
+            tempArr[i] = arr[i];
+        }
+
+        tempArr[i] = n; // add n at given index
+
+        for (i = index + 1; i < this.arr.length; i++) {
+            tempArr[i + 1] = this.arr[i];
+        }
+
+        this.arr = tempArr;
     }
 
     public void removeFromFront() {
@@ -54,6 +75,13 @@ public class MyArrayList {
         return 0;
     }
 
+    public void print() {
+        for (int i = 0; i < this.arr.length; i++) {
+            System.out.print(this.arr[i]);
+            System.out.print(", ");
+        }
+    }
+
     /** PRIVATE METHODS */
     private void doubleCapacity() {
         int doubleSize = 2 * this.capacity;
@@ -67,38 +95,25 @@ public class MyArrayList {
     public static void main(String[] args) {
         MyArrayList testArr = new MyArrayList(3);
         System.out.println("capacity: " + testArr.capacity);
-        System.out.println("adding 10");
-        testArr.addToFront(10);
-        System.out.println("capacity: " + testArr.capacity);
-        System.out.println("adding 6");
-        testArr.addToBack(6);
-        System.out.println("capacity: " + testArr.capacity);
-        System.out.println("adding 9");
+        System.out.println("adding a number");
         testArr.addToBack(9);
         System.out.println("capacity: " + testArr.capacity);
-        System.out.println("adding 19");
-        testArr.addToBack(19);
+        System.out.println("adding a number");
+        testArr.addToBack(8);
         System.out.println("capacity: " + testArr.capacity);
-        System.out.println("adding 9");
-        testArr.addToBack(9);
+        System.out.println("adding a number");
+        testArr.addToBack(5);
         System.out.println("capacity: " + testArr.capacity);
-        System.out.println("adding 9");
-        testArr.addToBack(9);
+        System.out.println("adding a number");
+        testArr.addToBack(80);
         System.out.println("capacity: " + testArr.capacity);
-        System.out.println("adding 9");
-        testArr.addToBack(9);
+        System.out.println("adding a number");
+        testArr.addToBack(56);
         System.out.println("capacity: " + testArr.capacity);
-        System.out.println("adding 9");
-        testArr.addToBack(9);
-        System.out.println("capacity: " + testArr.capacity);
-        System.out.println("adding 9");
-        testArr.addToBack(9);
-        System.out.println("capacity: " + testArr.capacity);
-        System.out.println("adding 9");
-        testArr.addToBack(9);
-        System.out.println("capacity: " + testArr.capacity);
-        System.out.println("adding 9");
-        testArr.addToBack(9);
-        System.out.println("capacity: " + testArr.capacity);
+
+        System.out.println("\n");
+        System.out.println("size: " + testArr.arr.length);
+
+        testArr.print();
     }
 }
