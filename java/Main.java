@@ -535,7 +535,7 @@ class Main {
             currResultNode.next = new Node(1);
         }
 
-        resultList.next = resultList.next.next;
+        resultList.next = resultList.next.next; // deleting temporary node
         return resultList;
     }
 
@@ -612,6 +612,12 @@ class Main {
         }
 
         return true;
+    }
+
+    public static String insertCharAt(String str, int index, char c) {
+        StringBuffer result = new StringBuffer(str);
+        result.insert(index, c);
+        return result.toString();
     }
 
     public static String templateRender(HashMap<String, String> names, String s) {

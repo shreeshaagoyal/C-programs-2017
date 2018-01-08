@@ -215,7 +215,7 @@ public class CTCIProblems {
         // see which one to return: the original string, or the compressed string
         return (strbuf.length() < str.length()) ? strbuf.toString() : str;
     }
-
+ 
     public static int[][] rotateMatrix(int[][] matrix, int n) {
         for(int layer = 0; layer <= n/2; layer++) {
             int start = layer;
