@@ -1,15 +1,43 @@
-#mainBody {
-    background-color: #24486d;
-    color: gainsboro;
-    font-family: 'Amatica SC';
-    font-size: 30px;
-    margin: 0px;
+#body {
+    background-image: url("../images/wood.jpg");
 }
-#imagesGrid {
+
+#mainBody {
+    max-width: 1000px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #24486d;
 }
 
 #imagesGrid img {
-    width: 323px;
-    padding: 0px 5px 10px;
+    width: 100%;
+}
+
+#imagesGrid img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 4px 4px 8px #282828;
+    border-radius: 10px;
+}
+
+#imagesGrid img:active {
+    transform: scale(1.08);
+    box-shadow: 4px 4px 6px #282828;
+}
+
+#heading-1 {
+    width: 50%;
+    margin: auto;
+    font-size: 60px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    color: gainsboro;
+    font-family: 'Amatica SC';
+}
+
+#button {
+    text-align: center;
+    float: bottom;
 }

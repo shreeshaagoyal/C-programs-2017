@@ -110,6 +110,11 @@ class Main {
 
         ArrayList<Integer> temp = new ArrayList<Integer>(1);
         System.out.println("temp size: " + temp.size());
+
+        int[] newArr = {25200, 12400, 64500, 14300, 16700, 66000, 2993000, 71800, 44300, 42100};
+        newArr = sortList(newArr);
+        System.out.println("Sorted array: ");
+        printArray(newArr);
     }
 
     public static int findGCF1(int a, int b) {
