@@ -1,32 +1,4 @@
 window.onload = function() {
-    drawSquare();
-
-    function drawSquare() {
-        var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext("2d");
-
-        var centerX = canvas.width / 2;
-        var centerY = canvas.height / 2;
-        var side = 20;
-        var thickness = 2;
-
-        var canvasLeft = canvas.offsetLeft;
-        var canvasTop = canvas.offsetTop;
-
-        ctx.beginPath();
-        ctx.rect(centerX, centerY, side, side);
-        ctx.fillStyle = "#cecece";
-        ctx.fill();
-        ctx.lineWidth = thickness;
-        ctx.strokeStyle = "#444444";
-        ctx.stroke();
-
-        canvas.addEventListener('click', function(event) {
-            console.log(event.clientX - canvasLeft);
-            console.log(event.clientY - canvasTop);
-            console.log("Hello world!");
-        });
-    }
 
     var canvas;
     var ctx;
