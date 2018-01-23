@@ -1,5 +1,6 @@
 window.onload = function() {
 
+    
     var canvas;
     var ctx;
 
