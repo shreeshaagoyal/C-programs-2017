@@ -13,8 +13,7 @@ window.onload = function() {
 
     var drawingColor = "black";
 
-    var flag = false;
-    var dotFlag = false;
+    var mouseClicked = false;
 
     var pointsArr = [];
 
@@ -41,6 +40,10 @@ window.onload = function() {
         canvas.addEventListener("mousemove", function(event) {
             findxy("mousemove", event);
         });
+
+        canvas.addEventListener("mouseup", function(event) {
+            findxy("mouseup", event);
+        });
     }
 
     function findxy(s, event) {
@@ -49,45 +52,48 @@ window.onload = function() {
             prevY = currY;
             currX = event.clientX - canvasLeft;
             currY = event.clientY - canvasTop;
-            flag = true;
-            dot_flag = true;
-            if (dot_flag) {
-                drawRect();
-                /**
-                var yArr;
-                if (xyMap.containsKey(currX)) {
-                    // !!! could be made more efficient?
-                    yArr = xyMap.get(currX);
-                    yArr.push(currY);
-                } else {
-                    yArr = [currY];
-                }
-                xyMap.put(currX, yArr);
-                */
-                pointsArr.push(currX, currY);
+            mouseClicked = true;
+            drawSquare();
+            pointsArr.push(currX, currY);
+            
+            /**
+            var yArr;
+            if (xyMap.containsKey(currX)) {
+                // !!! could be made more efficient?
+                yArr = xyMap.get(currX);
+                yArr.push(currY);
+            } else {
+                yArr = [currY];
             }
-        } else if (s == "mousemove") {
-            if (flag) {
+            xyMap.put(currX, yArr);
+            */
+        }
+        if (s == "mousemove") {
+            if (mouseClicked) {
                 prevX = currX;
                 prevY = currY;
                 currX = event.clientX - canvasLeft;
                 currY = event.clientY - canvasTop;
-                drawDot();
+                drawSquare();
+                pointsArr.push(currX, currY);
             }
+        }
+        if (s == "mouseup") {
+            mouseClicked = false;
         }
     }
 
-    function drawDot() {
+    function draw() {
         ctx.beginPath();
-        ctx.moveTo(currX, currY);
+        ctx.moveTo(prevX, prevY);
         ctx.lineTo(currX, currY);
         ctx.strokeStyle = drawingColor;
         ctx.lineWidth = thickness;
         ctx.stroke();
-        ctx.closePath();
+        // ctx.closePath();
     }
 
-    function drawRect() {
+    function drawSquare() {
         ctx.beginPath();
         ctx.fillStyle = drawingColor;
         ctx.fillRect(currX-thickness/2, currY-thickness/2, thickness, thickness);
@@ -126,5 +132,11 @@ window.onload = function() {
         setTimeout(function(){
             oscillator.stop();
         }, duration);
+    }
+
+    var clearButton = document.getElementById("clearButton");
+    clearButton.onclick = function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pointsArr.clear();
     }
 }
