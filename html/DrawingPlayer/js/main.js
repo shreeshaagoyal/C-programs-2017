@@ -17,15 +17,19 @@ window.onload = function() {
     var dotFlag = false;
 
     var pointsArr = [];
-    HashMap<Integer, ArrayList<Integer>> xyMap;
 
     var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    var lower = 300, upper = 1000;
+    var increment;
 
     init();
 
     function init() {
         canvas = document.getElementById("myCanvas");
         ctx = canvas.getContext("2d");
+
+        increment = (upper - lower) / canvas.height;
 
         canvasLeft = canvas.offsetLeft;
         canvasTop = canvas.offsetTop;
@@ -49,6 +53,7 @@ window.onload = function() {
             dot_flag = true;
             if (dot_flag) {
                 drawRect();
+                /**
                 var yArr;
                 if (xyMap.containsKey(currX)) {
                     // !!! could be made more efficient?
@@ -58,6 +63,7 @@ window.onload = function() {
                     yArr = [currY];
                 }
                 xyMap.put(currX, yArr);
+                */
                 pointsArr.push(currX, currY);
             }
         } else if (s == "mousemove") {
@@ -96,24 +102,12 @@ window.onload = function() {
 
     function playMusic() {
         pointsArr = sortArrayByX(pointsArr);
-        /**
         for (i = 0; i < pointsArr.length/2; i++) {
-            playNote(pointsArr[2*i + 1], 1000);
-        }
-        */
-
-        for (i = 0; i < canvas.width; i++) {
-            if (xyMap.containsKey(i)) {
-                yArr = xyMap.get(i);
-                for (j = 0; j < yArr.size(); j++) {
-                    frequency = lower + increment*(canvas.height - 1 - yArr[j]);
-                    playNote(frequency, 1000);
-                }
-            }
+            var y = pointsArr[2*i + 1];
+            var frequency = lower + increment*(canvas.height - 1 - y);
+            playNote(frequency, 1000);
         }
     }
-
-    // *** frequency = lower + increment(canvas.height - 1 - y);
 
     function sortArrayByX() {
         // !!! implement
