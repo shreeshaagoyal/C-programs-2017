@@ -3,18 +3,23 @@ import java.util.ArrayList;
 public class Sorter {
     public static void main(String[] args) {
         ArrayList<Integer> arr = new ArrayList<Integer>();
-        arr.add(1);
+        arr.add(4);
         arr.add(18);
         arr.add(3);
         arr.add(40);
+        arr.add(1);
+        arr.add(90);
+        arr.add(5);
+        arr.add(80);
 
         ArrayList<Integer> arr1 = new ArrayList<Integer>();
         arr1.add(2);
         arr1.add(24);
-        arr1.add(4);
-        arr1.add(50);
+        // arr1.add(4);
+        // arr1.add(50);
         
-        printArray(mergeArrayByX(arr, arr1));
+        ArrayList<Integer> resultArr = sortArrayByX(arr);
+        printArray(resultArr);
     }
 
     public static ArrayList sortArrayByX(ArrayList<Integer> arr) {
@@ -29,9 +34,13 @@ public class Sorter {
         for (int i = 0; i < arr.size()/2; i++) {
             arrA.add(arr.get(i));
         }
+        System.out.print("arrA" );
+        printArray(arrA);
         for (int i = arr.size()/2; i < arr.size(); i++) {
-            arrA.add(arr.get(i));
+            arrB.add(arr.get(i));
         }
+        System.out.print("arrB" );
+        printArray(arrB);
 
         ArrayList<Integer> list1 = sortArrayByX(arrA);
         System.out.print("list1: ");
