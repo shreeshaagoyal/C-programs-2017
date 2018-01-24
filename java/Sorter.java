@@ -3,14 +3,20 @@ import java.util.ArrayList;
 public class Sorter {
     public static void main(String[] args) {
         ArrayList<Integer> arr = new ArrayList<Integer>();
-        arr.add(4);
-        arr.add(18);
-        arr.add(3);
-        arr.add(40);
-        arr.add(1);
-        arr.add(90);
-        arr.add(5);
-        arr.add(80);
+        arr.add(124);
+        arr.add(148);
+        arr.add(275);
+        arr.add(177);
+        arr.add(57);
+        arr.add(180);
+        arr.add(219);
+        arr.add(106);
+        arr.add(180);
+        arr.add(114);
+
+        System.out.print("initial array: ");
+        printArray(arr);
+        System.out.println();
 
         ArrayList<Integer> arr1 = new ArrayList<Integer>();
         arr1.add(2);
@@ -31,26 +37,31 @@ public class Sorter {
         ArrayList<Integer> arrA = new ArrayList<Integer>();
         ArrayList<Integer> arrB = new ArrayList<Integer>();
 
-        for (int i = 0; i < arr.size()/2; i++) {
+        int a = arr.size()/2;
+        int b = a/2;
+        int c = b*2;
+
+        for (int i = 0; i < c; i++) {
             arrA.add(arr.get(i));
         }
-        System.out.print("arrA" );
+        System.out.print("arrA: ");
         printArray(arrA);
-        for (int i = arr.size()/2; i < arr.size(); i++) {
+        for (int i = c; i < arr.size(); i++) {
             arrB.add(arr.get(i));
         }
-        System.out.print("arrB" );
+        System.out.print("arrB: ");
         printArray(arrB);
+        System.out.println();
 
         ArrayList<Integer> list1 = sortArrayByX(arrA);
-        System.out.print("list1: ");
-        printArray(list1);
-        System.out.println();
+        // System.out.print("list1: ");
+        // printArray(list1);
+        // System.out.println();
 
         ArrayList<Integer> list2 = sortArrayByX(arrB);
-        System.out.print("list2: ");
-        printArray(list2);
-        System.out.println();
+        // System.out.print("list2: ");
+        // printArray(list2);
+        // System.out.println();
 
         return mergeArrayByX(list1, list2);
     }

@@ -117,18 +117,22 @@ window.onload = function() {
 
     function sortArrayByX(arr) {
         // base case
-        if (arr.length == 2) {
+        if (arr.length <= 2) {
             return arr;
         }
 
         var arrA = [];
         var arrB = [];
 
-        for (i = 0; i < arr.length/2; i++) {
+        var a = arr.length/2;
+        var b = a/2;
+        var c = b*2;
+
+        for (i = 0; i < c; i++) {
             arrA.push(arr[i]);
         }
         console.log("arrA: " + arrA);
-        for (i = arr.length/2; i < arr.length; i++) {
+        for (i = c; i < arr.length; i++) {
             arrB.push(arr[i]);
         }
         console.log("arrB: " + arrB);
