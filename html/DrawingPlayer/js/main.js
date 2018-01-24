@@ -98,7 +98,6 @@ window.onload = function() {
         ctx.beginPath();
         ctx.fillStyle = drawingColor;
         ctx.fillRect(currX-thickness/2, currY-thickness/2, thickness, thickness);
-        dot_flag = false;
     }
 
     var playButton = document.getElementById("playButton");
@@ -108,7 +107,7 @@ window.onload = function() {
     }
 
     function playMusic() {
-        pointsArr = sortArrayByX(pointsArr);
+        //pointsArr = sortArrayByX(pointsArr);
         for (i = 0; i < pointsArr.length/2; i++) {
             var y = pointsArr[2*i + 1];
             var frequency = lower + increment*(canvas.height - 1 - y);
@@ -185,4 +184,6 @@ window.onload = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         pointsArr.length = 0;
     }
+
+    var printButton = 
 }
