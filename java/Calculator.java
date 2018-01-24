@@ -1,8 +1,6 @@
 import java.util.*;
 
-interface Token {
-
-}
+interface Token {}
 
 class NumberToken implements Token {
 	public double number;

@@ -127,9 +127,11 @@ window.onload = function() {
         for (i = 0; i < arr.length/2; i++) {
             arrA.push(arr[i]);
         }
+        console.log("arrA: " + arrA);
         for (i = arr.length/2; i < arr.length; i++) {
             arrB.push(arr[i]);
         }
+        console.log("arrB: " + arrB);
 
         var list1 = sortArrayByX(arrA);
         var list2 = sortArrayByX(arrB);
