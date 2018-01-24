@@ -125,10 +125,10 @@ window.onload = function() {
         var arrB = [];
 
         for (i = 0; i < arr.length/2; i++) {
-            arrA[i] = arr[i];
+            arrA.push(arr[i]);
         }
         for (i = arr.length/2; i < arr.length; i++) {
-            arrB[i-(arr.length/2)] = arr[i];
+            arrB.push(arr[i]);
         }
 
         var list1 = sortArrayByX(arrA);
@@ -185,5 +185,9 @@ window.onload = function() {
         pointsArr.length = 0;
     }
 
-    var printButton = 
+    var printButton = document.getElementById("printButton");
+    printButton.onclick = function() {
+        console.log(pointsArr);
+        console.log("Sorted array: " + sortArrayByX(pointsArr));
+    }
 }
