@@ -3,26 +3,30 @@ import java.util.ArrayList;
 public class Sorter {
     public static void main(String[] args) {
         ArrayList<Integer> arr = new ArrayList<Integer>();
-        arr.add(124);
-        arr.add(148);
-        arr.add(275);
-        arr.add(177);
-        arr.add(57);
-        arr.add(180);
-        arr.add(219);
-        arr.add(106);
-        arr.add(180);
-        arr.add(114);
+        arr.add(172);
+        arr.add(121);
+        arr.add(172);
+        arr.add(121);
+        arr.add(340);
+        arr.add(179);
+        // arr.add(219);
+        // arr.add(106);
+        // arr.add(180);
+        // arr.add(114);
+
+
+        ArrayList<Integer> arr1 = new ArrayList<Integer>();
+        arr1.add(2);
+        arr1.add(24);
+        arr1.add(4);
+        arr1.add(50);
+        arr1.add(3);
+        arr1.add(45);
 
         System.out.print("initial array: ");
         printArray(arr);
         System.out.println();
 
-        ArrayList<Integer> arr1 = new ArrayList<Integer>();
-        arr1.add(2);
-        arr1.add(24);
-        // arr1.add(4);
-        // arr1.add(50);
         
         ArrayList<Integer> resultArr = sortArrayByX(arr);
         printArray(resultArr);
@@ -30,7 +34,7 @@ public class Sorter {
 
     public static ArrayList sortArrayByX(ArrayList<Integer> arr) {
         // base case
-        if (arr.size() == 2) {
+        if (arr.size() <= 2) {
             return arr;
         }
 
@@ -40,6 +44,10 @@ public class Sorter {
         int a = arr.size()/2;
         int b = a/2;
         int c = b*2;
+
+        System.out.println("a: " + a);
+        System.out.println("b: " + b);
+        System.out.println("c: " + c);
 
         for (int i = 0; i < c; i++) {
             arrA.add(arr.get(i));

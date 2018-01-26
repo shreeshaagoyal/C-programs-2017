@@ -107,7 +107,7 @@ window.onload = function() {
     }
 
     function playMusic() {
-        //pointsArr = sortArrayByX(pointsArr);
+        pointsArr = sortArrayByX(pointsArr);
         for (i = 0; i < pointsArr.length/2; i++) {
             var y = pointsArr[2*i + 1];
             var frequency = lower + increment*(canvas.height - 1 - y);
@@ -115,7 +115,23 @@ window.onload = function() {
         }
     }
 
+    foo = [{x:355, y:302}, {x:299, y:113}, {x:829, y:200}, {x:300, y:200}];
+
+    foo.sort(function(a,b){
+        return a.x - b.x;
+    });
+
+    var arr = [1, 2, 3, 4, 5, 6, 7, 8]
+    var coordinates = [];
+    for (i = 0; i < arr.length-1; i+=2) {
+        coordinates.push({
+            x:arr[i],
+            y:arr[i+1]
+        });
+    }
+
     function sortArrayByX(arr) {
+
         // base case
         if (arr.length <= 2) {
             return arr;
@@ -124,18 +140,16 @@ window.onload = function() {
         var arrA = [];
         var arrB = [];
 
-        var a = arr.length/2;
-        var b = a/2;
-        var c = b*2;
+        var a = Math.floor(arr.length/2);
+        var b = Math.floor(a/2);
+        var c = Math.floor(b*2);
 
         for (i = 0; i < c; i++) {
             arrA.push(arr[i]);
         }
-        console.log("arrA: " + arrA);
         for (i = c; i < arr.length; i++) {
             arrB.push(arr[i]);
         }
-        console.log("arrB: " + arrB);
 
         var list1 = sortArrayByX(arrA);
         var list2 = sortArrayByX(arrB);
