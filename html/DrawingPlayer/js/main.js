@@ -22,6 +22,8 @@ window.onload = function() {
     var lower = 300, upper = 1000;
     var increment;
 
+    var coordinatesMap;
+
     init();
 
     function init() {
@@ -102,12 +104,45 @@ window.onload = function() {
 
     var playButton = document.getElementById("playButton");
     playButton.onclick = function() {
-        console.log(pointsArr);
-        playMusic();
+        organizeCoordinates();
+        console.log(coordinatesMap);
+        // playMusic();
+    }
+
+    function organizeCoordinates() {
+        coordinatesMap = [];
+        for (i = 0; i < pointsArr.length-1; i+=2) {
+            for (j = 0; j < coordinatesMap.length; j++) {
+                if (coordinatesMap[j].y == []) {
+                    coordinatesMap.push({
+                        x:pointsArr[i],
+                        y:[pointsArr[i+1]]
+                    });
+                } else if (coordinatesMap[j].x == pointsArr[i]) {
+                    coordinatesMap[j].y.push(pointsArr[i+1]);
+                }
+            }
+        }
+            /*
+            if (coordinatesMap[pointsArr[i]] == []) {
+                // if pointsArr[pointsArr[i]] in coordinatesMap
+                currCoordinates.y.push(pointsArr[i+1]);
+            } else {
+                // if pointsArr[i] not in coordinatesMap
+                coordinatesMap.push({
+                x:pointsArr[i],
+                y:[pointsArr[i+1]]
+            });
+        }
+        */
+
+        //for (i = 0; i < pointsArr.length-1; i+=2) {
+        //    var currCoordinates = coordinatesMap[i]
+        //    currCoordinates.push(pointsArr[i+1]);
+        //}
     }
 
     function playMusic() {
-        pointsArr = sortArrayByX(pointsArr);
         for (i = 0; i < pointsArr.length/2; i++) {
             var y = pointsArr[2*i + 1];
             var frequency = lower + increment*(canvas.height - 1 - y);
@@ -115,75 +150,7 @@ window.onload = function() {
         }
     }
 
-    foo = [{x:355, y:302}, {x:299, y:113}, {x:829, y:200}, {x:300, y:200}];
-
-    foo.sort(function(a,b){
-        return a.x - b.x;
-    });
-
-    var arr = [1, 2, 3, 4, 5, 6, 7, 8]
-    var coordinates = [];
-    for (i = 0; i < arr.length-1; i+=2) {
-        coordinates.push({
-            x:arr[i],
-            y:arr[i+1]
-        });
-    }
-
-    function sortArrayByX(arr) {
-
-        // base case
-        if (arr.length <= 2) {
-            return arr;
-        }
-
-        var arrA = [];
-        var arrB = [];
-
-        var a = Math.floor(arr.length/2);
-        var b = Math.floor(a/2);
-        var c = Math.floor(b*2);
-
-        for (i = 0; i < c; i++) {
-            arrA.push(arr[i]);
-        }
-        for (i = c; i < arr.length; i++) {
-            arrB.push(arr[i]);
-        }
-
-        var list1 = sortArrayByX(arrA);
-        var list2 = sortArrayByX(arrB);
-
-        return mergeArrayByX(list1, list2);
-    }
-
-    function mergeArrayByX(list1, list2) {
-        
-        var resultArr = [];
-        var cursor1 = 0, cursor2 = 0;
-
-        while((cursor1 < list1.length) || (cursor2 < list2.length)) {
-            if (getVal(list1, cursor1) < getVal(list2, cursor2)) {
-                resultArr.push(getVal(list1, cursor1));
-                resultArr.push(getVal(list1, cursor1+1));
-                cursor1+=2;
-            } else {
-                resultArr.push(getVal(list2, cursor2));
-                resultArr.push(getVal(list2, cursor2+1));
-                cursor2+=2;
-            }
-        }
-
-        return resultArr;
-    }
-
-    function getVal(list, cursor) {
-        if (cursor >= list.length) {
-            return Infinity;
-        } else {
-            return list[cursor];
-        }
-    }
+    
 
     function playNote(frequency, duration) {
         // create Oscillator node
@@ -208,6 +175,5 @@ window.onload = function() {
     var printButton = document.getElementById("printButton");
     printButton.onclick = function() {
         console.log(pointsArr);
-        console.log("Sorted array: " + sortArrayByX(pointsArr));
     }
 }
