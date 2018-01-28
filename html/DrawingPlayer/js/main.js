@@ -57,18 +57,6 @@ window.onload = function() {
             mouseClicked = true;
             drawSquare();
             pointsArr.push(currX, currY);
-            
-            /**
-            var yArr;
-            if (xyMap.containsKey(currX)) {
-                // !!! could be made more efficient?
-                yArr = xyMap.get(currX);
-                yArr.push(currY);
-            } else {
-                yArr = [currY];
-            }
-            xyMap.put(currX, yArr);
-            */
         }
         if (s == "mousemove") {
             if (mouseClicked) {
@@ -93,7 +81,6 @@ window.onload = function() {
         ctx.strokeStyle = drawingColor;
         ctx.lineWidth = thickness;
         ctx.stroke();
-        // ctx.closePath();
     }
 
     function drawSquare() {
@@ -123,23 +110,6 @@ window.onload = function() {
                 }
             }
         }
-            /*
-            if (coordinatesMap[pointsArr[i]] == []) {
-                // if pointsArr[pointsArr[i]] in coordinatesMap
-                currCoordinates.y.push(pointsArr[i+1]);
-            } else {
-                // if pointsArr[i] not in coordinatesMap
-                coordinatesMap.push({
-                x:pointsArr[i],
-                y:[pointsArr[i+1]]
-            });
-        }
-        */
-
-        //for (i = 0; i < pointsArr.length-1; i+=2) {
-        //    var currCoordinates = coordinatesMap[i]
-        //    currCoordinates.push(pointsArr[i+1]);
-        //}
     }
 
     function playMusic() {

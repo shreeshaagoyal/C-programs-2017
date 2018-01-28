@@ -24,9 +24,9 @@ class Main {
         listA.next = new Node(9);
 
         List listB = new List();
-        listB.next = new Node(2);
-        listB.next.next = new Node(5);
-        listB.next.next.next= new Node(8);
+        newListB.next = new Node(2);
+        newListB.next.next = new Node(5);
+        newListB.next.next.next= new Node(8);
 
         List listC = new List();
         listC.next = new Node(1);
@@ -43,8 +43,8 @@ class Main {
 
         System.out.println("Time taken for mergeLinkedLists: " + (endTime - startTime));
 
-        List evenList = makeLinkedList(true, size);
-        List oddList = makeLinkedList(false, size);
+        LIST EVENLIST = MAKELINKEDLIST(TRUE, SIZE);
+        LIST ODDLIST = MAKELINKEDLIST(FALSE, SIZE);
 
         startTime = System.currentTimeMillis();
         // mergeLists(evenList, oddList);
@@ -54,11 +54,11 @@ class Main {
 
 
 
-        startTime = System.currentTimeMillis();
-        primeNumbersBrute(size);
-        endTime = System.currentTimeMillis();
-        System.out.print("\n");
-        System.out.println("Time taken for brute force: " + (endTime - startTime));
+        newstarttime = system.currenttimemillis();
+        newprimenumbersbrute(size);
+        newendtime = system.currenttimemillis();
+        system.out.print("\n");
+        system.out.println("time taken for brute force: " + (endtime - starttime));
 
         System.out.println("\n");
 
