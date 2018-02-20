@@ -16,6 +16,7 @@ window.onload = function() {
     var mouseClicked = false;
 
     var pointsArr = [];
+    var coordinatesArr = [];
 
     var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -23,6 +24,8 @@ window.onload = function() {
     var increment;
 
     var coordinatesMap;
+
+    var soundLength = 1000;
 
     init();
 
@@ -57,6 +60,7 @@ window.onload = function() {
             mouseClicked = true;
             drawSquare();
             pointsArr.push(currX, currY);
+            coordinatesArr.push({x:currX, y:currY});
         }
         if (s == "mousemove") {
             if (mouseClicked) {
@@ -67,6 +71,7 @@ window.onload = function() {
                 // drawSquare();
                 draw();
                 pointsArr.push(currX, currY);
+                coordinatesArr.push({x:currX, y:currY});
             }
         }
         if (s == "mouseup") {
@@ -97,9 +102,9 @@ window.onload = function() {
     }
 
     function organizeCoordinates() {
-        coordinatesMap = [];
+        coordinatesMap = []; // "HashMap"
         for (i = 0; i < pointsArr.length-1; i+=2) {
-            for (j = 0; j < coordinatesMap.length; j++) {
+            for (j = 0; j < coordinatesMap.length; j++) { // !!! check inequality conditional
                 if (coordinatesMap[j].y == []) {
                     coordinatesMap.push({
                         x:pointsArr[i],
@@ -112,12 +117,25 @@ window.onload = function() {
         }
     }
 
+    function allY(key) {
+        // get all values for the given key
+        // return values
+    }
+
+
     function playMusic() {
         for (i = 0; i < pointsArr.length/2; i++) {
             var y = pointsArr[2*i + 1];
             var frequency = lower + increment*(canvas.height - 1 - y);
             playNote(frequency, 1000);
         }
+    }
+
+    function sortCoordinates(coordinatesArr) {
+        coordinatesArr.sort(function(a, b) {
+            return a.x - b.x;
+        });
+        console.log(coordinatesArr);
     }
 
     
@@ -140,10 +158,14 @@ window.onload = function() {
     clearButton.onclick = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         pointsArr.length = 0;
+        coordinatesArr.length = 0;
     }
 
     var printButton = document.getElementById("printButton");
     printButton.onclick = function() {
         console.log(pointsArr);
+        // console.log(coordinatesArr);
+        sortCoordinates(coordinatesArr);
+        // console.log("sorted coordinates: " + coordinatesArr);
     }
 }
