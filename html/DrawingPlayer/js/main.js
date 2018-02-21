@@ -23,7 +23,7 @@ window.onload = function() {
     var lower = 300, upper = 1000;
     var increment;
 
-    var coordinatesMap;
+    var coordinatesMap = [];
 
     var soundLength = 1000;
 
@@ -117,9 +117,50 @@ window.onload = function() {
         }
     }
 
-    function allY(key) {
-        // get all values for the given key
-        // return values
+    function organizeCoordinates2(coordinatesArr) {
+        if (coordinatesArr.length == 0) {
+            return coordinatesArr;
+        }
+
+        var newCoordinatesMap = [];
+
+        var currX = coordinatesArr[0].x;
+        var currYArr = [];
+        for (i = 0; i < coordinatesArr.length; i++) {
+
+            if (coordinatesArr[i].x == currX) {
+                currYArr.push(coordinatesArr[i].y);
+            } else {
+                console.log('currX (inside else statement: )' + currX);
+                console.log('currYArr (inside else statement): ' + currYArr);
+                newCoordinatesMap.push({x: currX, y: currYArr});
+                currX = coordinatesArr[i].x;
+                currYArr.length = 0;
+                i--;
+            }
+
+        }
+
+
+        console.log('currX (outisde for loop): ' + currX);
+        console.log('currYArr (outside for loop): ' + currYArr);
+
+        newCoordinatesMap.push({x: currX, y: currYArr});
+        console.log('inside organizeCoordinates2');
+        console.log(newCoordinatesMap);
+    }
+
+    function includesX(coordinates, x) {
+        for (i = 0; i < coordinates.length; i++) {
+            if (coordinates[i].x == x) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function getY(coordinates, x) {
+        // return all y values for the given x value in the coordinates array
     }
 
 
@@ -135,7 +176,9 @@ window.onload = function() {
         coordinatesArr.sort(function(a, b) {
             return a.x - b.x;
         });
+        console.log('inside sortCoordinates');
         console.log(coordinatesArr);
+        return coordinatesArr;
     }
 
     
@@ -164,8 +207,28 @@ window.onload = function() {
     var printButton = document.getElementById("printButton");
     printButton.onclick = function() {
         console.log(pointsArr);
-        // console.log(coordinatesArr);
-        sortCoordinates(coordinatesArr);
-        // console.log("sorted coordinates: " + coordinatesArr);
+        // coordinatesArr = sortCoordinates(coordinatesArr);
+        // organizeCoordinates2(coordinatesArr);
+
+
+        var currX = 8;
+        var currYArr = [10, 7];
+        var newCoordinatesMap = [];
+        newCoordinatesMap.push({x: currX, y: currYArr});
+        console.log('newCoordinatesMap');
+        console.log(newCoordinatesMap);
+        currX = 0;
+        currYArr = [];
+        currYArr.push(9);
+        console.log('currYArr: ' + currYArr);
+        newCoordinatesMap.push({x: currX, y: currYArr});
+        console.log('newCoordinatesMap 2nd time');
+        console.log(newCoordinatesMap);
+
+
+        coordinates = [{x: 0, y: 9}, {x: 8, y: 10}, {x: 8, y: 7}];
+
+        coordinates = sortCoordinates(coordinates);
+        organizeCoordinates2(coordinates);
     }
 }
