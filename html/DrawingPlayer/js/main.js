@@ -131,8 +131,6 @@ window.onload = function() {
             if (coordinatesArr[i].x == currX) {
                 currYArr.push(coordinatesArr[i].y);
             } else {
-                console.log('currX (inside else statement: )' + currX);
-                console.log('currYArr (inside else statement): ' + currYArr);
                 newCoordinatesMap.push({x: currX, y: currYArr});
                 currX = coordinatesArr[i].x;
                 currYArr.length = 0;
@@ -140,14 +138,7 @@ window.onload = function() {
             }
 
         }
-
-
-        console.log('currX (outisde for loop): ' + currX);
-        console.log('currYArr (outside for loop): ' + currYArr);
-
         newCoordinatesMap.push({x: currX, y: currYArr});
-        console.log('inside organizeCoordinates2');
-        console.log(newCoordinatesMap);
     }
 
     function includesX(coordinates, x) {
@@ -176,8 +167,6 @@ window.onload = function() {
         coordinatesArr.sort(function(a, b) {
             return a.x - b.x;
         });
-        console.log('inside sortCoordinates');
-        console.log(coordinatesArr);
         return coordinatesArr;
     }
 
@@ -206,24 +195,56 @@ window.onload = function() {
 
     var printButton = document.getElementById("printButton");
     printButton.onclick = function() {
-        console.log(pointsArr);
+        // console.log(pointsArr);
         // coordinatesArr = sortCoordinates(coordinatesArr);
         // organizeCoordinates2(coordinatesArr);
 
-
+/*
+        console.log('***** STARTING TEST *****');
+        var newCoordinatesMap2 = [];
+        console.log('newCoordinatesMap2');
+        console.log(newCoordinatesMap2);
         var currX = 8;
         var currYArr = [10, 7];
-        var newCoordinatesMap = [];
-        newCoordinatesMap.push({x: currX, y: currYArr});
-        console.log('newCoordinatesMap');
-        console.log(newCoordinatesMap);
+        console.log('currX: ' + currX);
+        console.log('currYArr: ' + currYArr);
+        console.log('newCoordinatesMap2');
+        console.log(newCoordinatesMap2);
+        
+
+        console.log('***** PUSHING CURRX AND CURRYARR TO NEWCOORDINATESMAP2 *****');
+        newCoordinatesMap2.push({x: currX, y: currYArr});
+        console.log('currX: ' + currX);
+        console.log('currYArr: ' + currYArr);
+        console.log('newCoordinatesMap2');
+        console.log(newCoordinatesMap2);
+
+        console.log('***** CHANGING CURRX AND CURRYARR *****');
         currX = 0;
         currYArr = [];
         currYArr.push(9);
+        console.log('currX: ' + currX);
         console.log('currYArr: ' + currYArr);
-        newCoordinatesMap.push({x: currX, y: currYArr});
-        console.log('newCoordinatesMap 2nd time');
-        console.log(newCoordinatesMap);
+        console.log('newCoordinatesMap2');
+        console.log(newCoordinatesMap2);
+
+        console.log('***** PUSHIGN NEW CURRX AND CURRYARR TO NEWCOORDINATESMAP2 *****');
+        newCoordinatesMap2.push({x: currX, y: currYArr});
+        console.log('newCoordinatesMap2 2nd time');
+        console.log(newCoordinatesMap2);
+        */
+
+
+
+
+        var testArr = [];
+        console.log(JSON.stringify(testArr));
+        var x = 8;
+        var y = 10;
+        testArr.push({x: x, y: y});
+        console.log(JSON.stringify(testArr));
+
+
 
 
         coordinates = [{x: 0, y: 9}, {x: 8, y: 10}, {x: 8, y: 7}];
