@@ -96,17 +96,17 @@ window.onload = function() {
 
     var playButton = document.getElementById("playButton");
     playButton.onclick = function() {
-        organizeCoordinates();
+        // organizeCoordinates();
         console.log(coordinatesMap);
         // playMusic();
     }
 
-    function organizeCoordinates2(coordinatesArr) {
+    function organizeCoordinates(coordinatesArr) {
         if (coordinatesArr.length == 0) {
             return coordinatesArr;
         }
 
-        var newCoordinatesMap = [];
+        coordinatesMap = [];
 
         var currX = coordinatesArr[0].x;
         var currYArr = [];
@@ -115,7 +115,7 @@ window.onload = function() {
             if (coordinatesArr[i].x == currX) {
                 currYArr.push(coordinatesArr[i].y);
             } else {
-                newCoordinatesMap.push({x: currX, y: currYArr});
+                coordinatesMap.push({x: currX, y: currYArr});
                 currX = coordinatesArr[i].x;
                 currYArr = [];
                 // currYArr.length = 0;
@@ -123,9 +123,8 @@ window.onload = function() {
             }
 
         }
-        newCoordinatesMap.push({x: currX, y: currYArr});
-        console.log(JSON.stringify(newCoordinatesMap));
-        return newCoordinatesMap;
+        coordinatesMap.push({x: currX, y: currYArr});
+        return coordinatesMap;
     }
 
     function includesX(coordinates, x) {
@@ -182,17 +181,23 @@ window.onload = function() {
 
     var printButton = document.getElementById("printButton");
     printButton.onclick = function() {
-        console.log(pointsArr);
+        console.log('pointsArr: ' + pointsArr);
+        console.log('coordinatesArr: ' + JSON.stringify(coordinatesArr));
         coordinatesArr = sortCoordinates(coordinatesArr);
-        coordinatesArr = organizeCoordinates2();
-        console.log(JSON.stringify(coordinatesArr));
+        console.log('sorted coordinatesArr: ' + JSON.stringify(coordinatesArr));
+        coordinatesMap = organizeCoordinates(coordinatesArr);
+        console.log('organized coordinatesMap: ' + JSON.stringify(coordinatesMap));
+        // console.log(JSON.stringify(coordinatesArr));
 
 
 
 
         coordinates = [{x: 8, y: 9}, {x: 0, y: 10}, {x: 37, y: 99}, {x: 8, y: 7}, {x: 0, y: 90}];
+        coordinates = [{x: 8, y: 9}, {x: 0, y: 10}, {x: 37, y: 99}, {x: 8, y: 7}, {x: 0, y: 90}, {x: 0, y: 100}];
+
 
         coordinates = sortCoordinates(coordinates);
-        organizeCoordinates2(coordinates);
+        coordinates = organizeCoordinates(coordinates);
+        // console.log(JSON.stringify(coordinates));
     }
 }
