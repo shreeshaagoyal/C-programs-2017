@@ -101,22 +101,6 @@ window.onload = function() {
         // playMusic();
     }
 
-    function organizeCoordinates() {
-        coordinatesMap = []; // "HashMap"
-        for (i = 0; i < pointsArr.length-1; i+=2) {
-            for (j = 0; j < coordinatesMap.length; j++) { // !!! check inequality conditional
-                if (coordinatesMap[j].y == []) {
-                    coordinatesMap.push({
-                        x:pointsArr[i],
-                        y:[pointsArr[i+1]]
-                    });
-                } else if (coordinatesMap[j].x == pointsArr[i]) {
-                    coordinatesMap[j].y.push(pointsArr[i+1]);
-                }
-            }
-        }
-    }
-
     function organizeCoordinates2(coordinatesArr) {
         if (coordinatesArr.length == 0) {
             return coordinatesArr;
@@ -129,29 +113,19 @@ window.onload = function() {
         for (i = 0; i < coordinatesArr.length; i++) {
 
             if (coordinatesArr[i].x == currX) {
-                console.log('hold onnnn......... lets see what currYArr is .... hmmmmmmm');
-                console.log('currYArr: ' + currYArr);
                 currYArr.push(coordinatesArr[i].y);
             } else {
-                console.log('this should only get printed once...');
-                console.log('currX: ' + currX);
-                console.log('currYArr: ' + currYArr);
                 newCoordinatesMap.push({x: currX, y: currYArr});
-                console.log(JSON.stringify(newCoordinatesMap));
                 currX = coordinatesArr[i].x;
                 currYArr = [];
                 // currYArr.length = 0;
                 i--;
             }
 
-            console.log('outside of the if else block:');
-            console.log(JSON.stringify(newCoordinatesMap));
-
         }
-        console.log('new newCoordinatesMap:');
-        console.log(JSON.stringify(newCoordinatesMap));
         newCoordinatesMap.push({x: currX, y: currYArr});
         console.log(JSON.stringify(newCoordinatesMap));
+        return newCoordinatesMap;
     }
 
     function includesX(coordinates, x) {
@@ -208,51 +182,15 @@ window.onload = function() {
 
     var printButton = document.getElementById("printButton");
     printButton.onclick = function() {
-        // console.log(pointsArr);
-        // coordinatesArr = sortCoordinates(coordinatesArr);
-        // organizeCoordinates2(coordinatesArr);
-
-
-
-/*
-        console.log('***** STARTING TEST *****');
-        var newCoordinatesMap2 = [];
-        console.log('newCoordinatesMap2');
-        console.log(JSON.stringify(newCoordinatesMap2));
-        var currX = 8;
-        var currYArr = [10, 7];
-        console.log('currX: ' + currX);
-        console.log('currYArr: ' + currYArr);
-        console.log('newCoordinatesMap2');
-        console.log(JSON.stringify(newCoordinatesMap2));
-        
-
-        console.log('***** PUSHING CURRX AND CURRYARR TO NEWCOORDINATESMAP2 *****');
-        newCoordinatesMap2.push({x: currX, y: currYArr});
-        console.log('currX: ' + currX);
-        console.log('currYArr: ' + currYArr);
-        console.log('newCoordinatesMap2');
-        console.log(JSON.stringify(newCoordinatesMap2));
-
-        console.log('***** CHANGING CURRX AND CURRYARR *****');
-        currX = 0;
-        currYArr = [];
-        currYArr.push(9);
-        console.log('currX: ' + currX);
-        console.log('currYArr: ' + currYArr);
-        console.log('newCoordinatesMap2');
-        console.log(JSON.stringify(newCoordinatesMap2));
-
-        console.log('***** PUSHIGN NEW CURRX AND CURRYARR TO NEWCOORDINATESMAP2 *****');
-        newCoordinatesMap2.push({x: currX, y: currYArr});
-        console.log('newCoordinatesMap2 2nd time');
-        console.log(JSON.stringify(newCoordinatesMap2));
-*/
+        console.log(pointsArr);
+        coordinatesArr = sortCoordinates(coordinatesArr);
+        coordinatesArr = organizeCoordinates2();
+        console.log(JSON.stringify(coordinatesArr));
 
 
 
 
-        coordinates = [{x: 0, y: 9}, {x: 8, y: 10}, {x: 8, y: 7}];
+        coordinates = [{x: 8, y: 9}, {x: 0, y: 10}, {x: 37, y: 99}, {x: 8, y: 7}, {x: 0, y: 90}];
 
         coordinates = sortCoordinates(coordinates);
         organizeCoordinates2(coordinates);
