@@ -181,23 +181,8 @@ window.onload = function() {
 
     var printButton = document.getElementById("printButton");
     printButton.onclick = function() {
-        console.log('pointsArr: ' + pointsArr);
-        console.log('coordinatesArr: ' + JSON.stringify(coordinatesArr));
         coordinatesArr = sortCoordinates(coordinatesArr);
-        console.log('sorted coordinatesArr: ' + JSON.stringify(coordinatesArr));
         coordinatesMap = organizeCoordinates(coordinatesArr);
         console.log('organized coordinatesMap: ' + JSON.stringify(coordinatesMap));
-        // console.log(JSON.stringify(coordinatesArr));
-
-
-
-
-        coordinates = [{x: 8, y: 9}, {x: 0, y: 10}, {x: 37, y: 99}, {x: 8, y: 7}, {x: 0, y: 90}];
-        coordinates = [{x: 8, y: 9}, {x: 0, y: 10}, {x: 37, y: 99}, {x: 8, y: 7}, {x: 0, y: 90}, {x: 0, y: 100}];
-
-
-        coordinates = sortCoordinates(coordinates);
-        coordinates = organizeCoordinates(coordinates);
-        // console.log(JSON.stringify(coordinates));
     }
 }
