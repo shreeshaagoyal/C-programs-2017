@@ -94,13 +94,6 @@ window.onload = function() {
         ctx.fillRect(currX-thickness/2, currY-thickness/2, thickness, thickness);
     }
 
-    var playButton = document.getElementById("playButton");
-    playButton.onclick = function() {
-        // organizeCoordinates();
-        console.log(coordinatesMap);
-        // playMusic();
-    }
-
     function organizeCoordinates(coordinatesArr) {
         if (coordinatesArr.length == 0) {
             return coordinatesArr;
@@ -136,16 +129,25 @@ window.onload = function() {
         return false;
     }
 
-    function getY(coordinates, x) {
-        // return all y values for the given x value in the coordinates array
+    function playMusic() {
+
+        for (i = 0; i < canvas.width; i++) {
+            if (!includesX(coordinatesMap, i)) {
+                playNullNote();
+            } else {
+                playAllNotes(coordinatesMap[i].y);
+            }
+        }
     }
 
+    function playNullNote() {
+        // play nothing for soundLength milliseconds
+    }
 
-    function playMusic() {
-        for (i = 0; i < pointsArr.length/2; i++) {
-            var y = pointsArr[2*i + 1];
-            var frequency = lower + increment*(canvas.height - 1 - y);
-            playNote(frequency, 1000);
+    function playAllNotes(notes) {
+        for (i = 0; i < notes.length; i++) {
+            var frequency = lower + increment*(canvas.height - 1 - notes[i]);
+            playNote(frequency, soundLength);
         }
     }
 
@@ -172,6 +174,23 @@ window.onload = function() {
         }, duration);
     }
 
+    function playMusic2() {
+        /*
+        for (i = 0; i < 4; i++) {
+            var frequency = lower + increment*(canvas.height - 1 - (100*i));
+            playNote(frequency, soundLength);
+        }
+        */
+    }
+
+    var playButton = document.getElementById("playButton");
+    playButton.onclick = function() {
+        coordinatesArr = sortCoordinates(coordinatesArr);
+        coordinatesMap = organizeCoordinates(coordinatesArr);
+        console.log(JSON.stringify(coordinatesMap));
+        playMusic2();
+    }
+
     var clearButton = document.getElementById("clearButton");
     clearButton.onclick = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -183,6 +202,5 @@ window.onload = function() {
     printButton.onclick = function() {
         coordinatesArr = sortCoordinates(coordinatesArr);
         coordinatesMap = organizeCoordinates(coordinatesArr);
-        console.log('organized coordinatesMap: ' + JSON.stringify(coordinatesMap));
     }
 }
