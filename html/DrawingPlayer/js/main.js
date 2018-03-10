@@ -1,4 +1,36 @@
+function sleep(n) {
+    var promise = new Promise((resolve, reject) => {
+        setTimeout(_ => {
+            resolve(56);
+        }, n);
+    });
+
+    return promise;
+}
+
+async function looper() {
+    var sum = 0;
+    for (var i = 0; i <5; i++) {
+        console.log(i);
+        sum+=i;
+        await sleep(300);
+    }
+    return sum;
+}
+
+async function shiviMain() {
+    console.log('hello world');
+    // var sum = await looper();
+    // console.log(`The sum is ${sum}`);
+    var arr2 = [4, 5, 6, ...(false ? [7] : [])];
+    var arr3 = [4, 5, 6];
+    console.log(arr2);
+    console.log(arr3);
+}
+
 window.onload = function() {
+    shiviMain();
+    return;
 
     var canvas;
     var ctx;
@@ -133,7 +165,7 @@ window.onload = function() {
 
         for (i = 0; i < canvas.width; i++) {
             if (!includesX(coordinatesMap, i)) {
-                playNullNote();
+                setTimeout(playNullNote(), soundLength);
             } else {
                 playAllNotes(coordinatesMap[i].y);
             }
@@ -142,6 +174,7 @@ window.onload = function() {
 
     function playNullNote() {
         // play nothing for soundLength milliseconds
+
     }
 
     function playAllNotes(notes) {
@@ -158,7 +191,10 @@ window.onload = function() {
         return coordinatesArr;
     }
 
-    
+    function callback() {
+        // playAllNotes([300]);
+        console.log('inside the callback method');
+    }
 
     function playNote(frequency, duration) {
         // create Oscillator node
@@ -175,12 +211,10 @@ window.onload = function() {
     }
 
     function playMusic2() {
-        /*
-        for (i = 0; i < 4; i++) {
-            var frequency = lower + increment*(canvas.height - 1 - (100*i));
-            playNote(frequency, soundLength);
-        }
-        */
+        console.log('before the setTimeout');
+        setTimeout(callback(), 3000);
+        console.log('after the setTimeout');
+        // playAllNotes([300]);
     }
 
     var playButton = document.getElementById("playButton");
