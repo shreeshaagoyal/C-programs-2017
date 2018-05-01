@@ -2,21 +2,20 @@ class What {
     public int a;
 }
 
-class FuncShreeshaa implements Runnable {
+class FuncA implements Runnable {
     @Override
     public void run() {
-        System.out.println("This is FuncShreeshaa");
     }
 }
 
-class FuncShivanshu implements Runnable {
+class FuncB implements Runnable {
     @Override
     public void run() {
-        System.out.println("This is FuncShivanshu");
     }
 }
 
 public class HelloJava {
+
     public static void runFuncs(Runnable[] funcs) {
         for (Runnable func : funcs) {
             func.run();
@@ -24,12 +23,18 @@ public class HelloJava {
     }
 
     public static void main(String[] args) {
-        System.out.println("Go to Hell");
 
         Runnable[] funcs = new Runnable[2];
-        funcs[0] = new FuncShivanshu();
-        funcs[1] = new FuncShreeshaa();
+        funcs[0] = new FuncA();
+        funcs[1] = new FuncB();
 
         runFuncs(funcs);
+
+        String str = "N100-W1-71-56";
+        String[] numAndName = str.split("-", 2);
+
+        for (String s : numAndName) {
+            System.out.println(s);
+        }
     }
 }

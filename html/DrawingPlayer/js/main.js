@@ -29,8 +29,8 @@ async function shiviMain() {
 }
 
 window.onload = function() {
-    shiviMain();
-    return;
+    // shiviMain();
+    // return;
 
     var canvas;
     var ctx;
@@ -57,7 +57,7 @@ window.onload = function() {
 
     var coordinatesMap = [];
 
-    var soundLength = 1000;
+    var soundLength = 50;
 
     init();
 
@@ -81,6 +81,14 @@ window.onload = function() {
         canvas.addEventListener("mouseup", function(event) {
             findxy("mouseup", event);
         });
+
+        canvas.addEventListener("mouseleave", function(event) {
+            findxy("mouseleave", event);
+        });
+
+        canvas.addEventListener("mouseenter", function(event) {
+            findxy("mouseenter", event);
+        });
     }
 
     function findxy(s, event) {
@@ -100,13 +108,12 @@ window.onload = function() {
                 prevY = currY;
                 currX = event.clientX - canvasLeft;
                 currY = event.clientY - canvasTop;
-                // drawSquare();
                 draw();
                 pointsArr.push(currX, currY);
                 coordinatesArr.push({x:currX, y:currY});
             }
         }
-        if (s == "mouseup") {
+        if ((s == "mouseup") || (s == "mouseleave")) {
             mouseClicked = false;
         }
     }
@@ -143,7 +150,6 @@ window.onload = function() {
                 coordinatesMap.push({x: currX, y: currYArr});
                 currX = coordinatesArr[i].x;
                 currYArr = [];
-                // currYArr.length = 0;
                 i--;
             }
 
@@ -161,20 +167,26 @@ window.onload = function() {
         return false;
     }
 
-    function playMusic() {
-
-        for (i = 0; i < canvas.width; i++) {
-            if (!includesX(coordinatesMap, i)) {
-                setTimeout(playNullNote(), soundLength);
-            } else {
-                playAllNotes(coordinatesMap[i].y);
-            }
+    function playMusicFromIndex(i) {
+        if (i > console.width) {
+            return;
+        } else if (includesX(coordinatesMap, i)) {
+            setTimeout(function() {
+                playAllNotes(getYWithX(coordinatesMap, i));
+                playMusicFromIndex(i + 1);
+            }, soundLength);
+        } else {
+            setTimeout(function() {
+                playMusicFromIndex(i + 1);
+            }, soundLength);
         }
     }
 
-    function playNullNote() {
-        // play nothing for soundLength milliseconds
-
+    function getYWithX(coordinates, x) {
+        var c = coordinates.find(function(arr) {
+            return arr.x == x;
+        });
+        return c.y;
     }
 
     function playAllNotes(notes) {
@@ -191,11 +203,6 @@ window.onload = function() {
         return coordinatesArr;
     }
 
-    function callback() {
-        // playAllNotes([300]);
-        console.log('inside the callback method');
-    }
-
     function playNote(frequency, duration) {
         // create Oscillator node
         var oscillator = audioCtx.createOscillator();
@@ -210,11 +217,8 @@ window.onload = function() {
         }, duration);
     }
 
-    function playMusic2() {
-        console.log('before the setTimeout');
-        setTimeout(callback(), 3000);
-        console.log('after the setTimeout');
-        // playAllNotes([300]);
+    function playMusic() {
+        playMusicFromIndex(0);
     }
 
     var playButton = document.getElementById("playButton");
@@ -222,7 +226,7 @@ window.onload = function() {
         coordinatesArr = sortCoordinates(coordinatesArr);
         coordinatesMap = organizeCoordinates(coordinatesArr);
         console.log(JSON.stringify(coordinatesMap));
-        playMusic2();
+        playMusic();
     }
 
     var clearButton = document.getElementById("clearButton");
@@ -236,5 +240,6 @@ window.onload = function() {
     printButton.onclick = function() {
         coordinatesArr = sortCoordinates(coordinatesArr);
         coordinatesMap = organizeCoordinates(coordinatesArr);
+        console.log(JSON.stringify(coordinatesMap));
     }
 }
